@@ -1,7 +1,6 @@
 import Helpers from "../utilities/helpers";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URI;
-const SECRET_ENCRIPTION_KEY = process.env.REACT_APP_SECRET_ENCRIPTION_KEY;
 
 class AuthService {
     async register(data) {
@@ -17,13 +16,13 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async activateAccount(accountActivationToken) {
+    async activateAccount(data) {
         const options = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ token: accountActivationToken }),
+            body: JSON.stringify(data),
         };
 
         const response = await fetch(`${API_BASE_URL}/account-activation`, options);
@@ -155,7 +154,7 @@ class AuthService {
         if (!accessToken) {
             throw new Error("Missing access token.");
         }
-        return `Bearer ${Helpers.decriptData(accessToken, SECRET_ENCRIPTION_KEY)}`;
+        return `Bearer ${Helpers.decriptData(accessToken)}`;
     }
 
     #parseResponse(response) {

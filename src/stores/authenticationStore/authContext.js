@@ -1,6 +1,6 @@
 /**
  * TODOS:
- * - Save toke and user data check auth here
+ * - Save token and user data check auth here
  */
 // and it is the auth context will save user data and session and localStorage data
 
@@ -23,52 +23,72 @@ function AuthProvider({ children }) {
     useEffect(() => {}, []);
 
     const signup = async (email, password) => {
-        try {
-            return authService.register();
-        } catch (error) {}
+        return authService.register({ email, password });
+    };
+
+    const activateAccount = (accountActivationToken) => {
+        return authService.activateAccount({ token: accountActivationToken });
     };
 
     const login = async (email, password) => {
         try {
-            return authService.register();
+            return authService.login({ email, password });
         } catch (error) {}
     };
 
     const logout = async () => {
         try {
-            return authService.register();
+            return authService.logout({ userId: currentUser.id });
         } catch (error) {}
     };
 
-    const resetPassword = async (email) => {
+    const initPasswordReset = (email) => {
+        return authService.initPasswordReset({ email });
+    };
+
+    const resetPassword = (email, passwordResetToken) => {
+        return authService.resetPassword({ email, token: passwordResetToken });
+    };
+
+    const refreshToken = async (email) => {
         try {
-            return authService.register();
+            return await authService.refreshToken();
         } catch (error) {}
     };
 
-    const updateEmail = async (email) => {
-        try {
-            return authService.register();
-        } catch (error) {}
+    const updatePassword = (oldPassword, newPassword) => {
+        return authService.updatePassword({ userId: currentUser.id, oldPassword, newPassword });
     };
 
-    const updatePassword = async (password) => {
-        try {
-            return authService.register();
-        } catch (error) {}
+    const initEmailUpdate = (newEmailAddress) => {
+        return authService.initEmailUpdate({ userId: currentUser.id, email: newEmailAddress });
+    };
+
+    const updateEmail = (emailUpdateToken) => {
+        return authService.updateEmail({ token: emailUpdateToken });
+    };
+
+    const getUser = (userId) => {
+        return authService.getUser(userId);
     };
 
     const value = {
         currentUser,
+        setCurrentUser,
         signup,
         login,
         logout,
         resetPassword,
         updateEmail,
         updatePassword,
+        activateAccount,
+        initPasswordReset,
+        refreshToken,
+        initEmailUpdate,
+        getUser,
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export default { AuthProvider, useAuth };
+export const module = { AuthProvider, useAuth };
