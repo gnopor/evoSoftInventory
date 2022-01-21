@@ -6,8 +6,6 @@ import DefaultLayout from "./layouts/DefaultLayout";
 
 import HomePage from "./pages/HomePage";
 
-
-
 import PrivateRoute from "./components/PrivateRoute";
 
 const routes = [
@@ -17,24 +15,36 @@ const routes = [
     layout: DefaultLayout,
     protected: false,
   },
-  {
-    path: "/auth/signup",
-    page: AuthenticationPage,
-    layout: DefaultLayout,
-    protected: false,
-  },
-  {
-    path: "/auth/activate-account",
-    page: AuthenticationPage,
-    layout: DefaultLayout,
-    protected: false,
-  },
-  {
-    path: "/auth/activate-account",
-    page: AuthenticationPage,
-    layout: DefaultLayout,
-    protected: false,
-  },
+  // {
+  //   path: "/auth/signup",
+  //   page: AuthRegisterPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/account-activation/:token",
+  //   page: AuthAccountActivationPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/login",
+  //   page: AuthLoginPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/reset-password/:token",
+  //   page: AuthResetPasswordPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/profile",
+  //   page: AuthProfilePage,
+  //   layout: DefaultLayout,
+  //   protected: true,
+  // },
 ];
 
 export default function App() {
@@ -68,6 +78,7 @@ export default function App() {
                 />
               )
             )}
+
             <Redirect to="/home" />
           </Switch>
         </HelmetProvider>

@@ -1,3 +1,8 @@
+/**
+ * TODOS:
+ * - Save toke and user data check auth here
+ */
+
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
 
