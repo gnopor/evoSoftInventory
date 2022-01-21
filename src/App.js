@@ -1,14 +1,88 @@
-/**
- * 
- * ! All auth related route must start with "/auth/some-path"
- */
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+
+import DefaultLayout from "./layouts/DefaultLayout";
+// import AuthLayout from "./layouts/AuthLayout";
+
+import HomePage from "./pages/HomePage";
+
+import PrivateRoute from "./components/PrivateRoute";
+
+const routes = [
+  {
+    path: "/home",
+    page: HomePage,
+    layout: DefaultLayout,
+    protected: false,
+  },
+  // {
+  //   path: "/auth/signup",
+  //   page: AuthRegisterPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/account-activation/:token",
+  //   page: AuthAccountActivationPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/login",
+  //   page: AuthLoginPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/reset-password/:token",
+  //   page: AuthResetPasswordPage,
+  //   layout: DefaultLayout,
+  //   protected: false,
+  // },
+  // {
+  //   path: "/auth/profile",
+  //   page: AuthProfilePage,
+  //   layout: DefaultLayout,
+  //   protected: true,
+  // },
+];
 
 export default function App() {
   return (
-    <div >
-app
+    <div>
+      <BrowserRouter>
+        <HelmetProvider>
+          <Switch>
+            {routes.map((route) =>
+              route.protected ? (
+                <PrivateRoute
+                  key={route.path}
+                  exact
+                  path={route.path}
+                  render={(props) => (
+                    <route.layout>
+                      <route.page {...props} />
+                    </route.layout>
+                  )}
+                />
+              ) : (
+                <Route
+                  key={route.path}
+                  exact
+                  path={route.path}
+                  render={(props) => (
+                    <route.layout>
+                      <route.page {...props} />
+                    </route.layout>
+                  )}
+                />
+              )
+            )}
+
+            <Redirect to="/home" />
+          </Switch>
+        </HelmetProvider>
+      </BrowserRouter>
     </div>
   );
 }
-
-
