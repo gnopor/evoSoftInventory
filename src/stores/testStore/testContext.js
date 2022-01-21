@@ -21,7 +21,7 @@ const AnnonceProvider = ({ children }) => {
 
     return (
         <AnnonceContext.Provider value={[state, dispatch]}>
-            {/* TODO: Return loading if category and annonce are not yet loaded */}
+            {/* TODO: Return starting are not yet fetched */}
             {children}
         </AnnonceContext.Provider>
     );

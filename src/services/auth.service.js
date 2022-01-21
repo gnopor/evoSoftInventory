@@ -2,86 +2,168 @@ import Helpers from "../utilities/helpers";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URI;
 const SECRET_ENCRIPTION_KEY = process.env.REACT_APP_SECRET_ENCRIPTION_KEY;
-// All methods here will be called by the auth context
-// and it is the auth context will save user data and session and localStorage data
 
 class AuthService {
-  async register(data = {}) {
-    try {
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
+    async register(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
 
-      const response = await fetch(`${API_BASE_URL}/register`, options);
-      return await this.#parseResponse(response);
-    } catch (error) {
-      this.#handleError(error);
+        const response = await fetch(`${API_BASE_URL}/register`, options);
+        return await this.#parseResponse(response);
     }
-  }
 
-  async activateAccount() {}
+    async activateAccount(accountActivationToken) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: accountActivationToken }),
+        };
 
-  async login() {
-    // // encrypt and decrypt data that will go into storage
-    // Helpers.encryptData();
-    // Helpers.decriptData();
-  }
-
-  async logout(userId) {
-    try {
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: this.#getCredential(),
-        },
-        body: JSON.stringify({ userId }),
-      };
-
-      const response = await fetch(`${API_BASE_URL}/logout`, options);
-      return await this.#parseResponse(response);
-    } catch (error) {
-      this.#handleError(error);
+        const response = await fetch(`${API_BASE_URL}/account-activation`, options);
+        return await this.#parseResponse(response);
     }
-  }
 
-  async initPasswordReset() {}
+    async login(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
 
-  async resetPassword() {}
-
-  async refreshToken() {}
-
-  async updatePassword() {}
-
-  async initEmailUpdate() {}
-
-  async updateEmail() {}
-
-  async getUser() {}
-
-  #getCredential() {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      throw new Error("Missing access token.");
+        const response = await fetch(`${API_BASE_URL}/login`, options);
+        return await this.#parseResponse(response);
     }
-    return `Bearer ${Helpers.decriptData(accessToken, SECRET_ENCRIPTION_KEY)}`;
-  }
 
-  #parseResponse(response) {
-    if (!response.ok) {
-      throw response;
+    async logout(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.#getCredential(),
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/logout`, options);
+        return await this.#parseResponse(response);
     }
-    return response.json();
-  }
 
-  #handleError(error) {
-    // and it will only reject on network failure or if anything prevented the request from completing
-    console.log(`[AUTH SERVICE ERROR] ${error?.message}`);
-    throw error;
-  }
+    async initPasswordReset(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/init-password-reset`, options);
+        return await this.#parseResponse(response);
+    }
+
+    async resetPassword(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/reset-password`, options);
+        return await this.#parseResponse(response);
+    }
+
+    async refreshToken() {
+        const options = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.#getCredential(),
+            },
+        };
+
+        const response = await fetch(`${API_BASE_URL}/refresh-token`, options);
+        return await this.#parseResponse(response);
+    }
+
+    async updatePassword(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.#getCredential(),
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/update-password`, options);
+        return await this.#parseResponse(response);
+    }
+
+    async initEmailUpdate(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.#getCredential(),
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/init-email-update`, options);
+        return await this.#parseResponse(response);
+    }
+
+    async updateEmail(data) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.#getCredential(),
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/update-email`, options);
+        return await this.#parseResponse(response);
+    }
+
+    async getUser(data) {
+        const options = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.#getCredential(),
+            },
+            body: JSON.stringify(data),
+        };
+
+        const response = await fetch(`${API_BASE_URL}/reset-password`, options);
+        return await this.#parseResponse(response);
+    }
+
+    #getCredential() {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+            throw new Error("Missing access token.");
+        }
+        return `Bearer ${Helpers.decriptData(accessToken, SECRET_ENCRIPTION_KEY)}`;
+    }
+
+    #parseResponse(response) {
+        if (!response.ok) {
+            throw response;
+        }
+        return response.json();
+    }
 }
 
 export default new AuthService();
