@@ -17,7 +17,7 @@ class AuthService {
       };
 
       const response = await fetch(`${API_BASE_URL}/register`, options);
-      return this.#handleResponse(response.json());
+      return await this.#parseResponse(response);
     } catch (error) {
       this.#handleError(error);
     }
@@ -42,7 +42,7 @@ class AuthService {
       };
 
       const response = await fetch(`${API_BASE_URL}/logout`, options);
-      return this.#handleResponse(response.json());
+      return await this.#parseResponse(response);
     } catch (error) {
       this.#handleError(error);
     }
@@ -64,17 +64,24 @@ class AuthService {
 
   #getCredential() {
     const accessToken = localStorage.getItem("accessToken");
-
     if (!accessToken) {
       throw new Error("Missing access token.");
     }
-
     return `Bearer ${Helpers.decriptData(accessToken, SECRET_ENCRIPTION_KEY)}`;
   }
 
-  #handleResponse() {}
+  #parseResponse(response) {
+    if (!response.ok) {
+      throw response;
+    }
+    return response.json();
+  }
 
-  #handleError() {}
+  #handleError(error) {
+    // and it will only reject on network failure or if anything prevented the request from completing
+    console.log(`[AUTH SERVICE ERROR] ${error?.message}`);
+    throw error;
+  }
 }
 
 export default new AuthService();

@@ -4,57 +4,58 @@
  */
 
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import authService from "../../services/auth.service";
 
 const AuthContext = React.createContext();
 
 function useAuth() {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+
+  if (context === undefined) {
+    throw new Error("AuthContext must be used within an AuthProvider.");
+  }
 }
-
-
-/**
- * 
- * Replace currentUser and auth module by auth service(auth.service.js)
- * 
- */
-
 
 function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
+  useEffect(() => {}, []);
 
-  function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
-  }
+  const signup = async (email, password) => {
+    try {
+      return authService.register();
+    } catch (error) {}
+  };
 
-  function logout() {
-    return auth.signOut();
-  }
+  const login = async (email, password) => {
+    try {
+      return authService.register();
+    } catch (error) {}
+  };
 
-  function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email);
-  }
+  const logout = async () => {
+    try {
+      return authService.register();
+    } catch (error) {}
+  };
 
-  function updateEmail(email) {
-    return currentUser.updateEmail(email);
-  }
+  const resetPassword = async (email) => {
+    try {
+      return authService.register();
+    } catch (error) {}
+  };
 
-  function updatePassword(password) {
-    return currentUser.updatePassword(password);
-  }
+  const updateEmail = async (email) => {
+    try {
+      return authService.register();
+    } catch (error) {}
+  };
 
-  useEffect(() => {
-    /*const unsubscribe =*/ auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
-
-    // unsubscribe from this listener
-    // return unsubscribe();
-  }, []);
+  const updatePassword = async (password) => {
+    try {
+      return authService.register();
+    } catch (error) {}
+  };
 
   const value = {
     currentUser,
