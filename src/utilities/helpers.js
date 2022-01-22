@@ -8,21 +8,23 @@
 import { customAlphabet } from "nanoid";
 import { AES, enc } from "crypto-js";
 
+const SECRET_ENCRIPTION_KEY = process.env.REACT_APP_SECRET_ENCRIPTION_KEY;
+
 export default class Helpers {
-  static createId() {
-    const nanoid = customAlphabet(
-      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-      12
-    );
+    static createId() {
+        const nanoid = customAlphabet(
+            "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+            24
+        );
 
-    return nanoid();
-  }
+        return nanoid();
+    }
 
-  static encryptData(plainText, secretKey) {
-    return AES.encrypt(plainText, secretKey).toString();
-  }
+    static encryptData(plainText, secretKey = SECRET_ENCRIPTION_KEY) {
+        return AES.encrypt(plainText, secretKey).toString();
+    }
 
-  static decriptData(cipherText, secretKey) {
-    return AES.decrypt(cipherText, secretKey).toString(enc.Utf8);
-  }
+    static decriptData(cipherText, secretKey = SECRET_ENCRIPTION_KEY) {
+        return AES.decrypt(cipherText, secretKey).toString(enc.Utf8);
+    }
 }

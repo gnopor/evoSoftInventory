@@ -1,72 +1,94 @@
-/**
- * TODOS:
- * - Save toke and user data check auth here
- */
-
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import authService from "../../services/auth.service";
 
 const AuthContext = React.createContext();
 
 function useAuth() {
-  return useContext(AuthContext);
+    const context = useContext(AuthContext);
+
+    if (context === undefined) {
+        throw new Error("AuthContext must be used within an AuthProvider.");
+    }
 }
-
-
-/**
- * 
- * Replace currentUser and auth module by auth service(auth.service.js)
- * 
- */
-
 
 function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState(null);
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
+    useEffect(() => {
+        initAuth();
+    }, []);
 
-  function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
-  }
+    const initAuth = async () => {
+        if (isUserAuthenticated) {
+            authService.refreshToken();
 
-  function logout() {
-    return auth.signOut();
-  }
+            !currentUser.id && setCurrentUser(await getUser());
+        }
+    };
 
-  function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email);
-  }
+    const signup = (email, password) => {
+        return authService.register({ email, password });
+    };
 
-  function updateEmail(email) {
-    return currentUser.updateEmail(email);
-  }
+    const activateAccount = (accountActivationToken) => {
+        return authService.activateAccount({ token: accountActivationToken });
+    };
 
-  function updatePassword(password) {
-    return currentUser.updatePassword(password);
-  }
+    const login = async (email, password) => {
+        const { user } = await authService.login({ email, password });
+        setCurrentUser(user);
+    };
 
-  useEffect(() => {
-    /*const unsubscribe =*/ auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
+    const logout = async () => {
+        await authService.logout({ userId: currentUser.id });
+        setCurrentUser(null);
+    };
 
-    // unsubscribe from this listener
-    // return unsubscribe();
-  }, []);
+    const initPasswordReset = (email) => {
+        return authService.initPasswordReset({ email });
+    };
 
-  const value = {
-    currentUser,
-    signup,
-    login,
-    logout,
-    resetPassword,
-    updateEmail,
-    updatePassword,
-  };
+    const resetPassword = (email, passwordResetToken) => {
+        return authService.resetPassword({ email, token: passwordResetToken });
+    };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    const updatePassword = (oldPassword, newPassword) => {
+        return authService.updatePassword({ userId: currentUser.id, oldPassword, newPassword });
+    };
+
+    const initEmailUpdate = (newEmailAddress) => {
+        return authService.initEmailUpdate({ userId: currentUser.id, email: newEmailAddress });
+    };
+
+    const updateEmail = (emailUpdateToken) => {
+        return authService.updateEmail({ token: emailUpdateToken });
+    };
+
+    const getUser = (userId) => {
+        return authService.getUser(userId);
+    };
+
+    const isUserAuthenticated = () => {
+        authService.isUserAuthenticated();
+    };
+
+    const value = {
+        currentUser,
+        setCurrentUser,
+        signup,
+        login,
+        logout,
+        resetPassword,
+        updateEmail,
+        updatePassword,
+        activateAccount,
+        initPasswordReset,
+        initEmailUpdate,
+        getUser,
+        isUserAuthenticated,
+    };
+
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export default { AuthProvider, useAuth };
+export const module = { AuthProvider, useAuth };
