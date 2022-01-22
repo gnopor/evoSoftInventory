@@ -3,15 +3,16 @@ import authService from "../../services/auth.service";
 
 const AuthContext = React.createContext();
 
-function useAuth() {
+export function useAuth() {
     const context = useContext(AuthContext);
 
     if (context === undefined) {
         throw new Error("AuthContext must be used within an AuthProvider.");
     }
+    return context;
 }
 
-function AuthProvider({ children }) {
+export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
@@ -19,14 +20,14 @@ function AuthProvider({ children }) {
     }, []);
 
     const initAuth = async () => {
-        if (isUserAuthenticated) {
+        if (isUserAuthenticated()) {
             authService.refreshToken();
 
-            !currentUser.id && setCurrentUser(await getUser());
+            !currentUser?.id && setCurrentUser(await getUser());
         }
     };
 
-    const signup = (email, password) => {
+    const register = (email, password) => {
         return authService.register({ email, password });
     };
 
@@ -75,7 +76,7 @@ function AuthProvider({ children }) {
     const value = {
         currentUser,
         setCurrentUser,
-        signup,
+        register,
         login,
         logout,
         resetPassword,
@@ -90,5 +91,3 @@ function AuthProvider({ children }) {
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-
-export const module = { AuthProvider, useAuth };
