@@ -1,6 +1,8 @@
 import Helpers from "../utilities/helpers";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URI;
+const API_SERVICE_NAME = "auth";
+const BASE_URL = `${API_BASE_URL}/${API_SERVICE_NAME}`;
 
 const ACCESS_TOKEN_KEY = "x-access-token";
 const ACCESS_TOKEN_EXPIRATION_KEY = "x-access-token-expiration";
@@ -15,7 +17,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/register`, options);
+        const response = await fetch(`${BASE_URL}/register`, options);
         return await this.#parseResponse(response);
     }
 
@@ -28,7 +30,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/account-activation`, options);
+        const response = await fetch(`${BASE_URL}/account-activation`, options);
         return await this.#parseResponse(response);
     }
 
@@ -41,7 +43,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        let response = await fetch(`${API_BASE_URL}/login`, options);
+        let response = await fetch(`${BASE_URL}/login`, options);
         response = await this.#parseResponse(response);
 
         saveAuthToken(response.accessToken);
@@ -58,7 +60,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        let response = await fetch(`${API_BASE_URL}/logout`, options);
+        let response = await fetch(`${BASE_URL}/logout`, options);
         response = await this.#parseResponse(response);
 
         deleteAuthToken();
@@ -74,7 +76,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/init-password-reset`, options);
+        const response = await fetch(`${BASE_URL}/init-password-reset`, options);
         return await this.#parseResponse(response);
     }
 
@@ -87,7 +89,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/reset-password`, options);
+        const response = await fetch(`${BASE_URL}/reset-password`, options);
         return await this.#parseResponse(response);
     }
 
@@ -99,7 +101,7 @@ class AuthService {
             },
         };
 
-        let response = await fetch(`${API_BASE_URL}/refresh-token`, options);
+        let response = await fetch(`${BASE_URL}/refresh-token`, options);
         response = await this.#parseResponse(response);
 
         saveAuthToken(response.accessToken);
@@ -116,7 +118,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/update-password`, options);
+        const response = await fetch(`${BASE_URL}/update-password`, options);
         return await this.#parseResponse(response);
     }
 
@@ -130,7 +132,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/init-email-update`, options);
+        const response = await fetch(`${BASE_URL}/init-email-update`, options);
         return await this.#parseResponse(response);
     }
 
@@ -144,7 +146,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/update-email`, options);
+        const response = await fetch(`${BASE_URL}/update-email`, options);
         return await this.#parseResponse(response);
     }
 
@@ -157,7 +159,7 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/reset-password`, options);
+        const response = await fetch(`${BASE_URL}/reset-password`, options);
         return await this.#parseResponse(response);
     }
 
@@ -186,7 +188,7 @@ class AuthService {
         const tokenExpiration =
             Helpers.decriptData(localStorage.getItem(ACCESS_TOKEN_EXPIRATION_KEY)) || 0;
 
-        return accessToken && tokenExpiration > Date.now();
+        return accessToken && +tokenExpiration > Date.now();
     }
 }
 

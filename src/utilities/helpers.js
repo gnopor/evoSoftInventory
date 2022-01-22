@@ -21,10 +21,10 @@ export default class Helpers {
     }
 
     static encryptData(plainText, secretKey = SECRET_ENCRIPTION_KEY) {
-        return AES.encrypt(plainText, secretKey).toString();
+        return AES.encrypt(plainText.toString(), secretKey).toString();
     }
 
     static decriptData(cipherText, secretKey = SECRET_ENCRIPTION_KEY) {
-        return AES.decrypt(cipherText, secretKey).toString(enc.Utf8);
+        return cipherText ? AES.decrypt(cipherText, secretKey).toString(enc.Utf8) : null;
     }
 }
