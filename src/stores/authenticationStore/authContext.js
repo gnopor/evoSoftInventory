@@ -1,9 +1,3 @@
-/**
- * TODOS:
- * - Save token and user data check auth here
- */
-// and it is the auth context will save user data and session and localStorage data
-
 import React, { useContext, useState, useEffect } from "react";
 import authService from "../../services/auth.service";
 
@@ -18,11 +12,21 @@ function useAuth() {
 }
 
 function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState(null);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        initAuth();
+    }, []);
 
-    const signup = async (email, password) => {
+    const initAuth = async () => {
+        if (isUserAuthenticated) {
+            authService.refreshToken();
+
+            !currentUser.id && setCurrentUser(await getUser());
+        }
+    };
+
+    const signup = (email, password) => {
         return authService.register({ email, password });
     };
 
@@ -31,15 +35,13 @@ function AuthProvider({ children }) {
     };
 
     const login = async (email, password) => {
-        try {
-            return authService.login({ email, password });
-        } catch (error) {}
+        const { user } = await authService.login({ email, password });
+        setCurrentUser(user);
     };
 
     const logout = async () => {
-        try {
-            return authService.logout({ userId: currentUser.id });
-        } catch (error) {}
+        await authService.logout({ userId: currentUser.id });
+        setCurrentUser(null);
     };
 
     const initPasswordReset = (email) => {
@@ -48,12 +50,6 @@ function AuthProvider({ children }) {
 
     const resetPassword = (email, passwordResetToken) => {
         return authService.resetPassword({ email, token: passwordResetToken });
-    };
-
-    const refreshToken = async (email) => {
-        try {
-            return await authService.refreshToken();
-        } catch (error) {}
     };
 
     const updatePassword = (oldPassword, newPassword) => {
@@ -72,6 +68,10 @@ function AuthProvider({ children }) {
         return authService.getUser(userId);
     };
 
+    const isUserAuthenticated = () => {
+        authService.isUserAuthenticated();
+    };
+
     const value = {
         currentUser,
         setCurrentUser,
@@ -83,9 +83,9 @@ function AuthProvider({ children }) {
         updatePassword,
         activateAccount,
         initPasswordReset,
-        refreshToken,
         initEmailUpdate,
         getUser,
+        isUserAuthenticated,
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

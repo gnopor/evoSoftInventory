@@ -1,0 +1,14 @@
+{
+    "projects": {
+        "default": "firebase-project_id"
+    },
+    "targets": {
+        "firebase-project_id": {
+            "hosting": {
+                "webapp": [
+                    "firebase-hosting-website-id"
+                ]
+            }
+        }
+    }
+}

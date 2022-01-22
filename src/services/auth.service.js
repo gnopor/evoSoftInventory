@@ -2,6 +2,9 @@ import Helpers from "../utilities/helpers";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URI;
 
+const ACCESS_TOKEN_KEY = "x-access-token";
+const ACCESS_TOKEN_EXPIRATION_KEY = "x-access-token-expiration";
+
 class AuthService {
     async register(data) {
         const options = {
@@ -38,8 +41,11 @@ class AuthService {
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/login`, options);
-        return await this.#parseResponse(response);
+        let response = await fetch(`${API_BASE_URL}/login`, options);
+        response = await this.#parseResponse(response);
+
+        saveAuthToken(response.accessToken);
+        return response;
     }
 
     async logout(data) {
@@ -47,13 +53,16 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.#getCredential(),
+                Authorization: this.getCredential(),
             },
             body: JSON.stringify(data),
         };
 
-        const response = await fetch(`${API_BASE_URL}/logout`, options);
-        return await this.#parseResponse(response);
+        let response = await fetch(`${API_BASE_URL}/logout`, options);
+        response = await this.#parseResponse(response);
+
+        deleteAuthToken();
+        return response;
     }
 
     async initPasswordReset(data) {
@@ -86,12 +95,15 @@ class AuthService {
         const options = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.#getCredential(),
+                Authorization: this.getCredential(),
             },
         };
 
-        const response = await fetch(`${API_BASE_URL}/refresh-token`, options);
-        return await this.#parseResponse(response);
+        let response = await fetch(`${API_BASE_URL}/refresh-token`, options);
+        response = await this.#parseResponse(response);
+
+        saveAuthToken(response.accessToken);
+        return response;
     }
 
     async updatePassword(data) {
@@ -99,7 +111,7 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.#getCredential(),
+                Authorization: this.getCredential(),
             },
             body: JSON.stringify(data),
         };
@@ -113,7 +125,7 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.#getCredential(),
+                Authorization: this.getCredential(),
             },
             body: JSON.stringify(data),
         };
@@ -127,7 +139,7 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.#getCredential(),
+                Authorization: this.getCredential(),
             },
             body: JSON.stringify(data),
         };
@@ -140,7 +152,7 @@ class AuthService {
         const options = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.#getCredential(),
+                Authorization: this.getCredential(),
             },
             body: JSON.stringify(data),
         };
@@ -149,20 +161,46 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    #getCredential() {
-        const accessToken = localStorage.getItem("accessToken");
+    #parseResponse(response) {
+        // if (!response.ok && response.status === "401") {
+        //     return this.refreshToken();
+        // }
+
+        if (!response.ok) {
+            throw response;
+        }
+
+        return response.json();
+    }
+
+    getCredential() {
+        const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
         if (!accessToken) {
             throw new Error("Missing access token.");
         }
         return `Bearer ${Helpers.decriptData(accessToken)}`;
     }
 
-    #parseResponse(response) {
-        if (!response.ok) {
-            throw response;
-        }
-        return response.json();
+    isUserAuthenticated() {
+        const accessToken = Helpers.decriptData(localStorage.getItem(ACCESS_TOKEN_KEY));
+        const tokenExpiration =
+            Helpers.decriptData(localStorage.getItem(ACCESS_TOKEN_EXPIRATION_KEY)) || 0;
+
+        return accessToken && tokenExpiration > Date.now();
     }
+}
+
+function saveAuthToken(accessToken) {
+    localStorage.setItem(ACCESS_TOKEN_KEY, Helpers.encryptData(accessToken));
+    localStorage.setItem(
+        ACCESS_TOKEN_EXPIRATION_KEY,
+        Helpers.encryptData(Date.now() + 24 * 60 * 60 * 1000)
+    );
+}
+
+function deleteAuthToken() {
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    localStorage.removeItem(ACCESS_TOKEN_EXPIRATION_KEY);
 }
 
 export default new AuthService();
