@@ -41,6 +41,8 @@ module.exports = {
                     FunctionExpression: false
                 }
             }
-        ]
+        ],
+        // react eslint plugins related rules
+        "react/prop-types": [1]
     }
 };

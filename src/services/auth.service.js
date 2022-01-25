@@ -12,9 +12,9 @@ class AuthService {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/register`, options);
@@ -25,9 +25,9 @@ class AuthService {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/account-activation`, options);
@@ -38,9 +38,9 @@ class AuthService {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         let response = await fetch(`${BASE_URL}/login`, options);
@@ -55,9 +55,9 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.getCredential(),
+                Authorization: this.getCredential()
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         let response = await fetch(`${BASE_URL}/logout`, options);
@@ -71,9 +71,9 @@ class AuthService {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/init-password-reset`, options);
@@ -84,9 +84,9 @@ class AuthService {
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/reset-password`, options);
@@ -97,8 +97,8 @@ class AuthService {
         const options = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.getCredential(),
-            },
+                Authorization: this.getCredential()
+            }
         };
 
         let response = await fetch(`${BASE_URL}/refresh-token`, options);
@@ -113,9 +113,9 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.getCredential(),
+                Authorization: this.getCredential()
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/update-password`, options);
@@ -127,9 +127,9 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.getCredential(),
+                Authorization: this.getCredential()
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/init-email-update`, options);
@@ -141,9 +141,9 @@ class AuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.getCredential(),
+                Authorization: this.getCredential()
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/update-email`, options);
@@ -154,9 +154,9 @@ class AuthService {
         const options = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: this.getCredential(),
+                Authorization: this.getCredential()
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(`${BASE_URL}/reset-password`, options);
