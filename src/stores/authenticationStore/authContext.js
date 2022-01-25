@@ -12,6 +12,7 @@ export function useAuth() {
     return context;
 }
 
+// eslint-disable-next-line max-lines-per-function
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
 
@@ -86,7 +87,7 @@ export function AuthProvider({ children }) {
         initPasswordReset,
         initEmailUpdate,
         getUser,
-        isUserAuthenticated,
+        isUserAuthenticated
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

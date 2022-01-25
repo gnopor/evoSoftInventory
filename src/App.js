@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -14,8 +15,8 @@ const routes = [
         path: "/home",
         page: HomePage,
         layout: DefaultLayout,
-        protected: false,
-    },
+        protected: false
+    }
     // {
     //   path: "/auth/signup",
     //   page: AuthRegisterPage,
