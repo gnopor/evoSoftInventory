@@ -6,9 +6,6 @@
  */
 
 import { customAlphabet } from "nanoid";
-import { AES, enc } from "crypto-js";
-
-const SECRET_ENCRIPTION_KEY = process.env.REACT_APP_SECRET_ENCRIPTION_KEY;
 
 export default class Helpers {
     static createId() {
@@ -20,11 +17,7 @@ export default class Helpers {
         return nanoid();
     }
 
-    static encryptData(plainText, secretKey = SECRET_ENCRIPTION_KEY) {
-        return AES.encrypt(plainText.toString(), secretKey).toString();
-    }
-
-    static decriptData(cipherText, secretKey = SECRET_ENCRIPTION_KEY) {
-        return cipherText ? AES.decrypt(cipherText, secretKey).toString(enc.Utf8) : null;
+    static delay(ms = 0) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 }

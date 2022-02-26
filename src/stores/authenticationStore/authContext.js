@@ -22,9 +22,10 @@ export function AuthProvider({ children }) {
 
     const initAuth = async () => {
         if (isUserAuthenticated()) {
-            authService.refreshToken();
+            // useless now but kept for semantic
+            const { member } = await authService.refreshToken();
 
-            !currentUser?.id && setCurrentUser(await getUser());
+            !currentUser?.id && setCurrentUser(await getUser(member.identifier));
         }
     };
 

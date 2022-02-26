@@ -1,6 +1,6 @@
-import Helpers from "../utilities/helpers";
+import LocalStorage from "../utilities/helpers/localStorage.helpers";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URI;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URI;
 const API_SERVICE_NAME = "auth";
 const BASE_URL = `${API_BASE_URL}/${API_SERVICE_NAME}`;
 
@@ -152,6 +152,7 @@ class AuthService {
 
     async getUser(data) {
         const options = {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
@@ -176,27 +177,25 @@ class AuthService {
     }
 
     getCredential() {
-        const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+        const accessToken = LocalStorage.readFromLocalStorage(ACCESS_TOKEN_KEY);
         if (!accessToken) {
             throw new Error("Missing access token.");
         }
-        return `Bearer ${Helpers.decriptData(accessToken)}`;
+        return `Bearer ${accessToken}`;
     }
 
     isUserAuthenticated() {
-        const accessToken = Helpers.decriptData(localStorage.getItem(ACCESS_TOKEN_KEY));
-        const tokenExpiration =
-            Helpers.decriptData(localStorage.getItem(ACCESS_TOKEN_EXPIRATION_KEY)) || 0;
-
+        const accessToken = LocalStorage.readFromLocalStorage(ACCESS_TOKEN_KEY);
+        const tokenExpiration = LocalStorage.readFromLocalStorage(ACCESS_TOKEN_EXPIRATION_KEY) || 0;
         return accessToken && +tokenExpiration > Date.now();
     }
 }
 
 function saveAuthToken(accessToken) {
-    localStorage.setItem(ACCESS_TOKEN_KEY, Helpers.encryptData(accessToken));
-    localStorage.setItem(
+    LocalStorage.writeToLocalStorage(ACCESS_TOKEN_KEY, accessToken);
+    LocalStorage.writeToLocalStorage(
         ACCESS_TOKEN_EXPIRATION_KEY,
-        Helpers.encryptData(Date.now() + 24 * 60 * 60 * 1000)
+        String(Date.now() + 24 * 60 * 60 * 1000)
     );
 }
 
