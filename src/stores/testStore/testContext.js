@@ -3,7 +3,7 @@ import { reducer, initialState } from "./reducer";
 
 const AnnonceContext = React.createContext({
     state: initialState,
-    dispatch: () => null,
+    dispatch: () => null
 });
 
 function useAnnonce() {
