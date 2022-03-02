@@ -119,6 +119,7 @@ class AuthService {
         };
 
         const response = await fetch(`${BASE_URL}/update-password`, options);
+        deleteAuthToken();
         return await this.#parseResponse(response);
     }
 
@@ -164,13 +165,14 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    #parseResponse(response) {
+    async #parseResponse(response) {
         // if (!response.ok && response.status === "401") {
         //     return this.refreshToken();
         // }
 
         if (!response.ok) {
-            throw response;
+            const error = response.json();
+            throw new Error(error?.message || "Default error message");
         }
 
         return response.json();
