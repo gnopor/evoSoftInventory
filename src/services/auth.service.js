@@ -94,18 +94,22 @@ class AuthService {
     }
 
     async refreshToken() {
-        const options = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: this.getCredential()
-            }
-        };
+        try {
+            const options = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: this.getCredential()
+                }
+            };
 
-        let response = await fetch(`${BASE_URL}/refresh-token`, options);
-        response = await this.#parseResponse(response);
+            let response = await fetch(`${BASE_URL}/refresh-token`, options);
+            response = await this.#parseResponse(response);
 
-        saveAuthToken(response.accessToken);
-        return response;
+            saveAuthToken(response.accessToken);
+            return response;
+        } catch (error) {
+            deleteAuthToken();
+        }
     }
 
     async updatePassword(data) {
