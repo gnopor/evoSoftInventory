@@ -108,6 +108,7 @@ class AuthService {
             saveAuthToken(response.accessToken);
             return response;
         } catch (error) {
+            // no mandatory
             deleteAuthToken();
         }
     }
