@@ -1,13 +1,12 @@
 {
-  "hosting": {
-    "target": "webapp",
-    "public": "build",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+    "projects": {
+        "default": "project-name-dev"
+    },
+    "targets": {
+        "kmermarke-dev": {
+            "hosting": {
+                "webapp": ["webapp-name-dev"]
+            }
+        }
+    }
 }

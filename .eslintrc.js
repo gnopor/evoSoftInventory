@@ -22,7 +22,7 @@ module.exports = {
         "max-len": [
             "error",
             {
-                ignorePattern: "^.*require|export",
+                ignorePattern: "^.*require|export|className|import",
                 ignoreTemplateLiterals: true,
                 code: 100
             }
@@ -44,5 +44,13 @@ module.exports = {
         ],
         // react eslint plugins related rules
         "react/prop-types": [1]
-    }
+    },
+    overrides: [
+        {
+            files: ["src/components/**", "src/pages/**"],
+            rules: {
+                "max-lines-per-function": ["error", 120]
+            }
+        }
+    ]
 };
