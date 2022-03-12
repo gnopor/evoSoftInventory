@@ -21,12 +21,16 @@ export function AuthProvider({ children }) {
     }, []);
 
     const initAuth = async () => {
-        if (isUserAuthenticated()) {
-            // useless now but kept for semantic
-            const { member } = await authService.refreshToken();
-
-            !currentUser?.id && setCurrentUser(await getUser(member.identifier));
-        }
+        try {
+            if (isUserAuthenticated()) {
+                // useless now but kept for semantic
+                const { member } = await authService.refreshToken();
+                !currentUser?.id && setCurrentUser(await getUser(member?.id));
+            }
+            if (!isUserAuthenticated() && currentUser?.id) {
+                setCurrentUser(null);
+            }
+        } catch (error) {}
     };
 
     const register = (email, password) => {

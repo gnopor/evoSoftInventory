@@ -1,14 +1,11 @@
 {
-    "projects": {
-        "default": "firebase-project_id"
-    },
-    "targets": {
-        "firebase-project_id": {
-            "hosting": {
-                "webapp": [
-                    "firebase-hosting-website-id"
-                ]
-            }
-        }
+    "hosting": {
+        "target": "webapp",
+        "public": "out",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ]
     }
 }

@@ -1,5 +1,3 @@
-# Migrate to from CRA(current) to NextJs
-
 ## Resources Links
 
 > [styled-jsx and Syntax Highlighting ](https://github.com/vercel/styled-jsx#warning-unknown-jsx-prop-on-style-tag)
@@ -8,8 +6,10 @@
 
 ## ENVIRONMENT VARIABLES
 
-> REACT_APP_FIREBASE_CONFIGS
+> NEXT_PUBLIC_API_BASE_URI
 
-> REACT_APP_API_BASE_URI
+> NEXT_PUBLIC_WEBAPP_DOMAIN
 
-> SECRET_ENCRIPTION_KEY
+> NEXT_PUBLIC_SECRET_ENCRIPTION_KEY
+
+> NEXT_PUBLIC_FIREBASE_CONFIG
