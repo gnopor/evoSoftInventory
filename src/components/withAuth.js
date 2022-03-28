@@ -13,7 +13,7 @@ export default function withAuth(WrapperCompnent) {
             if (isUserAuthenticated()) {
                 return <WrapperCompnent {...props} />;
             } else {
-                router.push(`/account/login`);
+                router.push("/account/login");
                 return "";
             }
         }
