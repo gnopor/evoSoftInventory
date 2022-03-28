@@ -12,14 +12,14 @@ export default function HomePage() {
             </Head>
 
             <DefaultLayout>
-                <div id="home_page">
+                <main id="home_page">
                     <section>
                         Home Page
                         <p>ddd</p>
                     </section>
 
                     <p>super paragrapth</p>
-                </div>
+                </main>
             </DefaultLayout>
 
             <style jsx>{style}</style>
