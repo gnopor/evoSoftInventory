@@ -184,7 +184,7 @@ class AuthService {
     }
 
     getCredential() {
-        const accessToken = LocalStorage.readFromLocalStorage(ACCESS_TOKEN_KEY);
+        const accessToken = LocalStorage.getItem(ACCESS_TOKEN_KEY);
         if (!accessToken) {
             throw new Error("Missing access token.");
         }
@@ -192,23 +192,20 @@ class AuthService {
     }
 
     isUserAuthenticated() {
-        const accessToken = LocalStorage.readFromLocalStorage(ACCESS_TOKEN_KEY);
-        const tokenExpiration = LocalStorage.readFromLocalStorage(ACCESS_TOKEN_EXPIRATION_KEY) || 0;
+        const accessToken = LocalStorage.getItem(ACCESS_TOKEN_KEY);
+        const tokenExpiration = LocalStorage.getItem(ACCESS_TOKEN_EXPIRATION_KEY) || 0;
         return accessToken && +tokenExpiration > Date.now();
     }
 }
 
 function saveAuthToken(accessToken) {
-    LocalStorage.writeToLocalStorage(ACCESS_TOKEN_KEY, accessToken);
-    LocalStorage.writeToLocalStorage(
-        ACCESS_TOKEN_EXPIRATION_KEY,
-        String(Date.now() + 24 * 60 * 60 * 1000)
-    );
+    LocalStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+    LocalStorage.setItem(ACCESS_TOKEN_EXPIRATION_KEY, String(Date.now() + 24 * 60 * 60 * 1000));
 }
 
 function deleteAuthToken() {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    localStorage.removeItem(ACCESS_TOKEN_EXPIRATION_KEY);
+    LocalStorage.removeItem(ACCESS_TOKEN_KEY);
+    LocalStorage.removeItem(ACCESS_TOKEN_EXPIRATION_KEY);
 }
 
 export default new AuthService();
