@@ -1,6 +1,6 @@
 import Encryption from "./encryption.helpers";
 
-export default class LocalStorage {
+export default class LocalStorageHelpers {
     static setItem(key, value) {
         if (typeof key === "string" && typeof value === "string") {
             return localStorage.setItem(key, Encryption.encrypt(value));
