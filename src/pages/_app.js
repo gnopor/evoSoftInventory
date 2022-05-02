@@ -12,7 +12,7 @@ export default function MyApp({ Component, pageProps }) {
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="theme-color" content="#000000" />
-                <meta name="description" content="Gen3, A family tree based online platform." />
+                <meta name="description" content="Gnopor React/Next js boilerplate." />
 
                 {/* <!-- START VENDOR CSS --> */}
                 {/* <!-- END VENDOR CSS --> */}
@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }) {
                 {/* <!-- START VENDOR SCRIPT  --> */}
                 {/* <!-- END VENDOR SCRIPT  --> */}
 
-                <title>Gen3</title>
+                <title>Boilerplate</title>
             </Head>
 
             <AuthProvider>
