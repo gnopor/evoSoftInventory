@@ -1,3 +1,7 @@
+## TODO:
+
+-   Fix the `any` props type issue.
+
 ## Resources Links
 
 > [styled-jsx and Syntax Highlighting ](https://github.com/vercel/styled-jsx#warning-unknown-jsx-prop-on-style-tag)
