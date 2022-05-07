@@ -3,7 +3,7 @@ module.exports = {
         browser: true,
         es2021: true
     },
-    extends: ["plugin:react/recommended", "google"],
+    extends: ["next/core-web-vitals", "google"],
     parserOptions: {
         ecmaFeatures: {
             jsx: true
@@ -11,7 +11,6 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module"
     },
-    plugins: ["react"],
     rules: {
         semi: ["error", "always"],
         quotes: ["error", "double"],

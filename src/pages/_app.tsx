@@ -1,10 +1,11 @@
 import React from "react";
 import Head from "next/head";
+import { AppProps } from "next/app";
 
-import "../index.css";
+import "../style/global.css";
 import { AuthProvider } from "../stores/authenticationStore/authContext";
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>

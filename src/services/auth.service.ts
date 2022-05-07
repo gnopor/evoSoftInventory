@@ -8,7 +8,7 @@ const ACCESS_TOKEN_KEY = "x-access-token";
 const ACCESS_TOKEN_EXPIRATION_KEY = "x-access-token-expiration";
 
 class AuthService {
-    async register(data) {
+    async register(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -21,7 +21,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async activateAccount(data) {
+    async activateAccount(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -34,7 +34,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async login(data) {
+    async login(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -43,14 +43,14 @@ class AuthService {
             body: JSON.stringify(data)
         };
 
-        let response = await fetch(`${BASE_URL}/login`, options);
+        let response: any = await fetch(`${BASE_URL}/login`, options);
         response = await this.#parseResponse(response);
 
         saveAuthToken(response.accessToken);
         return response;
     }
 
-    async logout(data) {
+    async logout(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -67,7 +67,7 @@ class AuthService {
         return response;
     }
 
-    async initPasswordReset(data) {
+    async initPasswordReset(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -80,7 +80,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async resetPassword(data) {
+    async resetPassword(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -102,7 +102,7 @@ class AuthService {
                 }
             };
 
-            let response = await fetch(`${BASE_URL}/refresh-token`, options);
+            let response: any = await fetch(`${BASE_URL}/refresh-token`, options);
             response = await this.#parseResponse(response);
 
             saveAuthToken(response.accessToken);
@@ -113,7 +113,7 @@ class AuthService {
         }
     }
 
-    async updatePassword(data) {
+    async updatePassword(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -128,7 +128,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async initEmailUpdate(data) {
+    async initEmailUpdate(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -142,7 +142,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async updateEmail(data) {
+    async updateEmail(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -156,7 +156,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async getUser(data) {
+    async getUser(data: any) {
         const options = {
             method: "POST",
             headers: {
@@ -170,7 +170,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async #parseResponse(response) {
+    async #parseResponse(response: any) {
         // if (!response.ok && response.status === "401") {
         //     return this.refreshToken();
         // }
@@ -198,7 +198,7 @@ class AuthService {
     }
 }
 
-function saveAuthToken(accessToken) {
+function saveAuthToken(accessToken: string) {
     LocalStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
     LocalStorage.setItem(ACCESS_TOKEN_EXPIRATION_KEY, String(Date.now() + 24 * 60 * 60 * 1000));
 }

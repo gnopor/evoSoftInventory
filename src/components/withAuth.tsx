@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 
 import { useAuth } from "../stores/authenticationStore/authContext";
 
-export default function withAuth(WrapperCompnent) {
-    return (props) => {
+export default function withAuth(WrapperCompnent: React.FC) {
+    return (props: any) => {
         if (typeof window !== "undefined") {
             const router = useRouter();
             const { isUserAuthenticated } = useAuth();
