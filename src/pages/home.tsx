@@ -3,12 +3,13 @@ import Head from "next/head";
 import css from "styled-jsx/css";
 
 import DefaultLayout from "../layouts/DefaultLayout";
+import { APP_NAME } from "../utilities/contstants";
 
 export default function HomePage() {
     return (
         <>
             <Head>
-                <title>Home | BoilerPlate</title>
+                <title>Home | {APP_NAME}</title>
             </Head>
 
             <DefaultLayout>
