@@ -8,6 +8,8 @@
 
 > [Approaches to add dynamic content to statically generated sites (JAMStack)](https://hasura.io/blog/approaches-to-add-dynamic-content-statically-generated-sites-jamstack/)
 
+> [Customize Bootstrap](https://getbootstrap.com/docs/5.2/customize/overview/)
+
 ## ENVIRONMENT VARIABLES
 
 > NEXT_PUBLIC_API_BASE_URI

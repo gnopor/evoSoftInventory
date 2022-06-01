@@ -13,13 +13,18 @@ export default function HomePage() {
             </Head>
 
             <DefaultLayout>
-                <main id="home_page">
+                <main id="home_page" className="container">
                     <section>
                         Home Page
                         <p>ddd</p>
                     </section>
 
                     <p>super paragrapth</p>
+
+                    <section className="row">
+                        <article className="col-12 col-md-6">child 1</article>
+                        <article className="col-12 col-md-6">child 2</article>
+                    </section>
                 </main>
             </DefaultLayout>
 
