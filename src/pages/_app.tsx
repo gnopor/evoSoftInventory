@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
 
+import "../style/custom.scss";
 import "../style/global.css";
+
 import { AuthProvider } from "../stores/authenticationStore/authContext";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+    useEffect(() => {
+        typeof document !== undefined && require("bootstrap/dist/js/bootstrap");
+    }, []);
+
     return (
         <>
             <Head>

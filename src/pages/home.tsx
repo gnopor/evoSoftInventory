@@ -13,13 +13,66 @@ export default function HomePage() {
             </Head>
 
             <DefaultLayout>
-                <main id="home_page">
+                <main id="home_page" className="container">
                     <section>
                         Home Page
-                        <p>ddd</p>
+                        <p>some paragraph</p>
                     </section>
 
                     <p>super paragrapth</p>
+
+                    <section className="row my-3">
+                        <article className="col-12 col-md-6 bg-primary">child 1</article>
+                        <article className="col-12 col-md-6">child 2</article>
+                    </section>
+
+                    {/* <!-- Button trigger modal --> */}
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                    >
+                        Launch demo modal
+                    </button>
+
+                    {/* <!-- Modal --> */}
+                    <div
+                        className="modal fade"
+                        id="exampleModal"
+                        tabIndex={-1}
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">
+                                        Modal title
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        className="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div className="modal-body">...</div>
+                                <div className="modal-footer">
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                    >
+                                        Close
+                                    </button>
+                                    <button type="button" className="btn btn-primary">
+                                        Save changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </main>
             </DefaultLayout>
 
@@ -34,7 +87,6 @@ const style = css`
             sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         font-size: 14px;
         font-weight: bold;
-        color: hotpink;
         transition: all 1s ease;
     }
 

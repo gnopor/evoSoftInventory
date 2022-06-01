@@ -18,10 +18,8 @@
 #   only:
 #     - development
 #   script:
-#     - echo $DEV_WEBAPP_CONFIGS > src/config.json
 #     - echo $DEV_WEBAPP_FIREBASE_RC > .firebaserc
 #     - npm run build
-#     - echo "Déploiement vers firebase Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID"
 #     - npm run deploy-ci
 
 # deploy-prod:
@@ -29,8 +27,6 @@
 #   only:
 #     - production
 #   script:
-#     - echo $PROD_WEBAPP_CONFIGS > src/config.json
 #     - echo $PROD_WEBAPP_FIREBASE_RC > .firebaserc
 #     - npm run build
-#     - echo "Déploiement vers firebase Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID"
 #     - npm run deploy-ci
