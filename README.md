@@ -10,6 +10,8 @@
 
 > [Customize Bootstrap](https://getbootstrap.com/docs/5.2/customize/overview/)
 
+> [Next.js Built-in CSS Support](https://nextjs.org/docs/basic-features/built-in-css-support)
+
 ## ENVIRONMENT VARIABLES
 
 > NEXT_PUBLIC_API_BASE_URI
