@@ -1,7 +1,5 @@
 export default function Error404Page() {
-    if (process.browser) {
-        window.open("/home", "_self");
-    }
+    typeof window !== undefined && window.open("/home", "_self");
 
     return "";
 }
