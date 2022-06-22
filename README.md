@@ -12,6 +12,10 @@
 
 > [Next.js Built-in CSS Support](https://nextjs.org/docs/basic-features/built-in-css-support)
 
+> [How JavaScript works: the factory design pattern + 4 use cases](https://blog.sessionstack.com/how-javascript-works-the-factory-design-pattern-4-use-cases-7b9f0d22151d)
+
+> [What is the difference between Builder Design pattern and Factory Design pattern?](https://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern)
+
 ## ENVIRONMENT VARIABLES
 
 > NEXT_PUBLIC_API_BASE_URI
