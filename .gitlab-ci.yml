@@ -1,32 +1,36 @@
+# # Project variables by default work only on protected branchs
+
 # image: node:14.18.1
 
 # cache:
-#   paths:
-#     - node_modules/
-#   key: "$CI_BUILD_REPO"
+#     paths:
+#         - node_modules/
+#     key: "$CI_BUILD_REPO"
 
 # before_script:
-#   - npm i -g firebase-tools
-#   - npm i
-
+#     - npm i -g firebase-tools
+#     - npm i
 # stages:
-#   - deploy-dev
-#   - deploy-prod
+#     - deploy-dev
+#     - deploy-prod
 
 # deploy-dev:
-#   stage: deploy-dev
-#   only:
-#     - development
-#   script:
-#     - echo $DEV_WEBAPP_FIREBASE_RC > .firebaserc
-#     - npm run build
-#     - npm run deploy-ci
+#     stage: deploy-dev
+#     only:
+#         - development
+#     variables:
+#         FIREBASE_TOKEN: "$DEV_FIREBASE_TOKEN"
+#     script:
+#         - echo "$DEV_WEBAPP_FIREBASE_RC" > .firebaserc
+#         - npm run deploy-ci
 
 # deploy-prod:
-#   stage: deploy-prod
-#   only:
-#     - production
-#   script:
-#     - echo $PROD_WEBAPP_FIREBASE_RC > .firebaserc
-#     - npm run build
-#     - npm run deploy-ci
+#     stage: deploy-prod
+#     only:
+#         - production
+#     variables:
+#         FIREBASE_TOKEN: "$PROD_FIREBASE_TOKEN"
+
+#     script:
+#         - echo "$PROD_WEBAPP_FIREBASE_RC" > .firebaserc
+#         - npm run deploy-ci
