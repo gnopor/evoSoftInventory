@@ -2,7 +2,7 @@ class TestFactory {
     #testObject;
 
     constructor() {
-        // set default field here
+        // set default fields here (must be used only in case of Abstract Factory class)
         this.#testObject = {};
     }
 
