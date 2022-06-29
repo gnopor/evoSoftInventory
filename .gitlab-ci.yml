@@ -28,6 +28,7 @@
 #     stage: deploy-prod
 #     only:
 #         - production
+#     when: manual
 #     variables:
 #         FIREBASE_TOKEN: "$PROD_FIREBASE_TOKEN"
 
