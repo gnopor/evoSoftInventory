@@ -31,7 +31,6 @@
 #     when: manual
 #     variables:
 #         FIREBASE_TOKEN: "$PROD_FIREBASE_TOKEN"
-
 #     script:
 #         - echo "$PROD_WEBAPP_FIREBASE_RC" > .firebaserc
 #         - npm run deploy-ci
