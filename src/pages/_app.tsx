@@ -6,6 +6,7 @@ import "../style/custom.scss";
 import "../style/global.css";
 
 import { AuthProvider } from "../stores/authenticationStore/authContext";
+import { APP_NAME } from "../utilities/contstants";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     useEffect(() => {
@@ -27,7 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 {/* <!-- START VENDOR SCRIPT  --> */}
                 {/* <!-- END VENDOR SCRIPT  --> */}
 
-                <title>Boilerplate</title>
+                <title>{APP_NAME}</title>
             </Head>
 
             <AuthProvider>

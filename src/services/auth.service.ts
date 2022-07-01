@@ -1,14 +1,15 @@
+import { APP_NAME } from "../utilities/contstants";
 import LocalStorage from "../utilities/helpers/localStorage.helpers";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URI;
 const API_SERVICE_NAME = "auth";
 const BASE_URL = `${API_BASE_URL}/${API_SERVICE_NAME}`;
 
-const ACCESS_TOKEN_KEY = "x-access-token";
-const ACCESS_TOKEN_EXPIRATION_KEY = "x-access-token-expiration";
+const ACCESS_TOKEN_KEY = `x-${APP_NAME}-access-token`;
+const ACCESS_TOKEN_EXPIRATION_KEY = `x-${APP_NAME}-access-token-expiration`;
 
 class AuthService {
-    async register(data: any) {
+    async register(data: { email: string; password: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -21,7 +22,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async activateAccount(data: any) {
+    async activateAccount(data: { token: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -34,7 +35,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async login(data: any) {
+    async login(data: { email: string; password: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -50,7 +51,7 @@ class AuthService {
         return response;
     }
 
-    async logout(data: any) {
+    async logout(data: { userId: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -67,7 +68,7 @@ class AuthService {
         return response;
     }
 
-    async initPasswordReset(data: any) {
+    async initPasswordReset(data: { email: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -80,7 +81,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async resetPassword(data: any) {
+    async resetPassword(data: { email: string; token: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -113,7 +114,7 @@ class AuthService {
         }
     }
 
-    async updatePassword(data: any) {
+    async updatePassword(data: { userId: string; oldPassword: string; newPassword: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -128,7 +129,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async initEmailUpdate(data: any) {
+    async initEmailUpdate(data: { userId: string; email: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -142,7 +143,7 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async updateEmail(data: any) {
+    async updateEmail(data: { token: string }) {
         const options = {
             method: "POST",
             headers: {
@@ -156,31 +157,31 @@ class AuthService {
         return await this.#parseResponse(response);
     }
 
-    async getUser(data: any) {
+    async getUser(userId: string) {
         const options = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ userId })
         };
 
         const response = await fetch(`${BASE_URL}/reset-password`, options);
-        return await this.#parseResponse(response);
+        return await this.#parseResponse<I.IUser>(response);
     }
 
-    async #parseResponse(response: any) {
+    async #parseResponse<T>(response: Response) {
         // if (!response.ok && response.status === "401") {
         //     return this.refreshToken();
         // }
 
         if (!response.ok) {
-            const error = response.json();
+            const error = await response.json();
             throw new Error(error?.message || "Default error message");
         }
 
-        return response.json();
+        return response.json() as Promise<T>;
     }
 
     getCredential() {
@@ -194,7 +195,7 @@ class AuthService {
     isUserAuthenticated() {
         const accessToken = LocalStorage.getItem(ACCESS_TOKEN_KEY);
         const tokenExpiration = LocalStorage.getItem(ACCESS_TOKEN_EXPIRATION_KEY) || 0;
-        return accessToken && +tokenExpiration > Date.now();
+        return (accessToken && +tokenExpiration > Date.now()) as boolean;
     }
 }
 
