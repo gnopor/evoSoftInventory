@@ -37,14 +37,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initAuth = async () => {
         try {
+            let member;
             if (isUserAuthenticated()) {
-                // useless now but kept for semantic
-                const { member } = await authService.refreshToken();
-                return !currentUser?.id && setCurrentUser(await getUser(member?.id));
+                member = await authService.getCurrentUser();
+            } else {
+                const result = await authService.refreshToken();
+                member = result.member;
             }
 
-            currentUser?.id && setCurrentUser(undefined);
-        } catch (error) {}
+            return setCurrentUser(member);
+        } catch (error) {
+            setCurrentUser(undefined);
+        }
     };
 
     const register = (email: string, password: string) => {

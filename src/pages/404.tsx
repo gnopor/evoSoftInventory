@@ -1,5 +1,11 @@
+import { useRouter } from "next/router";
+
 export default function Error404Page() {
-    typeof window !== "undefined" && window.open("/home", "_self");
+    const router = useRouter();
+
+    if (typeof window !== undefined) {
+        router.push("/home/");
+    }
 
     return "";
 }

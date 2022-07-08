@@ -44,8 +44,8 @@ class AuthService {
             body: JSON.stringify(data)
         };
 
-        let response: any = await fetch(`${BASE_URL}/login`, options);
-        response = await this.#parseResponse(response);
+        const fetchResponse: any = await fetch(`${BASE_URL}/login`, options);
+        const response = await this.#parseResponse<any>(fetchResponse);
 
         saveAuthToken(response.accessToken);
         return response;
@@ -103,15 +103,27 @@ class AuthService {
                 }
             };
 
-            let response: any = await fetch(`${BASE_URL}/refresh-token`, options);
-            response = await this.#parseResponse(response);
+            const fetchResponse: any = await fetch(`${BASE_URL}/refresh-token`, options);
+            const response = await this.#parseResponse<any>(fetchResponse);
 
-            saveAuthToken(response.accessToken);
+            saveAuthToken(response?.accessToken);
             return response;
         } catch (error) {
-            // no mandatory
             deleteAuthToken();
+            throw error;
         }
+    }
+
+    async getCurrentUser() {
+        const options = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.getCredential()
+            }
+        };
+
+        const response = await fetch(`${BASE_URL}/get-current-user`, options);
+        return await this.#parseResponse(response);
     }
 
     async updatePassword(data: { userId: string; oldPassword: string; newPassword: string }) {
@@ -186,10 +198,8 @@ class AuthService {
 
     getCredential() {
         const accessToken = LocalStorage.getItem(ACCESS_TOKEN_KEY);
-        if (!accessToken) {
-            throw new Error("Missing access token.");
-        }
-        return `Bearer ${accessToken}`;
+
+        return accessToken ? `Bearer ${accessToken}` : "";
     }
 
     isUserAuthenticated() {
