@@ -12,6 +12,8 @@
 
 > [What is the difference between Builder Design pattern and Factory Design pattern?](https://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern)
 
+> [Typescript for createContext and useReducer in React with custom hooks.](https://medium.com/@DcKesler/typescript-for-createcontext-and-usereducer-in-react-with-custom-hooks-bc3b19a4b942)
+
 ## ENVIRONMENT VARIABLES
 
 > NEXT_PUBLIC_API_BASE_URI
