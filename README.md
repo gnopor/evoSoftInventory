@@ -14,6 +14,8 @@
 
 > [Typescript for createContext and useReducer in React with custom hooks.](https://medium.com/@DcKesler/typescript-for-createcontext-and-usereducer-in-react-with-custom-hooks-bc3b19a4b942)
 
+> [How to Add TypeScript to a JavaScript Project](https://www.freecodecamp.org/news/how-to-add-typescript-to-a-javascript-project/)
+
 ## ENVIRONMENT VARIABLES
 
 > NEXT_PUBLIC_API_BASE_URI
