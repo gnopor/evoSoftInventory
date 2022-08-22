@@ -1,6 +1,6 @@
 import Encryption from "./encryption.helpers";
 
-export default class LocalStorageHelpers {
+export default class SecureLocalStorageHelpers {
     static setItem(key: string, value: string) {
         if (!(key.length > 0 && value.length > 0)) {
             throw new Error("key and value must be non empty strings.");
