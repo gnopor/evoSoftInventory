@@ -3,6 +3,7 @@ import authService from "../../services/auth.service";
 
 interface IAuthContext {
     currentUser: I.IUser | undefined;
+    updateCurrentUser: (data: I.IUser) => Promise<I.IUser | undefined>;
     register: (email: string, password: string) => void;
     login: (email: string, password: string) => void;
     logout: () => void;
@@ -93,12 +94,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return authService.getUser(userId);
     };
 
+    const updateCurrentUser = async (data: I.IUser) => {
+        if (!currentUser) return;
+
+        const result = await authService.updateUser(currentUser?.id, data);
+        const newUser: I.IUser = {
+            ...currentUser,
+            ...result,
+            _dateUpdated: Date.now()
+        };
+
+        setCurrentUser(newUser);
+        return newUser;
+    };
+
     const isUserAuthenticated = () => {
         return authService.isUserAuthenticated();
     };
 
     const value: IAuthContext = {
         currentUser,
+        updateCurrentUser,
         register,
         login,
         logout,

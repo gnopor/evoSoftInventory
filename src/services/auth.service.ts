@@ -126,18 +126,6 @@ class AuthService {
         }
     }
 
-    async getCurrentUser() {
-        const options = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: this.getCredential()
-            }
-        };
-
-        const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
-        return this.#parseResponse(fetchResponse);
-    }
-
     async updatePassword(data: { userId: string; oldPassword: string; newPassword: string }) {
         const options = {
             method: "POST",
@@ -182,6 +170,18 @@ class AuthService {
         return this.#parseResponse(fetchResponse);
     }
 
+    async getCurrentUser() {
+        const options = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.getCredential()
+            }
+        };
+
+        const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
+        return this.#parseResponse(fetchResponse);
+    }
+
     async getUser(userId: string) {
         const options = {
             method: "POST",
@@ -193,6 +193,20 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/reset-password`, options);
+        return this.#parseResponse<I.IUser>(fetchResponse);
+    }
+
+    async updateUser(memberId: string, data: I.IUser) {
+        const options = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.getCredential()
+            },
+            body: JSON.stringify({ memberId, data })
+        };
+
+        const fetchResponse = await fetch(`${BASE_URL}/update-user`, options);
         return this.#parseResponse<I.IUser>(fetchResponse);
     }
 
