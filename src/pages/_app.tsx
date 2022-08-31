@@ -6,7 +6,7 @@ import "../style/custom.scss";
 import "../style/global.css";
 
 import { AuthProvider } from "../stores/authenticationStore/authContext";
-import { APP_NAME } from "../utilities/contstants";
+import { APP_NAME } from "../contstants";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     useEffect(() => {

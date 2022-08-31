@@ -1,7 +1,7 @@
-import { APP_NAME } from "../utilities/contstants";
+import { API_BASE_URI, APP_NAME } from "../contstants";
 import SecureLocalStorage from "../utilities/helpers/secureLocalStorage.helpers";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URI;
+const API_BASE_URL = API_BASE_URI;
 const API_SERVICE_NAME = "auth";
 const BASE_URL = `${API_BASE_URL}/${API_SERVICE_NAME}`;
 
