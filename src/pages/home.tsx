@@ -3,7 +3,7 @@ import Head from "next/head";
 import css from "styled-jsx/css";
 
 import DefaultLayout from "../layouts/DefaultLayout";
-import { APP_NAME } from "../contstants";
+import { APP_NAME } from "../constants";
 
 export default function HomePage() {
     return (
