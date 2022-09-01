@@ -1,4 +1,4 @@
-import { APP_NAME } from "../../contstants";
+import { APP_NAME } from "../../constants";
 
 const CANVAS_TEXT = APP_NAME;
 

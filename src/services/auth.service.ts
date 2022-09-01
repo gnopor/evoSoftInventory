@@ -1,4 +1,4 @@
-import { API_BASE_URI, APP_NAME } from "../contstants";
+import { API_BASE_URI, APP_NAME } from "../constants";
 import SecureLocalStorage from "../utilities/helpers/secureLocalStorage.helpers";
 
 const API_BASE_URL = API_BASE_URI;
