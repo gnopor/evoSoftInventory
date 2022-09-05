@@ -1,5 +1,10 @@
 export const APP_NAME = "Boilerplate";
 
+export const localStorageFields = {
+    ACCESS_TOKEN_KEY: `x-${APP_NAME}-access-token`,
+    ACCESS_TOKEN_EXPIRATION_KEY: `x-${APP_NAME}-access-token-expiration`
+};
+
 // Environment variables configs
 export const API_BASE_URI = process.env.NEXT_PUBLIC_API_BASE_URI || "";
 

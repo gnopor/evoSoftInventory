@@ -8,6 +8,15 @@
 import { customAlphabet } from "nanoid";
 
 export default class Helpers {
+    static async parseFetchResponse<T = any>(response: Response, defaultErrorMessage = "") {
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error?.message || defaultErrorMessage);
+        }
+
+        return response.json() as Promise<T>;
+    }
+
     static createId() {
         const nanoid = customAlphabet(
             "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
