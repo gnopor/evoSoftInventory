@@ -14,7 +14,8 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-        "typeRoots": ["./src/types"]
+        "typeRoots": ["./src/types"],
+        "experimentalDecorators": true
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]

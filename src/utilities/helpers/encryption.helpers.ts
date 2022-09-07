@@ -14,7 +14,6 @@ export default class EncryptionHelpers {
             return AES.decrypt(cipherText, secretKey).toString(enc.Utf8);
         } catch (error) {
             console.error(error);
-            return "";
         }
     }
 }
