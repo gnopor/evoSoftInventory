@@ -1,0 +1,1563 @@
+[
+    {
+        "languageCode2": "en",
+        "data": {
+            "global": {
+                "confirmationDialogBox": {
+                    "cancelButton": { "label": "Cancel" },
+                    "confirmButton": { "label": "Confirm" }
+                },
+                "cartForm": {
+                    "mainForm": {
+                        "idStock": {
+                            "label": "Stock",
+                            "duplicatedErrorMessage": "This stock is already in the cart.",
+                            "errorMessage": "There is an problem with the field: Stock."
+                        },
+                        "price": {
+                            "label": "Price",
+                            "errorMessage": "There is an problem with the field: Price."
+                        },
+                        "quantity": {
+                            "label": "Quantity",
+                            "errorMessage": "There is an problem with the field: Quantity."
+                        },
+                        "productQuantity": { "label": "Product(s)" },
+                        "submitButton": { "label": "+" }
+                    },
+                    "cartItemCard": {
+                        "price": {
+                            "label": "Price"
+                        },
+                        "quantity": {
+                            "label": "Quantity"
+                        },
+                        "total": {
+                            "label": "Total"
+                        },
+                        "deleteButton": { "label": "x" }
+                    }
+                },
+                "deliveryStatus": {
+                    "delivered": "Delivered",
+                    "nonDelivered": "Non Delivered"
+                }
+            },
+            "headers": {
+                "defaultLayout": {
+                    "navbarLinks": {
+                        "businesses": "Business",
+                        "account": "Account"
+                    }
+                }
+            },
+            "footers": { "defaultLayout": {} },
+            "pages": {
+                "defaultLayout": {
+                    "home": {
+                        "pageTitle": "Home",
+                        "sections": {
+                            "heroSection": {
+                                "newBusinessButton": { "label": "Business" }
+                            }
+                        }
+                    },
+                    "profileDetail": {
+                        "pageTitle": "Profile Detail",
+                        "sections": {
+                            "header": {
+                                "updateProfileButton": { "label": "Update" },
+                                "logoutButton": {
+                                    "label": "Logout",
+                                    "confirmationMessage": "Do you really want to logout ?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "identifier": { "label": "Identifier" },
+                                "lastName": { "label": "Last Name" },
+                                "firstName": { "label": "First Name" },
+                                "email": { "label": "Email" },
+                                "phoneNumber": { "label": "Phone Number" },
+                                "language": { "label": "Language" },
+                                "civility": { "label": "Civility" },
+                                "gender": { "label": "Gender" },
+                                "birthDate": { "label": "BirthDate" },
+                                "idBirthCity": { "label": "BirthCity" },
+                                "currencyCode": { "label": "Currency" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            }
+                        }
+                    },
+                    "updateProfile": {
+                        "pageTitle": "Update Profile",
+                        "sections": {
+                            "header": { "title": "Update Profile" },
+                            "footer": {},
+                            "mainForm": {
+                                "firstName": {
+                                    "label": "First Name",
+                                    "errorMessage": "There is an problem with the field: First Name."
+                                },
+                                "lastName": {
+                                    "label": "Last Name",
+                                    "errorMessage": "There is an problem with the field: Last Name."
+                                },
+                                "phoneNumber": {
+                                    "label": "Phone",
+                                    "errorMessage": "There is an problem with the field: Phone."
+                                },
+                                "language": {
+                                    "label": "Language",
+                                    "errorMessage": "There is an problem with the field: Language."
+                                },
+                                "civility": {
+                                    "label": "Civility",
+                                    "errorMessage": "There is an problem with the field: Civility."
+                                },
+                                "gender": {
+                                    "label": "Gender",
+                                    "errorMessage": "There is an problem with the field: Gender."
+                                },
+                                "birthDate": {
+                                    "label": "Birth Date",
+                                    "errorMessage": "There is an problem with the field: Birth Date."
+                                },
+                                "idBirthCity": {
+                                    "label": "Birch City",
+                                    "errorMessage": "There is an problem with the field: Birch City."
+                                },
+                                "currencyCode": {
+                                    "label": "Currency",
+                                    "errorMessage": "There is an problem with the field: Currency."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Profile has been saved."
+                            }
+                        }
+                    },
+                    "businessDetail": {
+                        "pageTitle": "Business Detail",
+                        "sections": {
+                            "header": {
+                                "updateBusinessButton": { "label": "Update" },
+                                "cloneBusinessButton": { "label": "Clone" },
+                                "deleteBusinessButton": {
+                                    "label": "Delete",
+                                    "confirmationMessage": "Do you really want to delete this Business?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "name": { "label": "Name" },
+                                "description": { "label": "Description" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            },
+                            "summary": {
+                                "totalDailySales": { "label": "Total daily sales" },
+                                "totalDailyExpenses": { "label": "Total daily expenses" },
+                                "dailyBalance": { "label": "Daily balance" }
+                            },
+                            "businessElements": {
+                                "sale": { "label": "Sales" },
+                                "stock": { "label": "Stocks" },
+                                "purchase": { "label": "Purchases" },
+                                "product": { "label": "Products" },
+                                "delivery": { "label": "Deliveries" },
+                                "analyse": { "label": "Analyses" }
+                            }
+                        }
+                    },
+                    "addBusiness": {
+                        "pageTitle": "Add Business",
+                        "sections": {
+                            "header": { "title": "Add New Business" },
+                            "footer": {},
+                            "mainForm": {
+                                "name": {
+                                    "label": "Name",
+                                    "errorMessage": "There is an problem with the field: Name."
+                                },
+                                "description": {
+                                    "label": "Description",
+                                    "errorMessage": "There is an problem with the field: Description."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Business has been saved."
+                            }
+                        }
+                    },
+                    "updateBusiness": {
+                        "pageTitle": "Update Business",
+                        "sections": {
+                            "header": { "title": "Update Business" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Business has been saved."
+                            }
+                        }
+                    },
+                    "cloneBusiness": {
+                        "pageTitle": "Clone Business",
+                        "sections": {
+                            "header": { "title": "Clone Business" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Business has been saved."
+                            }
+                        }
+                    },
+                    "productDetail": {
+                        "pageTitle": "Product Detail",
+                        "sections": {
+                            "header": {
+                                "updateProductButton": { "label": "Update" },
+                                "cloneProductButton": { "label": "Clone" },
+                                "deleteProductButton": {
+                                    "label": "Delete",
+                                    "confirmationMessage": "Do you really want to delete this product?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "name": { "label": "Name" },
+                                "description": { "label": "Description" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            }
+                        }
+                    },
+                    "productListing": {
+                        "pageTitle": "Products",
+                        "sections": {
+                            "header": {
+                                "productQuantity": { "label": "Product(s)" },
+                                "newProductButton": { "label": "Add" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "name": { "label": "Name" },
+                                        "description": { "label": "Description" },
+                                        "dateCreated": { "label": "Date Created" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "dateCreated": { "label": "Date Created" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addProduct": {
+                        "pageTitle": "Add Product",
+                        "sections": {
+                            "header": { "title": "Add New Product" },
+                            "footer": {},
+                            "mainForm": {
+                                "name": {
+                                    "label": "Name",
+                                    "errorMessage": "There is an problem with the field: Name."
+                                },
+                                "description": {
+                                    "label": "Description",
+                                    "errorMessage": "There is an problem with the field: Description."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Product has been saved."
+                            }
+                        }
+                    },
+                    "updateProduct": {
+                        "pageTitle": "Update Product",
+                        "sections": {
+                            "header": { "title": "Update New Product" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Product has been saved."
+                            }
+                        }
+                    },
+                    "cloneProduct": {
+                        "pageTitle": "Clone Product",
+                        "sections": {
+                            "header": { "title": "Clone New Product" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Product has been saved."
+                            }
+                        }
+                    },
+                    "stockDetail": {
+                        "pageTitle": "Stock Detail",
+                        "sections": {
+                            "header": {
+                                "updateStockButton": { "label": "Update" },
+                                "cloneStockButton": { "label": "Clone" },
+                                "deleteStockButton": {
+                                    "label": "Delete",
+                                    "confirmationMessage": "Do you really want to delete this stock?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "product": { "label": "Product" },
+                                "price": { "label": "Price" },
+                                "quantity": { "label": "Quantity" },
+                                "description": { "label": "Description" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            },
+                            "priceHistory": {
+                                "dateUpdated": { "label": "Date Update" }
+                            }
+                        }
+                    },
+                    "stockListing": {
+                        "pageTitle": "Stocks",
+                        "sections": {
+                            "header": {
+                                "stockQuantity": { "label": "Stock(s)" },
+                                "newStockButton": { "label": "Add" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "idProduct": { "label": "Product" },
+                                        "description": { "label": "Description" },
+                                        "price": { "label": "Price" },
+                                        "quantity": { "label": "Quantity" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "quantity": { "label": "Quantity" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addStock": {
+                        "pageTitle": "Add Stock",
+                        "sections": {
+                            "header": { "title": "Add New Stock" },
+                            "footer": {},
+                            "mainForm": {
+                                "idProduct": {
+                                    "label": "Product",
+                                    "errorMessage": "There is an problem with the field: Product."
+                                },
+                                "description": {
+                                    "label": "Description",
+                                    "errorMessage": "There is an problem with the field: Description."
+                                },
+                                "price": {
+                                    "label": "Price",
+                                    "errorMessage": "There is an problem with the field: Price."
+                                },
+                                "quantity": {
+                                    "label": "Quantity",
+                                    "errorMessage": "There is an problem with the field: Quantity."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Stock has been saved."
+                            }
+                        }
+                    },
+                    "updateStock": {
+                        "pageTitle": "Update Stock",
+                        "sections": {
+                            "header": { "title": "Update Stock" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Stock has been saved."
+                            }
+                        }
+                    },
+                    "cloneStock": {
+                        "pageTitle": "Clone Stock",
+                        "sections": {
+                            "header": { "title": "Clone Stock" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Stock has been saved."
+                            }
+                        }
+                    },
+                    "purchaseDetail": {
+                        "pageTitle": "Purchase Detail",
+                        "sections": {
+                            "header": {
+                                "updatePurchaseButton": { "label": "Update" },
+                                "clonePurchaseButton": { "label": "Clone" },
+                                "deletePurchaseButton": {
+                                    "label": "Delete",
+                                    "confirmationMessage": "Do you really want to delete this Purchase?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "totalAmount": { "label": "Total Amount" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            },
+                            "productList": {
+                                "price": { "label": "Price" },
+                                "quantity": { "label": "Quantity" }
+                            }
+                        }
+                    },
+                    "purchaseListing": {
+                        "pageTitle": "Purchases",
+                        "sections": {
+                            "header": {
+                                "purchaseQuantity": { "label": "Purchase(s)" },
+                                "newPurchaseButton": { "label": "Add" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "productsQuantity": { "label": "Product(s)" },
+                                        "totalAmount": { "label": "Total Amount" },
+                                        "dateCreated": { "label": "Date Created" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "totalAmount": { "label": "Total Amount" },
+                                        "productsQuantity": { "label": "Product(s)" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addPurchase": {
+                        "pageTitle": "Add Purchase",
+                        "sections": {
+                            "header": { "title": "Add New Purchase" },
+                            "footer": {},
+                            "mainForm": {
+                                "cart": {
+                                    "label": "Cart",
+                                    "errorMessage": "There is an problem with the field: Cart."
+                                },
+                                "totalAmount": {
+                                    "label": "Total Amount",
+                                    "errorMessage": "There is an problem with the field: Total Amount."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Purchase has been saved."
+                            }
+                        }
+                    },
+                    "updatePurchase": {
+                        "pageTitle": "Update Purchase",
+                        "sections": {
+                            "header": { "title": "Update Purchase" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Purchase has been saved."
+                            }
+                        }
+                    },
+                    "clonePurchase": {
+                        "pageTitle": "Clone Purchase",
+                        "sections": {
+                            "header": { "title": "Clone Purchase" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Purchase has been saved."
+                            }
+                        }
+                    },
+                    "saleDetail": {
+                        "pageTitle": "Sale Detail",
+                        "sections": {
+                            "header": {
+                                "updateSaleButton": { "label": "Update" },
+                                "cloneSaleButton": { "label": "Clone" },
+                                "deleteSaleButton": {
+                                    "label": "Delete",
+                                    "confirmationMessage": "Do you really want to delete this Sale?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "totalAmount": { "label": "Total Amount" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            },
+                            "productList": {
+                                "price": { "label": "Price" },
+                                "quantity": { "label": "Quantity" }
+                            }
+                        }
+                    },
+                    "saleListing": {
+                        "pageTitle": "Sales",
+                        "sections": {
+                            "header": {
+                                "saleQuantity": { "label": "Sale(s)" },
+                                "newSaleButton": { "label": "Add" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "productsQuantity": { "label": "Product(s)" },
+                                        "totalAmount": { "label": "Total Amount" },
+                                        "dateCreated": { "label": "Date Created" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "totalAmount": { "label": "Total Amount" },
+                                        "productsQuantity": { "label": "Product(s)" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addSale": {
+                        "pageTitle": "Add Sale",
+                        "sections": {
+                            "header": { "title": "Add New Sale" },
+                            "footer": {},
+                            "mainForm": {
+                                "cart": {
+                                    "label": "Cart",
+                                    "errorMessage": "There is an problem with the field: Cart."
+                                },
+                                "totalAmount": {
+                                    "label": "Total Amount",
+                                    "errorMessage": "There is an problem with the field: Total Amount."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Sale has been saved."
+                            }
+                        }
+                    },
+                    "updateSale": {
+                        "pageTitle": "Update Sale",
+                        "sections": {
+                            "header": { "title": "Update Sale" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Sale has been saved."
+                            }
+                        }
+                    },
+                    "cloneSale": {
+                        "pageTitle": "Clone Sale",
+                        "sections": {
+                            "header": { "title": "Clone Sale" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Sale has been saved."
+                            }
+                        }
+                    },
+                    "deliveryDetail": {
+                        "pageTitle": "Delivery Detail",
+                        "sections": {
+                            "header": {
+                                "updateDeliveryButton": { "label": "Update" }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "dateSale": { "label": "Date Sale" },
+                                "codeSale": { "label": "Code Sale" },
+                                "totalAmount": { "label": "Total Amount" },
+                                "deliveryStatus": { "label": "Status" },
+                                "dateDelivery": { "label": "Date Delivery" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Last Update" }
+                            },
+                            "productList": {
+                                "price": { "label": "Price" },
+                                "quantity": { "label": "Quantity" }
+                            }
+                        }
+                    },
+                    "deliveryListing": {
+                        "pageTitle": "Deliveries",
+                        "sections": {
+                            "header": {
+                                "saleQuantity": { "label": "Sale(s)" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "dateSale": { "label": "Date Sale" },
+                                        "codeSale": { "label": "Code Sale" },
+                                        "totalAmount": { "label": "Total Amount" },
+                                        "deliveryStatus": { "label": "Status" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "dateSale": { "label": "Date Sale" },
+                                        "codeSale": { "label": "Code Sale" },
+                                        "deliveryStatus": { "label": "Status" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "updateDelivery": {
+                        "pageTitle": "Update Delivery",
+                        "sections": {
+                            "header": { "title": "Update Delivery" },
+                            "footer": {},
+                            "mainForm": {
+                                "codeSale": {
+                                    "label": "Code Sale",
+                                    "errorMessage": "There is an problem with the field: Code Sale."
+                                },
+                                "received": {
+                                    "label": "Delivered",
+                                    "errorMessage": "There is an problem with the field: Delivered."
+                                },
+                                "dateDelivery": {
+                                    "label": "Date Delivery",
+                                    "errorMessage": "There is an problem with the field: Date Delivery."
+                                },
+                                "timeDelivery": {
+                                    "label": "Time Delivery",
+                                    "errorMessage": "There is an problem with the field: Time Delivery."
+                                },
+                                "cancelButton": { "label": "Cancel" },
+                                "submitButton": { "label": "Save" },
+                                "confirmationMessage": "Delivery has been save."
+                            }
+                        }
+                    }
+                },
+                "authLayout": {
+                    "register": {
+                        "pageTitle": "Inscription",
+                        "sections": {
+                            "header": { "title": "Inscription" },
+                            "footer": { "links": { "login": "Already have an account?" } },
+                            "mainForm": {
+                                "firstName": {
+                                    "label": "first name",
+                                    "errorMessage": "There is an problem with the field: First Name."
+                                },
+                                "lastName": {
+                                    "label": "last name",
+                                    "errorMessage": "There is an problem with the field: Last Name."
+                                },
+                                "email": {
+                                    "label": "email",
+                                    "errorMessage": "There is an problem with the field: Email."
+                                },
+                                "phoneNumber": {
+                                    "label": "phone",
+                                    "errorMessage": "There is an problem with the field: Phone Number."
+                                },
+                                "password": {
+                                    "label": "password",
+                                    "placeholder": "8 digits. Ex: 78542369",
+                                    "errorMessage": "There is an problem with the field: Password."
+                                },
+                                "confirmPassword": {
+                                    "label": "repeat password",
+                                    "placeholder": "8 digits. Ex: 78542369",
+                                    "errorMessage": "There is an problem with the field: Repeat Password."
+                                },
+                                "defaultTree": {
+                                    "namePrefix": "Familly",
+                                    "description": "This tree was created during registration."
+                                },
+                                "submitButton": { "label": "register" },
+                                "confirmationMessage": "Please check your email to get your credentials."
+                            }
+                        }
+                    },
+                    "login": {
+                        "sections": {
+                            "pageTitle": "Connection",
+                            "header": { "title": "Connection" },
+                            "mainForm": {
+                                "footer": {
+                                    "links": {
+                                        "forgotIdentifier": "Forgot identifier?",
+                                        "forgotPassword": "Forgot password?",
+                                        "register": "Not registered yet?"
+                                    }
+                                }
+                            },
+                            "identifierForm": {
+                                "formTitle": "My identifier",
+                                "formSubtitle": "Please always check that you are on the right address",
+                                "identifier": {
+                                    "label": "identifier",
+                                    "placeholder": "Enter your identifier",
+                                    "errorMessage": "There is a problem with your identifier."
+                                },
+                                "rememberIdentifier": {
+                                    "label": "Remember my identifier"
+                                },
+                                "submitButton": { "label": "next" }
+                            },
+                            "passwordForm": {
+                                "formTitle": "My Password",
+                                "formSubtitle": "Please always check that you are on the right address",
+                                "previousStep": "My identifier",
+                                "password": {
+                                    "label": "password",
+                                    "errorMessage": "There is a problem with your password."
+                                },
+                                "submitButton": { "label": "login" },
+                                "clearButton": { "label": "clear" },
+                                "confirmationMessage": "You Have logged in."
+                            }
+                        }
+                    },
+                    "forgotIdentifier": {
+                        "pageTitle": "Forgot Identifier",
+                        "sections": {
+                            "header": { "title": "Forgot Identifier" },
+                            "footer": { "links": { "login": "go back?" } },
+                            "mainForm": {
+                                "email": {
+                                    "label": "email",
+                                    "errorMessage": "There is an problem with the field: Email."
+                                },
+                                "submitButton": "send",
+                                "confirmationMessage": "Please check your email to get your identifiers."
+                            }
+                        }
+                    },
+                    "forgotPassword": {
+                        "pageTitle": "Forgot Password",
+                        "sections": {
+                            "header": { "title": "Forgot Password" },
+                            "footer": { "links": { "login": "go back?" } },
+                            "mainForm": {
+                                "identifier": {
+                                    "label": "identifier",
+                                    "placeholder": "Enter your identifier",
+                                    "errorMessage": "There is an problem with the field: Identifier"
+                                },
+                                "submitButton": "send",
+                                "confirmationMessage": "Please check your email to get your password."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "languageCode2": "fr",
+        "data": {
+            "global": {
+                "confirmationDialogBox": {
+                    "cancelButton": { "label": "Annuler" },
+                    "confirmButton": { "label": "Confirmer" }
+                },
+                "cartForm": {
+                    "mainForm": {
+                        "idStock": {
+                            "label": "Stock",
+                            "duplicatedErrorMessage": "Ce stock est déjà dans le panier.",
+                            "errorMessage": "Il y a un problème avec le champ: stock."
+                        },
+                        "price": {
+                            "label": "Prix",
+                            "errorMessage": "Il y a un problème avec le champ: Prix."
+                        },
+                        "quantity": {
+                            "label": "Quantité",
+                            "errorMessage": "Il y a un problème avec le champ: Quantité."
+                        },
+                        "productQuantity": { "label": "Produit(s)" },
+                        "submitButton": { "label": "+" }
+                    },
+                    "cartItemCard": {
+                        "price": {
+                            "label": "Prix"
+                        },
+                        "quantity": {
+                            "label": "Quantité"
+                        },
+                        "total": {
+                            "label": "Total"
+                        },
+                        "deleteButton": { "label": "x" }
+                    }
+                },
+                "deliveryStatus": {
+                    "delivered": "Livrée",
+                    "nonDelivered": "Non Livrée"
+                }
+            },
+            "headers": {
+                "defaultLayout": {
+                    "navbarLinks": {
+                        "businesses": "Business",
+                        "account": "Compte"
+                    }
+                }
+            },
+            "footers": { "defaultLayout": {} },
+            "pages": {
+                "defaultLayout": {
+                    "home": {
+                        "pageTitle": "Accueil",
+                        "sections": {
+                            "heroSection": {
+                                "newBusinessButton": { "label": "Business" }
+                            }
+                        }
+                    },
+                    "profileDetail": {
+                        "pageTitle": "Profil Detail",
+                        "sections": {
+                            "header": {
+                                "updateProfileButton": { "label": "Modifier" },
+                                "logoutButton": {
+                                    "label": "Se déconnecter",
+                                    "confirmationMessage": "Voulez-vous vraiment vous déconnecter ?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "identifier": { "label": "Identifiant" },
+                                "lastName": { "label": "Nom" },
+                                "firstName": { "label": "prénom" },
+                                "email": { "label": "Email" },
+                                "phoneNumber": { "label": "Téléphone" },
+                                "language": { "label": "Langue" },
+                                "civility": { "label": "Civilité" },
+                                "gender": { "label": "Genre" },
+                                "birthDate": { "label": "Date de naissance" },
+                                "idBirthCity": { "label": "Ville de naissance" },
+                                "currencyCode": { "label": "Monnaie" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date dernière modification" }
+                            }
+                        }
+                    },
+                    "updateProfile": {
+                        "pageTitle": "Modifier le Profil",
+                        "sections": {
+                            "header": { "title": "Modifier le Profil" },
+                            "footer": {},
+                            "mainForm": {
+                                "firstName": {
+                                    "label": "Prénom",
+                                    "errorMessage": "Il y a un problème avec le champ: Prénom."
+                                },
+                                "lastName": {
+                                    "label": "Nom",
+                                    "errorMessage": "Il y a un problème avec le champ: Nom."
+                                },
+                                "phoneNumber": {
+                                    "label": "Téléphone",
+                                    "errorMessage": "Il y a un problème avec le champ: Téléphone."
+                                },
+                                "language": {
+                                    "label": "Langue",
+                                    "errorMessage": "Il y a un problème avec le champ: Langue."
+                                },
+                                "civility": {
+                                    "label": "Civilité",
+                                    "errorMessage": "Il y a un problème avec le champ: Civilité."
+                                },
+                                "gender": {
+                                    "label": "Genre",
+                                    "errorMessage": "Il y a un problème avec le champ: Genre."
+                                },
+                                "birthDate": {
+                                    "label": "Date de Naissance",
+                                    "errorMessage": "Il y a un problème avec le champ: Date de Naissance."
+                                },
+                                "idBirthCity": {
+                                    "label": "Ville de Naissance",
+                                    "errorMessage": "Il y a un problème avec le champ: Ville de Naissance."
+                                },
+                                "currencyCode": {
+                                    "label": "Monnaie",
+                                    "errorMessage": "Il y a un problème avec le champ: Monnaie."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "Le Profil a été enregistré."
+                            }
+                        }
+                    },
+                    "businessDetail": {
+                        "pageTitle": "Detail Business",
+                        "sections": {
+                            "header": {
+                                "updateBusinessButton": { "label": "Modifier" },
+                                "cloneBusinessButton": { "label": "Cloner" },
+                                "deleteBusinessButton": {
+                                    "label": "Supprimer",
+                                    "confirmationMessage": "Souhaitez-vous vraiment supprimer ce business?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "name": { "label": "Nom" },
+                                "description": { "label": "Description" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Dernière Modification" }
+                            },
+                            "summary": {
+                                "totalDailySales": { "label": "Total ventes journalières" },
+                                "totalDailyExpenses": { "label": "Total dépenses journalières" },
+                                "dailyBalance": { "label": "Solde journalièr" }
+                            },
+                            "businessElements": {
+                                "sale": { "label": "Ventes" },
+                                "stock": { "label": "Stocks" },
+                                "purchase": { "label": "Achats" },
+                                "product": { "label": "Produits" },
+                                "delivery": { "label": "Livraisons" },
+                                "analyse": { "label": "Analyses" }
+                            }
+                        }
+                    },
+                    "addBusiness": {
+                        "pageTitle": "Nouveau Business",
+                        "sections": {
+                            "header": { "title": "Ajouter un Business" },
+                            "footer": {},
+                            "mainForm": {
+                                "name": {
+                                    "label": "Nom",
+                                    "errorMessage": "Il y a un problème avec le champ: Nom."
+                                },
+                                "description": {
+                                    "label": "Description",
+                                    "errorMessage": "Il y a un problème avec le champ: Description."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "Le business a été enregistré."
+                            }
+                        }
+                    },
+                    "updateBusiness": {
+                        "pageTitle": "Modifier le Business",
+                        "sections": {
+                            "header": { "title": "Modifier le Business" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Le Business a été enregistré."
+                            }
+                        }
+                    },
+                    "cloneBusiness": {
+                        "pageTitle": "Clone le Business",
+                        "sections": {
+                            "header": { "title": "Cloner le Business" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Le Business a été enregistré."
+                            }
+                        }
+                    },
+                    "productDetail": {
+                        "pageTitle": "Detail Product",
+                        "sections": {
+                            "header": {
+                                "updateProductButton": { "label": "Modifier" },
+                                "cloneProductButton": { "label": "Cloner" },
+                                "deleteProductButton": {
+                                    "label": "Supprimer",
+                                    "confirmationMessage": "Souhaitez-vous vraiment supprimer ce produit?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "name": { "label": "Nom" },
+                                "description": { "label": "Description" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Dernière Modification" }
+                            }
+                        }
+                    },
+                    "productListing": {
+                        "pageTitle": "Produits",
+                        "sections": {
+                            "header": {
+                                "productQuantity": { "label": "Produit(s)" },
+                                "newProductButton": { "label": "Ajouter" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "name": { "label": "Nom" },
+                                        "description": { "label": "Description" },
+                                        "dateCreated": { "label": "Date Creation" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "dateCreated": { "label": "Date Creation" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addProduct": {
+                        "pageTitle": "Nouveau Produit",
+                        "sections": {
+                            "header": { "title": "Ajouter un Produit" },
+                            "footer": {},
+                            "mainForm": {
+                                "name": {
+                                    "label": "Nom",
+                                    "errorMessage": "Il y a un problème avec le champ: Nom."
+                                },
+                                "description": {
+                                    "label": "Description",
+                                    "errorMessage": "Il y a un problème avec le champ: Description."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "Le Produit a été enregistré."
+                            }
+                        }
+                    },
+                    "updateProduct": {
+                        "pageTitle": "Modifier Produit",
+                        "sections": {
+                            "header": { "title": "Modifier le Produit" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Le Produit a été enregistré."
+                            }
+                        }
+                    },
+                    "cloneProduct": {
+                        "pageTitle": "Cloner Produit",
+                        "sections": {
+                            "header": { "title": "Cloner le Produit" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Le Produit a été enregistré."
+                            }
+                        }
+                    },
+                    "stockDetail": {
+                        "pageTitle": "Detail Stock",
+                        "sections": {
+                            "header": {
+                                "updateStockButton": { "label": "Modifier" },
+                                "cloneStockButton": { "label": "Cloner" },
+                                "deleteStockButton": {
+                                    "label": "Supprimer",
+                                    "confirmationMessage": "Souhaitez-vous vraiment supprimer ce stock?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "product": { "label": "Produit" },
+                                "price": { "label": "Prix" },
+                                "quantity": { "label": "Quantité" },
+                                "description": { "label": "Description" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Dernière Modification" }
+                            },
+                            "priceHistory": {
+                                "dateUpdated": { "label": "Date Modification" }
+                            }
+                        }
+                    },
+                    "stockListing": {
+                        "pageTitle": "Stocks",
+                        "sections": {
+                            "header": {
+                                "stockQuantity": { "label": "Stock(s)" },
+                                "newStockButton": { "label": "Ajouter" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "idProduct": { "label": "Produit" },
+                                        "description": { "label": "Description" },
+                                        "price": { "label": "Prix" },
+                                        "quantity": { "label": "Quantité" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "quantity": { "label": "Quantité" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addStock": {
+                        "pageTitle": "Nouveau Stock",
+                        "sections": {
+                            "header": { "title": "Ajouter un Stock" },
+                            "footer": {},
+                            "mainForm": {
+                                "idProduct": {
+                                    "label": "Produit",
+                                    "errorMessage": "Il y a un problème avec le champ: Produit."
+                                },
+                                "description": {
+                                    "label": "Description",
+                                    "errorMessage": "Il y a un problème avec le champ: Description."
+                                },
+                                "price": {
+                                    "label": "Prix",
+                                    "errorMessage": "Il y a un problème avec le champ: Prix."
+                                },
+                                "quantity": {
+                                    "label": "quantité",
+                                    "errorMessage": "Il y a un problème avec le champ: quantité."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "Le Stock a été enregistré."
+                            }
+                        }
+                    },
+                    "updateStock": {
+                        "pageTitle": "Modifier Stock",
+                        "sections": {
+                            "header": { "title": "Modifier le Stock" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Le Stock a été enregistré."
+                            }
+                        }
+                    },
+                    "cloneStock": {
+                        "pageTitle": "Cloner Stock",
+                        "sections": {
+                            "header": { "title": "Cloner le Stock" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "Le Stock a été enregistré."
+                            }
+                        }
+                    },
+                    "purchaseDetail": {
+                        "pageTitle": "Detail Achat",
+                        "sections": {
+                            "header": {
+                                "updatePurchaseButton": { "label": "Modifier" },
+                                "clonePurchaseButton": { "label": "Cloner" },
+                                "deletePurchaseButton": {
+                                    "label": "Supprimer",
+                                    "confirmationMessage": "Souhaitez-vous vraiment supprimer cet achat?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "totalAmount": { "label": "Montant Total" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Dernière Modification" }
+                            },
+                            "productList": {
+                                "price": { "label": "Prix" },
+                                "quantity": { "label": "Quantité" }
+                            }
+                        }
+                    },
+                    "purchaseListing": {
+                        "pageTitle": "Achats",
+                        "sections": {
+                            "header": {
+                                "purchaseQuantity": { "label": "Achat(s)" },
+                                "newPurchaseButton": { "label": "Ajouter" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "productsQuantity": { "label": "Produit(s)" },
+                                        "totalAmount": { "label": "Montant Total" },
+                                        "dateCreated": { "label": "Date Creation" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "totalAmount": { "label": "Montant Total" },
+                                        "productsQuantity": { "label": "Produit(s)" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addPurchase": {
+                        "pageTitle": "Nouveau Achat",
+                        "sections": {
+                            "header": { "title": "Ajouter un Achat" },
+                            "footer": {},
+                            "mainForm": {
+                                "cart": {
+                                    "label": "Panier",
+                                    "errorMessage": "Il y a un problème avec le champ: Panier."
+                                },
+                                "totalAmount": {
+                                    "label": "Prix Total",
+                                    "errorMessage": "Il y a un problème avec le champ: Prix Total."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "Le Achat a été enregistré."
+                            }
+                        }
+                    },
+                    "updatePurchase": {
+                        "pageTitle": "Modifier Achat",
+                        "sections": {
+                            "header": { "title": "Modifier l'Achat" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "L'Achat a été enregistré."
+                            }
+                        }
+                    },
+                    "clonePurchase": {
+                        "pageTitle": "Cloner Achat",
+                        "sections": {
+                            "header": { "title": "Cloner l'Achat" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "L'Achat a été enregistré."
+                            }
+                        }
+                    },
+                    "saleDetail": {
+                        "pageTitle": "Detail Vente",
+                        "sections": {
+                            "header": {
+                                "updateSaleButton": { "label": "Modifier" },
+                                "cloneSaleButton": { "label": "Cloner" },
+                                "deleteSaleButton": {
+                                    "label": "Supprimer",
+                                    "confirmationMessage": "Souhaitez-vous vraiment supprimer cette vente?"
+                                }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "totalAmount": { "label": "Montant Total" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateUpdated": { "label": "Date Dernière Modification" }
+                            },
+                            "productList": {
+                                "price": { "label": "Prix" },
+                                "quantity": { "label": "Quantité" }
+                            }
+                        }
+                    },
+                    "saleListing": {
+                        "pageTitle": "Ventes",
+                        "sections": {
+                            "header": {
+                                "saleQuantity": { "label": "Vente(s)" },
+                                "newSaleButton": { "label": "Ajouter" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "productsQuantity": { "label": "Produit(s)" },
+                                        "totalAmount": { "label": "Montant Total" },
+                                        "dateCreated": { "label": "Date Creation" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "totalAmount": { "label": "Montant Total" },
+                                        "productsQuantity": { "label": "Produit(s)" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "addSale": {
+                        "pageTitle": "Nouvelle Vente",
+                        "sections": {
+                            "header": { "title": "Ajouter une Vente" },
+                            "footer": {},
+                            "mainForm": {
+                                "cart": {
+                                    "label": "Panier",
+                                    "errorMessage": "Il y a un problème avec le champ: Panier."
+                                },
+                                "totalAmount": {
+                                    "label": "Prix Total",
+                                    "errorMessage": "Il y a un problème avec le champ: Prix Total."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "La vente a été enregistré."
+                            }
+                        }
+                    },
+                    "updateSale": {
+                        "pageTitle": "Modifier Vente",
+                        "sections": {
+                            "header": { "title": "Modifier la Vente" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "La vente a été enregistré."
+                            }
+                        }
+                    },
+                    "cloneSale": {
+                        "pageTitle": "Cloner Vente",
+                        "sections": {
+                            "header": { "title": "Cloner la Vente" },
+                            "footer": {},
+                            "mainForm": {
+                                "confirmationMessage": "La vente a été enregistré."
+                            }
+                        }
+                    },
+                    "deliveryDetail": {
+                        "pageTitle": "Detail Livraison",
+                        "sections": {
+                            "header": {
+                                "updateDeliveryButton": { "label": "Modifier" }
+                            },
+                            "footer": {},
+                            "description": {
+                                "sectionTitle": "Description",
+                                "dateSale": { "label": "Date Vente" },
+                                "codeSale": { "label": "Code Vente" },
+                                "totalAmount": { "label": "Prix Total" },
+                                "deliveryStatus": { "label": "Status" },
+                                "dateCreated": { "label": "Date Creation" },
+                                "dateDelivery": { "label": "Date Livraison" },
+                                "dateUpdated": { "label": "Date Dernière Modification" }
+                            },
+                            "productList": {
+                                "price": { "label": "Prix" },
+                                "quantity": { "label": "Quantité" }
+                            }
+                        }
+                    },
+                    "deliveryListing": {
+                        "pageTitle": "Livraisons",
+                        "sections": {
+                            "header": {
+                                "saleQuantity": { "label": "Vente(s)" }
+                            },
+                            "footer": {},
+                            "desktopView": {
+                                "list": {
+                                    "columns": {
+                                        "dateSale": { "label": "Date Vente" },
+                                        "codeSale": { "label": "Code Vente" },
+                                        "totalAmount": { "label": "Prix Total" },
+                                        "deliveryStatus": { "label": "Status" }
+                                    }
+                                }
+                            },
+                            "phoneView": {
+                                "list": {
+                                    "card": {
+                                        "dateSale": { "label": "Date Vente" },
+                                        "deliveryStatus": { "label": "Status" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "updateDelivery": {
+                        "pageTitle": "Modifier Livraison",
+                        "sections": {
+                            "header": { "title": "Modifier la Livraison" },
+                            "footer": {},
+                            "mainForm": {
+                                "codeSale": {
+                                    "label": "Code Vente",
+                                    "errorMessage": "Il y a un problème avec le champ: Code Vente."
+                                },
+                                "received": {
+                                    "label": "Livrée",
+                                    "errorMessage": "Il y a un problème avec le champ: Livrée."
+                                },
+                                "dateDelivery": {
+                                    "label": "Date de Livraison",
+                                    "errorMessage": "Il y a un problème avec le champ: Date de Livraison."
+                                },
+                                "timeDelivery": {
+                                    "label": "Heure de livraison",
+                                    "errorMessage": "Il y a un problème avec le champ: Heure de livraison."
+                                },
+                                "cancelButton": { "label": "Annuler" },
+                                "submitButton": { "label": "Enregistrer" },
+                                "confirmationMessage": "La Livraison a été enregistrée."
+                            }
+                        }
+                    }
+                },
+                "authLayout": {
+                    "register": {
+                        "pageTitle": "Inscription",
+                        "sections": {
+                            "header": { "title": "Inscription" },
+                            "footer": { "links": { "login": "Vous avez déjà un compte?" } },
+                            "mainForm": {
+                                "firstName": {
+                                    "label": "Prénom",
+                                    "errorMessage": "Il y a une erreur avec le champ: Prénom."
+                                },
+                                "lastName": {
+                                    "label": "nom",
+                                    "errorMessage": "Il y a une erreur avec le champ: Nom."
+                                },
+                                "email": {
+                                    "label": "email",
+                                    "errorMessage": "Il y a une erreur avec le champ: Email."
+                                },
+                                "phoneNumber": {
+                                    "label": "Téléphone",
+                                    "errorMessage": "Il y a une erreur avec le champ: Téléphone."
+                                },
+                                "password": {
+                                    "label": "mot de passe",
+                                    "placeholder": "8 chiffres. Ex: 78542369",
+                                    "errorMessage": "Il y a une erreur avec le champ: Mot de passe."
+                                },
+                                "confirmPassword": {
+                                    "label": "Répéter le mot de passe",
+                                    "placeholder": "8 chiffres. Ex: 78542369",
+                                    "errorMessage": "Il y a une erreur avec le champ: Répéter le mot de pass."
+                                },
+                                "defaultTree": {
+                                    "namePrefix": "Famille",
+                                    "description": "Cet arbre a été créé lors de l'inscription."
+                                },
+                                "submitButton": { "label": "enregirstrer" },
+                                "confirmationMessage": "Veuillez vérifier votre e-mail pour obtenir vos informations de connexion."
+                            }
+                        }
+                    },
+                    "login": {
+                        "sections": {
+                            "pageTitle": "Connexion",
+                            "header": { "title": "Connexion" },
+                            "mainForm": {
+                                "footer": {
+                                    "links": {
+                                        "forgotIdentifier": "Identifiant oublié?",
+                                        "forgotPassword": "Mot de passe oublié?",
+                                        "register": "Pas encore inscrit?"
+                                    }
+                                }
+                            },
+                            "identifierForm": {
+                                "formTitle": "Mon identifiant",
+                                "formSubtitle": "Veuillez toujours vérifier que vous êtes à la bonne adresse",
+                                "identifier": {
+                                    "label": "identifiant",
+                                    "placeholder": "Entrer votre identifiant",
+                                    "errorMessage": "Il y a un problème avec votre identifiant."
+                                },
+                                "rememberIdentifier": {
+                                    "label": "Mémoriser mon identifiant"
+                                },
+                                "submitButton": { "label": "suivant" }
+                            },
+                            "passwordForm": {
+                                "formTitle": "Mon mot de passe",
+                                "formSubtitle": "Veuillez toujours vérifier que vous êtes à la bonne adresse",
+                                "previousStep": "Mon identifiant",
+                                "password": {
+                                    "label": "mot de passe",
+                                    "errorMessage": "Il y a un problème avec votre mot de passe."
+                                },
+                                "submitButton": { "label": "Se Connecter" },
+                                "clearButton": { "label": "Effacer" },
+                                "confirmationMessage": "Vous êtes connecté."
+                            }
+                        }
+                    },
+                    "forgotIdentifier": {
+                        "pageTitle": "Identifiant Oublié",
+                        "sections": {
+                            "header": { "title": "Identifiant Oublié" },
+                            "footer": { "links": { "login": "Retourner?" } },
+                            "mainForm": {
+                                "email": {
+                                    "label": "email",
+                                    "errorMessage": "Il y a une erreur avec le champ: Email."
+                                },
+                                "submitButton": "Envoyer",
+                                "confirmationMessage": "Veuillez vérifier votre email pour obtenir vos identifiants."
+                            }
+                        }
+                    },
+                    "forgotPassword": {
+                        "pageTitle": "Mot de passe Oublié",
+                        "sections": {
+                            "header": { "title": "Mot de passe Oublié" },
+                            "footer": { "links": { "login": "Retourner?" } },
+                            "mainForm": {
+                                "identifier": {
+                                    "label": "identifier",
+                                    "placeholder": "Enter your identifier",
+                                    "errorMessage": "Il y a une erreur avec le champ: Identifiant."
+                                },
+                                "submitButton": "Envoyer",
+                                "confirmationMessage": "Veuillez vérifier votre email pour obtenir votre mot de passe."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+]
