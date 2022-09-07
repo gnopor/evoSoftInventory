@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import labels from "../../public/json/labels.json";
 
 export declare global {
     namespace I {
