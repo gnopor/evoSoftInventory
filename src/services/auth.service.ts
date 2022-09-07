@@ -12,6 +12,10 @@ const ACCESS_TOKEN_EXPIRATION_KEY = localStorageFields.ACCESS_TOKEN_EXPIRATION_K
 const defaultErrorMessage = "An error occurred while processing your request";
 
 class AuthService {
+    #parseFetchResponse<T = any>(fetchResponse: Response) {
+        return Helpers.parseFetchResponse<T>(fetchResponse, defaultErrorMessage);
+    }
+
     async register(data: { email: string; password: string }) {
         const options = {
             method: "POST",
@@ -22,7 +26,7 @@ class AuthService {
         };
 
         const response = await fetch(`${BASE_URL}/register`, options);
-        return parseFetchResponse(response);
+        return this.#parseFetchResponse(response);
     }
 
     async activateAccount(data: { token: string }) {
@@ -35,7 +39,7 @@ class AuthService {
         };
 
         const response = await fetch(`${BASE_URL}/account-activation`, options);
-        return parseFetchResponse(response);
+        return this.#parseFetchResponse(response);
     }
 
     async login(data: { email: string; password: string }) {
@@ -49,7 +53,7 @@ class AuthService {
         };
 
         const fetchResponse: any = await fetch(`${BASE_URL}/login`, options);
-        const response = await parseFetchResponse<any>(fetchResponse);
+        const response = await this.#parseFetchResponse<any>(fetchResponse);
 
         saveAuthToken(response.accessToken);
         return response;
@@ -66,7 +70,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/logout`, options);
-        const response = await parseFetchResponse(fetchResponse);
+        const response = await this.#parseFetchResponse(fetchResponse);
 
         deleteAuthToken();
         return response;
@@ -82,7 +86,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/init-password-reset`, options);
-        return parseFetchResponse(fetchResponse);
+        return this.#parseFetchResponse(fetchResponse);
     }
 
     async resetPassword(data: { email: string; token: string }) {
@@ -95,7 +99,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/reset-password`, options);
-        return parseFetchResponse(fetchResponse);
+        return this.#parseFetchResponse(fetchResponse);
     }
 
     async refreshToken() {
@@ -108,7 +112,7 @@ class AuthService {
             };
 
             const fetchResponse: any = await fetch(`${BASE_URL}/refresh-token`, options);
-            const response = await parseFetchResponse<any>(fetchResponse);
+            const response = await this.#parseFetchResponse<any>(fetchResponse);
 
             saveAuthToken(response?.accessToken);
             return response;
@@ -129,7 +133,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/update-password`, options);
-        parseFetchResponse(fetchResponse);
+        this.#parseFetchResponse(fetchResponse);
 
         deleteAuthToken();
     }
@@ -145,7 +149,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/init-email-update`, options);
-        return parseFetchResponse(fetchResponse);
+        return this.#parseFetchResponse(fetchResponse);
     }
 
     async updateEmail(data: { token: string }) {
@@ -159,7 +163,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/update-email`, options);
-        return parseFetchResponse(fetchResponse);
+        return this.#parseFetchResponse(fetchResponse);
     }
 
     async getCurrentUser() {
@@ -171,7 +175,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
-        return parseFetchResponse(fetchResponse);
+        return this.#parseFetchResponse(fetchResponse);
     }
 
     async getUser(userId: string) {
@@ -185,7 +189,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/reset-password`, options);
-        return parseFetchResponse<I.IUser>(fetchResponse);
+        return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 
     async updateUser(memberId: string, data: I.IUser) {
@@ -199,7 +203,7 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/update-user`, options);
-        return parseFetchResponse<I.IUser>(fetchResponse);
+        return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 
     getCredential() {
@@ -216,10 +220,6 @@ class AuthService {
 }
 
 // -----------
-function parseFetchResponse<T = any>(fetchResponse: Response) {
-    return Helpers.parseFetchResponse<T>(fetchResponse, defaultErrorMessage);
-}
-
 function saveAuthToken(accessToken: string) {
     SecureLocalStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
     SecureLocalStorage.setItem(
