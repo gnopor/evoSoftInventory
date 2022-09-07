@@ -21,23 +21,6 @@ interface ICacheHandlerOptions {
 }
 
 export default class CacheHelpers {
-    static async #handleStorageCache(options: ICacheHandlerOptions) {
-        const { key, getter, args } = options;
-        const ttl = options.ttl || Infinity;
-
-        const storageResult = SecureLocalStorage.getItem(key);
-        const cacheResult = storageResult ? (JSON.parse(storageResult) as ICache) : undefined;
-        const isUpdate = (cacheResult?.ttl || Infinity) > Date.now();
-
-        if (cacheResult && isUpdate) return cacheResult.data;
-
-        const result = await getter.apply(this, args);
-        const newCache: ICache = { data: result, ttl: Date.now() + ttl };
-        SecureLocalStorage.setItem(key, JSON.stringify(newCache));
-
-        return result;
-    }
-
     static async #handleMemoryCache(options: ICacheHandlerOptions) {
         const { key, getter, args } = options;
         const ttl = options.ttl || Infinity;
@@ -52,6 +35,23 @@ export default class CacheHelpers {
         const result = await getter.apply(this, args);
         const newCache: ICache = { data: result, ttl: Date.now() + ttl };
         cache.set(key, newCache);
+
+        return result;
+    }
+
+    static async #handleStorageCache(options: ICacheHandlerOptions) {
+        const { key, getter, args } = options;
+        const ttl = options.ttl || Infinity;
+
+        const storageResult = SecureLocalStorage.getItem(key);
+        const cacheResult = storageResult ? (JSON.parse(storageResult) as ICache) : undefined;
+        const isUpdate = (cacheResult?.ttl || Infinity) > Date.now();
+
+        if (cacheResult && isUpdate) return cacheResult.data;
+
+        const result = await getter.apply(this, args);
+        const newCache: ICache = { data: result, ttl: Date.now() + ttl };
+        SecureLocalStorage.setItem(key, JSON.stringify(newCache));
 
         return result;
     }
