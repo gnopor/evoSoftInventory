@@ -29,4 +29,53 @@ export default class Helpers {
     static delay(ms = 0) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
+
+    static formatDate(timestamp: number = 0, { withTime = false } = {}) {
+        if (!timestamp) return;
+
+        const date = new Date(timestamp);
+        const year = date.getFullYear();
+        const month = this.formatDateUnit(1 + date.getMonth());
+        const day = this.formatDateUnit(date.getDate());
+
+        const hour = this.formatDateUnit(date.getHours());
+        const minute = this.formatDateUnit(date.getMinutes());
+        const second = this.formatDateUnit(date.getSeconds());
+
+        const dateSection = `${day}/${month}/${year}`;
+        const timeSection = withTime ? `${hour}:${minute}:${second}` : "";
+
+        return `${dateSection} ${timeSection}`.trim();
+    }
+
+    static parseDateInputValue(numValue: number, options?: { timeOnly?: boolean }) {
+        if (!numValue) return;
+
+        const date = new Date(numValue);
+
+        if (options?.timeOnly) {
+            const hours = Helpers.formatDateUnit(date.getHours());
+            const minutes = Helpers.formatDateUnit(date.getMinutes());
+
+            return `${hours}:${minutes}`;
+        }
+
+        const year = date.getFullYear();
+        const month = Helpers.formatDateUnit(date.getMonth() + 1);
+        const day = Helpers.formatDateUnit(date.getDate());
+
+        return `${year}-${month}-${day}`;
+    }
+
+    static formatDateUnit(unit: number | string) {
+        return unit.toString().padStart(2, "0");
+    }
+
+    static getMap<T extends any[]>(data: T, field = "id") {
+        const dataMap: { [key: string]: T[0] } = {};
+        for (const item of data) {
+            dataMap[item[field]] = item;
+        }
+        return dataMap;
+    }
 }
