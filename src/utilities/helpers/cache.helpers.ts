@@ -61,7 +61,7 @@ export default class CacheHelpers {
         getter: (...args: TArgs) => TResult,
         options?: ICacheOptions
     ) {
-        const cacheHandler = this.#handleMemoryCache;
+        const cacheHandler = CacheHelpers.#handleMemoryCache;
 
         const name = options?.name || getter.name;
         const ttl = options?.ttl;
@@ -70,7 +70,7 @@ export default class CacheHelpers {
             const key = `${name}-${args.join()}`;
 
             const handleOptions = { key, getter, args, ttl };
-            return cacheHandler(handleOptions);
+            return cacheHandler.bind(this)(handleOptions);
         };
     }
 
@@ -89,7 +89,7 @@ export default class CacheHelpers {
             const key = `${prefix}-${APP_NAME}-${name}-${version}-${args.join()}`;
 
             const handleOptions = { key, getter, args, ttl };
-            return cacheHandler(handleOptions);
+            return cacheHandler.bind(this)(handleOptions);
         };
     }
 
@@ -108,7 +108,7 @@ export default class CacheHelpers {
                 const key = `${prefix}-${APP_NAME}-${name}-${version}-${args.join()}`;
 
                 const handleOptions = { key, getter, args, ttl };
-                return cacheHandler(handleOptions);
+                return cacheHandler.bind(this)(handleOptions);
             };
         };
     }
