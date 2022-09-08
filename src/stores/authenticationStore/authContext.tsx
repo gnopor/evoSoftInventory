@@ -38,15 +38,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initAuth = async () => {
         try {
-            let member;
+            let user;
             if (isUserAuthenticated()) {
-                member = await authService.getCurrentUser();
+                user = await authService.getCurrentUser();
             } else {
                 const result = await authService.refreshToken();
-                member = result.member;
+                user = result.user;
             }
 
-            return setCurrentUser(member);
+            return setCurrentUser(user);
         } catch (error) {
             setCurrentUser(undefined);
         }

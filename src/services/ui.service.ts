@@ -23,16 +23,6 @@ class UIService {
         const response = await this.#parseFetchResponse<I.ILabel[]>(fetchResponse);
 
         return response.find((labels) => labels.languageCode2 === language.code2);
-
-        // const options = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({ language: language.code2 })
-        // };
-        // const response = await fetch(`${BASE_URL}/get-labels`, options);
-        // return await this.#parseFetchResponse(response);
     }
 }
 

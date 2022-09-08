@@ -3,13 +3,13 @@ import Helpers from "../utilities/helpers/helpers";
 import SecureLocalStorage from "../utilities/helpers/secureLocalStorage.helpers";
 
 const API_BASE_URL = API_BASE_URI;
-const API_SERVICE_NAME = "auth";
-const BASE_URL = `${API_BASE_URL}/${API_SERVICE_NAME}`;
+const API_SERVICE = "auth";
+const BASE_URL = `${API_BASE_URL}/${API_SERVICE}`;
 
 const ACCESS_TOKEN_KEY = localStorageFields.ACCESS_TOKEN_KEY;
 const ACCESS_TOKEN_EXPIRATION_KEY = localStorageFields.ACCESS_TOKEN_EXPIRATION_KEY;
 
-const defaultErrorMessage = "An error occurred while processing your request";
+const defaultErrorMessage = `An error occurred while processing your ${API_SERVICE} request.`;
 
 class AuthService {
     #parseFetchResponse<T = any>(fetchResponse: Response) {
