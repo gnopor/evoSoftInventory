@@ -1,18 +1,12 @@
 import React from "react";
-import Head from "next/head";
 import css from "styled-jsx/css";
 
-import DefaultLayout from "../layouts/DefaultLayout";
-import { APP_NAME } from "../constants";
+import Page from "../components/Page";
 
 export default function HomePage() {
     return (
         <>
-            <Head>
-                <title>Home | {APP_NAME}</title>
-            </Head>
-
-            <DefaultLayout>
+            <Page title="Home">
                 <main id="home_page" className="container">
                     <section>
                         Home Page
@@ -74,7 +68,7 @@ export default function HomePage() {
                         </div>
                     </div>
                 </main>
-            </DefaultLayout>
+            </Page>
 
             <style jsx>{style}</style>
         </>
