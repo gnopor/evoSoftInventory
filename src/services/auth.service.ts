@@ -11,6 +11,12 @@ const ACCESS_TOKEN_EXPIRATION_KEY = localStorageFields.ACCESS_TOKEN_EXPIRATION_K
 
 const defaultErrorMessage = `An error occurred while processing your ${API_SERVICE} request.`;
 
+interface IAuthCredential {
+    user: I.IUser;
+    accessToken: string;
+    refreshToken: string;
+}
+
 class AuthService {
     #parseFetchResponse<T = any>(fetchResponse: Response) {
         return Helpers.parseFetchResponse<T>(fetchResponse, defaultErrorMessage);
@@ -53,7 +59,7 @@ class AuthService {
         };
 
         const fetchResponse: any = await fetch(`${BASE_URL}/login`, options);
-        const response = await this.#parseFetchResponse<any>(fetchResponse);
+        const response = await this.#parseFetchResponse<IAuthCredential>(fetchResponse);
 
         saveAuthToken(response.accessToken);
         return response;
@@ -111,10 +117,10 @@ class AuthService {
                 credentials: "include" as RequestCredentials
             };
 
-            const fetchResponse: any = await fetch(`${BASE_URL}/refresh-token`, options);
-            const response = await this.#parseFetchResponse<any>(fetchResponse);
+            const fetchResponse = await fetch(`${BASE_URL}/refresh-token`, options);
+            const response = await this.#parseFetchResponse<IAuthCredential>(fetchResponse);
 
-            saveAuthToken(response?.accessToken);
+            saveAuthToken(response.accessToken);
             return response;
         } catch (error) {
             deleteAuthToken();
@@ -132,7 +138,7 @@ class AuthService {
             };
 
             const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
-            const response = await this.#parseFetchResponse(fetchResponse);
+            const response = await this.#parseFetchResponse<I.IUser>(fetchResponse);
             return response;
         } catch (error) {
             deleteAuthToken();
