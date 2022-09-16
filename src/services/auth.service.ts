@@ -122,6 +122,24 @@ class AuthService {
         }
     }
 
+    async getCurrentUser() {
+        try {
+            const options = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: this.getCredential()
+                }
+            };
+
+            const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
+            const response = await this.#parseFetchResponse(fetchResponse);
+            return response;
+        } catch (error) {
+            deleteAuthToken();
+            throw error;
+        }
+    }
+
     async updatePassword(data: { userId: string; oldPassword: string; newPassword: string }) {
         const options = {
             method: "POST",
@@ -163,18 +181,6 @@ class AuthService {
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/update-email`, options);
-        return this.#parseFetchResponse(fetchResponse);
-    }
-
-    async getCurrentUser() {
-        const options = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: this.getCredential()
-            }
-        };
-
-        const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
         return this.#parseFetchResponse(fetchResponse);
     }
 
