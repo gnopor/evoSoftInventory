@@ -27,7 +27,7 @@ export default function CircularProgress({ color, size, border }: IProps) {
 }
 
 CircularProgress.defaultProps = {
-    color: "#fff",
+    color: "#ccc",
     size: "1.5em",
     border: "2px",
     zIndex: "9999999999"

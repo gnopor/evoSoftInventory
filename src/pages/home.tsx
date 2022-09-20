@@ -1,5 +1,6 @@
 import React from "react";
 import css from "styled-jsx/css";
+import Button from "../components/Button";
 
 import Page from "../components/Page";
 
@@ -19,6 +20,20 @@ export default function HomePage() {
                         <article className="col-12 col-md-6 bg-primary">child 1</article>
                         <article className="col-12 col-md-6">child 2</article>
                     </section>
+
+                    {/* custom button */}
+                    <div>
+                        <Button prepend="gn" append={<>d</>} primary disabled block>
+                            custom button
+                        </Button>
+
+                        {/* <Button secondary loading>
+                            ddd
+                        </Button> */}
+                    </div>
+                    {/* custom button */}
+
+                    <hr />
 
                     {/* <!-- Button trigger modal --> */}
                     <button
