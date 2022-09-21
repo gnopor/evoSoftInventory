@@ -23,7 +23,7 @@ export default function HomePage() {
 
                     {/* custom button */}
                     <div>
-                        <Button prepend="gn" append={<>d</>} primary disabled block>
+                        <Button prepend="gn" append={<>d</>} variant="primary" disabled block>
                             custom button
                         </Button>
 

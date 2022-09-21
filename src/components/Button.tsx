@@ -4,8 +4,7 @@ import CircularProgress from "./CircularProgress";
 
 interface IProps extends React.ComponentProps<"button"> {
     block?: boolean;
-    primary?: boolean;
-    secondary?: boolean;
+    variant?: "primary" | "secondary" | "dark" | "success" | "danger" | "warning" | "info";
     size?: "small" | "medium" | "large";
     prepend?: string | React.ReactNode;
     append?: string | React.ReactNode;
@@ -16,8 +15,7 @@ interface IProps extends React.ComponentProps<"button"> {
 export default function Button({
     children,
     block,
-    primary,
-    secondary,
+    variant,
     size,
     prepend,
     append,
@@ -25,16 +23,15 @@ export default function Button({
     loadingOptions,
     disabled,
     style,
+    className,
     ...rest
 }: IProps) {
     const getClasses = () => {
         const btnBlock = block ? " btn-block" : "";
         const btnSize = size ? ` btn-${size}` : "";
-        const btnPrimary = primary ? " btn-primary" : "";
-        const btnSecondary = secondary ? " btn-secondary" : "";
-        const btnType = btnPrimary || btnSecondary;
+        const btnVariant = ` btn-${variant || "primary"}`;
 
-        const classes = `btn${btnType}${btnBlock}${btnSize}`;
+        const classes = `${className} btn${btnVariant}${btnBlock}${btnSize}`;
         return classes;
     };
 
