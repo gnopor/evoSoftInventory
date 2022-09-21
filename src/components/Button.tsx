@@ -29,7 +29,7 @@ export default function Button({
     const getClasses = () => {
         const btnBlock = block ? " btn-block" : "";
         const btnSize = size ? ` btn-${size}` : "";
-        const btnVariant = ` btn-${variant || "primary"}`;
+        const btnVariant = variant ? ` btn-${variant}` : "";
 
         const classes = `${className} btn${btnVariant}${btnBlock}${btnSize}`;
         return classes;
