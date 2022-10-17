@@ -67,25 +67,26 @@
 //         setLabel(label);
 //     };
 
-//     const handleSetLanguageState = async () => {
-//         const languagesList = await uiService.getLanguages();
-//         const languageCode = getDefaultLanguage();
+// const handleSetLanguageState = async () => {
+//     const languagesList = await uiService.getLanguages();
+//     const defaultLanguage = getDefaultLanguage();
+//     const languageCode = window.location.pathname.split("/")[1] || defaultLanguage;
 
-//         const language = languagesList.find((l) => l.code2 === languageCode);
-//         if (!language) {
-//             window.open(PathHelpers.homePagePath(languageCode), "_self");
-//             return;
-//         }
+//     const language = languagesList.find((l) => l.code2 === languageCode);
+//     if (!language) {
+//         window.open(PathHelpers.homePagePath(defaultLanguage), "_self");
+//         return;
+//     }
 
-//         const newLanguageMap = Helpers.getMap(languagesList, "code2");
+//     const newLanguageMap = Helpers.getMap(languagesList, "code2");
 
-//         setLanguageMap(newLanguageMap);
-//         setLanguages(languagesList);
-//         setCurrentLanguage(language);
-//         saveDefaultLanguage(languageCode);
+//     setLanguageMap(newLanguageMap);
+//     setLanguages(languagesList);
+//     setCurrentLanguage(language);
+//     saveDefaultLanguage(languageCode);
 
-//         return language;
-//     };
+//     return language;
+// };
 
 //     const updateCurrentLanguage = (languageCode2: string) => {
 //         if (languageCode2 === getDefaultLanguage()) return;

@@ -11,10 +11,10 @@ interface IProps {
 }
 
 const formatLabels = ({ data }: I.ILabel) => ({
-    confirmationDialogBox: data?.global?.confirmationDialogBox
+    confirmationDialogBox: data.global.confirmationDialogBox
 });
 
-export default function ConfirmationWrapper({ open, title, message, closeConfirmation }: IProps) {
+export default function ConfirmationBox({ open, title, message, closeConfirmation }: IProps) {
     const { label: allLabel } = useUI();
     const labels = formatLabels(allLabel as I.ILabel);
 

@@ -9,13 +9,7 @@ interface IProps {
     closeNotification: () => void;
 }
 
-export default function NotificationWrapper({
-    open,
-    message,
-    title,
-    type,
-    closeNotification
-}: IProps) {
+export default function NotificationBox({ open, message, title, type, closeNotification }: IProps) {
     useEffect(() => {
         open && runCloseTimeout();
     }, [open]);
