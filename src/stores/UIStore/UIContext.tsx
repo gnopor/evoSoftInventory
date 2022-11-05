@@ -7,6 +7,7 @@
 // import Helpers from "../../utilities/helpers/helpers";
 // import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpers";
 // import PathHelpers from "../../utilities/helpers/path.helpers";
+// import allLabels from "../../../public/assets/json/labels.json"
 
 // // copied from the linter of value
 // interface IUIContext {
@@ -36,13 +37,13 @@
 //     const [languageMap, setLanguageMap] = useState<{ [key: string]: I.ILanguage }>();
 //     const [currentLanguage, setCurrentLanguage] = useState<I.ILanguage>();
 
-//     const [label, setLabel] = useState<I.ILabel>();
+//     const [label, setLabel] = useState<I.ILabel>(allLabels[0]);
 
 //     const [isPhoneView, setIsPhoneView] = useState(false);
 //     const [currentPath, setCurrentPath] = useState<string>();
 
 //     useEffect(() => {
-//         Object.keys(label || {}).length === 0 && initState();
+//         !label && initState();
 //     }, [label]);
 
 //     const initState = async () => {
@@ -121,13 +122,7 @@
 
 //     return (
 //         <UIContext.Provider value={value}>
-//             {Object.keys(label || {}).length > 0 ? (
-//                 children
-//             ) : (
-//                 <div className="vh-100 w-100 d-flex justify-content-center align-items-center">
-//                     <CircularProgress />
-//                 </div>
-//             )}
+//             {children}
 //         </UIContext.Provider>
 //     );
 // }

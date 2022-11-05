@@ -1,5 +1,6 @@
 import { API_BASE_URI } from "../constants";
 import Helpers from "../utilities/helpers/helpers";
+// import allLanguages from "../../public/assets/json/languages.json";
 
 const API_BASE_URL = API_BASE_URI;
 const API_SERVICE = "language";
@@ -17,6 +18,10 @@ class UIService {
 
         return this.#parseFetchResponse<I.ILanguage[]>(fetchResponse);
     }
+
+    // async getLanguages() {
+    //     return allLanguages;
+    // }
 
     async getLabel(language: I.ILanguage) {
         const fetchResponse = await fetch("/json/labels.json");
