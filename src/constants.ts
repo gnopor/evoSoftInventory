@@ -4,7 +4,7 @@ export const localStorageFields = {
     ACCESS_TOKEN_KEY: `x-${APP_NAME}-access-token`,
     ACCESS_TOKEN_EXPIRATION_KEY: `x-${APP_NAME}-access-token-expiration`,
 
-    DEFAULT_MEMBER_LANGUAGE: `x-${APP_NAME}-default-member-language`
+    DEFAULT_USER_LANGUAGE: `x-${APP_NAME}-default-user-language`
 };
 
 // Environment variables configs
