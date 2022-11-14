@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
 
-import "../style/custom.scss";
-import "../style/global.css";
+import "../styles/custom.scss";
+import "../styles/global.css";
 
 import { AuthProvider } from "../stores/authenticationStore/authContext";
 import { APP_NAME } from "../constants";

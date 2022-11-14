@@ -1,5 +1,7 @@
+import { LANGUAGE_CODES, DEFAULT_LANGUAGE_CODE } from "../../constants";
+
 export default class PathHelpers {
-        static onPathChange(callback: (newPath?: string) => void) {
+    static onPathChange(callback: (newPath?: string) => void) {
         const element = window.document;
         let previousPath = window.location.pathname;
 
@@ -20,17 +22,16 @@ export default class PathHelpers {
         observer.observe(element, options);
     }
 
-    static getPath(str: string, languageCode: ILanguageCode = "en") {
+    static getPath(path: string, languageCode?: string) {
         const pathName = window.location.pathname;
 
-        const language = pathName[3] === "/" ? pathName.slice(0, 3) : `/${languageCode}`;
-        const path = String(str).trim();
+        const currentCode = languageCode?.trim() || pathName.split("/")[1];
+        const language = LANGUAGE_CODES.includes(currentCode) ? currentCode : DEFAULT_LANGUAGE_CODE;
 
-        return `${language}${path}`;
+        return `/${language}${path}`;
     }
-
     // -----------------------------
-    
+
     static error404Path() {
         return "/404/";
     }
