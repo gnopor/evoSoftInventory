@@ -4,7 +4,8 @@ import SecureLocalStorage from "../utilities/helpers/secureLocalStorage.helpers"
 
 const API_BASE_URL = API_BASE_URI;
 const API_SERVICE = "auth";
-const BASE_URL = `${API_BASE_URL}/${API_SERVICE}`;
+const API_VERSION = "v1";
+const BASE_URL = `${API_BASE_URL}/${API_SERVICE}/${API_VERSION}`;
 
 const ACCESS_TOKEN_KEY = localStorageFields.ACCESS_TOKEN_KEY;
 const ACCESS_TOKEN_EXPIRATION_KEY = localStorageFields.ACCESS_TOKEN_EXPIRATION_KEY;
@@ -137,7 +138,7 @@ class AuthService {
                 }
             };
 
-            const fetchResponse = await fetch(`${BASE_URL}/get-current-user`, options);
+            const fetchResponse = await fetch(`${BASE_URL}/users/current`, options);
             const response = await this.#parseFetchResponse<I.IUser>(fetchResponse);
             return response;
         } catch (error) {
@@ -192,7 +193,6 @@ class AuthService {
 
     async getUser(userId: string) {
         const options = {
-            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
@@ -200,7 +200,7 @@ class AuthService {
             body: JSON.stringify({ userId })
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/reset-password`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/${userId}`, options);
         return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 
@@ -214,7 +214,7 @@ class AuthService {
             body: JSON.stringify({ memberId, data })
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/update-user`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/${memberId}`, options);
         return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 
