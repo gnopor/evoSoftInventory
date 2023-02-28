@@ -85,27 +85,27 @@ class AuthService {
 
     async initPasswordReset(data: { email: string }) {
         const options = {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/init-password-reset`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/password/init-reset`, options);
         return this.#parseFetchResponse(fetchResponse);
     }
 
     async resetPassword(data: { email: string; token: string }) {
         const options = {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/reset-password`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/password/reset`, options);
         return this.#parseFetchResponse(fetchResponse);
     }
 
@@ -149,7 +149,7 @@ class AuthService {
 
     async updatePassword(data: { userId: string; oldPassword: string; newPassword: string }) {
         const options = {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
@@ -157,7 +157,7 @@ class AuthService {
             body: JSON.stringify(data)
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/update-password`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/password`, options);
         this.#parseFetchResponse(fetchResponse);
 
         deleteAuthToken();
@@ -165,7 +165,7 @@ class AuthService {
 
     async initEmailUpdate(data: { userId: string; email: string }) {
         const options = {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
@@ -173,48 +173,40 @@ class AuthService {
             body: JSON.stringify(data)
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/init-email-update`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/email/init`, options);
         return this.#parseFetchResponse(fetchResponse);
     }
 
     async updateEmail(data: { token: string }) {
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: this.getCredential()
-            },
-            body: JSON.stringify(data)
-        };
-
-        const fetchResponse = await fetch(`${BASE_URL}/update-email`, options);
-        return this.#parseFetchResponse(fetchResponse);
-    }
-
-    async getUser(userId: string) {
-        const options = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: this.getCredential()
-            },
-            body: JSON.stringify({ userId })
-        };
-
-        const fetchResponse = await fetch(`${BASE_URL}/users/${userId}`, options);
-        return this.#parseFetchResponse<I.IUser>(fetchResponse);
-    }
-
-    async updateUser(memberId: string, data: I.IUser) {
         const options = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
             },
-            body: JSON.stringify({ memberId, data })
+            body: JSON.stringify(data)
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/users/${memberId}`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/email`, options);
+        return this.#parseFetchResponse(fetchResponse);
+    }
+
+    async getUser(idUser: string) {
+        const fetchResponse = await fetch(`${BASE_URL}/users/${idUser}`);
+        return this.#parseFetchResponse<I.IUser>(fetchResponse);
+    }
+
+    async updateUser(idUser: string, data: I.IUser) {
+        const options = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: this.getCredential()
+            },
+            body: JSON.stringify({ idUser, data })
+        };
+
+        const fetchResponse = await fetch(`${BASE_URL}/users/${idUser}`, options);
         return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 
