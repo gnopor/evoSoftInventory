@@ -26,6 +26,29 @@ export default class Helpers {
         return nanoid();
     }
 
+    static onScreenSizeChange(callback: (size: number) => void) {
+        callback(this.getScreenWidth());
+
+        window.addEventListener("resize", () => {
+            callback(this.getScreenWidth());
+        });
+    }
+
+    static getScreenWidth() {
+        return window.innerWidth;
+    }
+
+    static onConnectionStateChange(callback: (connected: boolean) => void) {
+        callback(window.navigator.onLine);
+
+        window.addEventListener("online", () => {
+            callback(true);
+        });
+        window.addEventListener("offline", () => {
+            callback(false);
+        });
+    }
+
     static delay(ms = 0) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }

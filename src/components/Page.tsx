@@ -49,7 +49,7 @@ export default function Page({ children, layout, title, private: isPrivate, anon
             {title?.trim() && (
                 <Head>
                     <title>
-                        {title.trim()} | {APP_NAME}
+                        <title>{`${title.trim()} | ${APP_NAME}`}</title>
                     </title>
                 </Head>
             )}

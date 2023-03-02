@@ -1,130 +1,134 @@
-// /* eslint-disable max-lines-per-function */
-// import React, { useEffect, useState } from "react";
+/* eslint-disable max-lines-per-function */
+import React, { useEffect, useRef, useState } from "react";
 
-// import { DEFAULT_LANGUAGE_CODE, localStorageFields, PHONE_SCREEN_SIZE } from "../../constants";
-// import CircularProgress from "../../components/CircularProgress";
-// import uiService from "../../services/ui.service";
-// import Helpers from "../../utilities/helpers/helpers";
-// import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpers";
-// import PathHelpers from "../../utilities/helpers/path.helpers";
-// import allLabels from "../../../public/assets/json/labels.json"
+import { LANGUAGE_CODES, DEFAULT_LANGUAGE_CODE, localStorageFields } from "../../constants";
+import uiService from "../../services/ui.service";
+import Helpers from "../../utilities/helpers/helpers";
+import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpers";
+import PathHelpers from "../../utilities/helpers/path.helpers";
+import allLanguages from "../../../public/json/languages.json";
+import allLabels from "../../../public/json/labels.json";
 
-// // copied from the linter of value
-// interface IUIContext {
-//     languages: I.ILanguage[] | undefined;
-//     currentLanguage: I.ILanguage | undefined;
-//     label: I.ILabel | undefined;
-//     isPhoneView: boolean;
-//     updateCurrentLanguage: (languageCode2: string) => void;
-//     languageMap: { [key: string]: I.ILanguage } | undefined;
-//     currentPath: string | undefined;
-// }
+interface IUIContext {
+    languages: I.ILanguage[] | undefined;
+    currentLanguage: I.ILanguage | undefined;
+    label: I.ILabel | undefined;
+    updateCurrentLanguage: (languageCode2: string) => void;
+    languageMap: { [key: string]: I.ILanguage } | undefined;
+    currentPath: string | undefined;
+    isConnected: boolean;
+}
 
-// const UIContext = React.createContext({} as IUIContext);
+const UIContext = React.createContext({} as IUIContext);
 
-// function useUI() {
-//     const context = React.useContext(UIContext);
+function useUI() {
+    const context = React.useContext(UIContext);
 
-//     if (context === undefined) {
-//         throw new Error("UIContext must be used within an UIProvider.");
-//     }
+    if (context === undefined) {
+        throw new Error("UIContext must be used within an UIProvider.");
+    }
 
-//     return context;
-// }
+    return context;
+}
 
-// function UIProvider({ children }: { children: React.ReactNode }) {
-//     const [languages, setLanguages] = useState<I.ILanguage[]>();
-//     const [languageMap, setLanguageMap] = useState<{ [key: string]: I.ILanguage }>();
-//     const [currentLanguage, setCurrentLanguage] = useState<I.ILanguage>();
+function UIProvider({ children }: { children: React.ReactNode }) {
+    const [languages, setLanguages] = useState<I.ILanguage[]>(allLanguages);
+    const [languageMap, setLanguageMap] = useState<{ [key: string]: I.ILanguage }>();
+    const [currentLanguage, setCurrentLanguage] = useState<I.ILanguage>(allLanguages[0]);
+    const [label, setLabel] = useState<I.ILabel>(allLabels[0]);
 
-//     const [label, setLabel] = useState<I.ILabel>(allLabels[0]);
+    const [currentPath, setCurrentPath] = useState<string>();
+    const [isConnected, setIsConnected] = useState(false);
 
-//     const [isPhoneView, setIsPhoneView] = useState(false);
-//     const [currentPath, setCurrentPath] = useState<string>();
+    const isRunned = useRef(false);
 
-//     useEffect(() => {
-//         !label && initState();
-//     }, [label]);
+    useEffect(() => {
+        if (isRunned.current) return;
+        isRunned.current = true;
 
-//     const initState = async () => {
-//         handleSetPhoneViewState();
-//         handleSetCurrentPath();
+        initState();
+    }, []);
 
-//         const language = await handleSetLanguageState();
-//         language && handleSetLabel(language);
-//     };
+    const initState = async () => {
+        handleSetCurrentPath();
+        handleSetIsConnected();
 
-//     const handleSetPhoneViewState = () => {
-//         setIsPhoneView(Helpers.getScreenWidth() < PHONE_SCREEN_SIZE);
-//         Helpers.onScreenSizeChange((size: number) => setIsPhoneView(size < PHONE_SCREEN_SIZE));
-//     };
+        const language = await handleSetLanguageState();
+        language && handleSetLabel(language);
+    };
 
-//     const handleSetCurrentPath = () => {
-//         PathHelpers.onPathChange((newPath) => setCurrentPath(newPath));
-//     };
+    const handleSetCurrentPath = () => {
+        PathHelpers.onPathChange((newPath) => setCurrentPath(newPath));
+    };
 
-//     const handleSetLabel = async (language: I.ILanguage) => {
-//         const label = await uiService.getLabel(language);
-//         setLabel(label);
-//     };
+    const handleSetIsConnected = () => {
+        Helpers.onConnectionStateChange((state) => setIsConnected(state));
+    };
 
-// const handleSetLanguageState = async () => {
-//     const languagesList = await uiService.getLanguages();
-//     const defaultLanguage = getDefaultLanguage();
-//     const languageCode = window.location.pathname.split("/")[1] || defaultLanguage;
+    const handleSetLabel = async (language: I.ILanguage) => {
+        const label = await uiService.getLabel(language);
+        label && setLabel(label);
+    };
 
-//     const language = languagesList.find((l) => l.code2 === languageCode);
-//     if (!language) {
-//         window.open(PathHelpers.homePagePath(defaultLanguage), "_self");
-//         return;
-//     }
+    const handleSetLanguageState = async () => {
+        const languagesList = await uiService.getLanguages();
+        const defaultLanguage = getDefaultLanguage();
+        const languageCode = window.location.pathname.split("/")[1] || defaultLanguage;
 
-//     const newLanguageMap = Helpers.getMap(languagesList, "code2");
+        const language = languagesList.find((l) => l.code2 === languageCode);
+        if (!language) {
+            window.open(PathHelpers.homePagePath(defaultLanguage), "_self");
+            return;
+        }
 
-//     setLanguageMap(newLanguageMap);
-//     setLanguages(languagesList);
-//     setCurrentLanguage(language);
-//     saveDefaultLanguage(languageCode);
+        const newLanguageMap = Helpers.getMap(languagesList, "code2");
 
-//     return language;
-// };
+        setLanguageMap(newLanguageMap);
+        setLanguages(languagesList);
+        setCurrentLanguage(language);
+        saveDefaultLanguage(languageCode);
 
-//     const updateCurrentLanguage = (languageCode2: string) => {
-//         if (languageCode2 === getDefaultLanguage()) return;
+        return language;
+    };
 
-//         const oldPath = window.location.pathname;
+    const updateCurrentLanguage = (languageCode2: string) => {
+        if (!LANGUAGE_CODES.includes(languageCode2)) return;
+        if (languageCode2 === getDefaultLanguage()) return;
 
-//         const pathParts = oldPath.split("/");
-//         pathParts[1] = languageCode2;
+        const newLanguage = languages.find((l) => l.code2 === languageCode2);
+        if (!newLanguage) return;
+        setCurrentLanguage(newLanguage);
+        handleSetLabel(newLanguage);
 
-//         saveDefaultLanguage(languageCode2);
-//         window.open(pathParts.join("/"), "_self");
-//     };
+        const oldPath = window.location.pathname;
+        const pathParts = oldPath.split("/");
+        pathParts[1] = languageCode2;
+        const newPath = pathParts.join("/");
+        window.history.pushState({}, "", newPath);
 
-//     const saveDefaultLanguage = (languageCode2: string) => {
-//         return SecureLocalStorage.setItem(localStorageFields.DEFAULT_USER_LANGUAGE, languageCode2);
-//     };
+        saveDefaultLanguage(languageCode2);
+    };
 
-//     const getDefaultLanguage = () => {
-//         const languageCode = SecureLocalStorage.getItem(localStorageFields.DEFAULT_USER_LANGUAGE);
-//         return languageCode || DEFAULT_LANGUAGE_CODE;
-//     };
+    const saveDefaultLanguage = (languageCode2: string) => {
+        return SecureLocalStorage.setItem(localStorageFields.DEFAULT_USER_LANGUAGE, languageCode2);
+    };
 
-//     const value = {
-//         languages,
-//         currentLanguage,
-//         label,
-//         isPhoneView,
-//         updateCurrentLanguage,
-//         languageMap,
-//         currentPath
-//     };
+    const getDefaultLanguage = () => {
+        const languageCode = SecureLocalStorage.getItem(localStorageFields.DEFAULT_USER_LANGUAGE);
+        return languageCode || DEFAULT_LANGUAGE_CODE;
+    };
 
-//     return (
-//         <UIContext.Provider value={value}>
-//             {children}
-//         </UIContext.Provider>
-//     );
-// }
+    const value = {
+        languages,
+        currentLanguage,
+        label,
+        updateCurrentLanguage,
+        languageMap,
+        currentPath,
+        isConnected
+    };
 
-// export { UIProvider, useUI };
+    return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
+}
+
+export { UIProvider, useUI };

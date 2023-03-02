@@ -11,14 +11,13 @@ export declare global {
             _dateDeleted?: number | string;
         }
 
-        // language microservice interfaces
-        interface ILanguage extends IBaseModel {
+        interface ILanguage {
             code2: string;
             code3: string;
             translations: { [key: string]: { label: string } };
         }
 
-        interface ILabel extends IBaseModel {
+        interface ILabel {
             languageCode2: string;
             // data: { [key: string]: any };
             data: typeof labels[0]["data"];

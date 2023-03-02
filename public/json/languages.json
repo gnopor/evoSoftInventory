@@ -1,0 +1,18 @@
+[
+    {
+        "code2": "en",
+        "code3": "eng",
+        "translations": {
+            "en": { "label": "english" },
+            "fr": { "label": "anglais" }
+        }
+    },
+    {
+        "code2": "fr",
+        "code3": "fra",
+        "translations": {
+            "en": { "label": "french" },
+            "fr": { "label": "français" }
+        }
+    }
+]
