@@ -10,9 +10,9 @@ import allLanguages from "../../../public/json/languages.json";
 import allLabels from "../../../public/json/labels.json";
 
 interface IUIContext {
-    languages: I.ILanguage[] | undefined;
-    currentLanguage: I.ILanguage | undefined;
-    label: I.ILabel | undefined;
+    languages: I.ILanguage[];
+    currentLanguage: I.ILanguage;
+    label: I.ILabel;
     updateCurrentLanguage: (languageCode2: string) => void;
     languageMap: { [key: string]: I.ILanguage } | undefined;
     currentPath: string | undefined;
