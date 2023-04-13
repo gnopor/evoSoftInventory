@@ -1,3 +1,5 @@
+type IFormValues = Record<string, any>;
+
 export default class ValidationHelpers {
     // static #isPhoneNumberValid(number: string) {
     //     return isValidPhoneNumber(number);
@@ -8,8 +10,8 @@ export default class ValidationHelpers {
     //         : false;
     // }
     // // auth ----------
-    // static isRegisterFormValid<T>(formValues: T, labels: any) {
-    //     const data: { [key: string]: any } = { ...formValues };
+    // static isRegisterFormValid<T extends IFormValues>(formValues: T, labels: any) {
+    // const data: IFormValues = { ...formValues };
     //     const fields = [
     //         "firstName",
     //         "lastName",
@@ -39,8 +41,8 @@ export default class ValidationHelpers {
     //         resolve(data as T);
     //     });
     // }
-    // static isIdentifierValid<T>(formValues: T, labels: any) {
-    //     const data: { [key: string]: any } = { ...formValues };
+    // static isIdentifierValid<T extends IFormValues>(formValues: T, labels: any) {
+    // const data: IFormValues = { ...formValues };
     //     const { identifier } = data;
     //     return new Promise<T>((resolve, reject) => {
     //         !(String(identifier).length === 8 && !isNaN(identifier)) &&
@@ -48,8 +50,8 @@ export default class ValidationHelpers {
     //         resolve(data as T);
     //     });
     // }
-    // static isPasswordValid<T>(formValues: T, labels: any) {
-    //     const data: { [key: string]: any } = { ...formValues };
+    // static isPasswordValid<T extends IFormValues>(formValues: T, labels: any) {
+    // const data: IFormValues = { ...formValues };
     //     const { password } = data;
     //     return new Promise<T>((resolve, reject) => {
     //         !(String(password).length === 8 && !isNaN(password)) &&
@@ -57,8 +59,8 @@ export default class ValidationHelpers {
     //         resolve(data as T);
     //     });
     // }
-    // static isForgotIdentifierFormValid<T>(formValues: T, labels: any) {
-    //     const data: { [key: string]: any } = { ...formValues };
+    // static isForgotIdentifierFormValid<T extends IFormValues>(formValues: T, labels: any) {
+    // const data: IFormValues = { ...formValues };
     //     data.email = data.email.trim();
     //     const { email } = data;
     //     return new Promise<T>((resolve, reject) => {
@@ -68,8 +70,8 @@ export default class ValidationHelpers {
     //         resolve(data as T);
     //     });
     // }
-    // static isForgotPasswordFormValid<T>(formValues: T, labels: any) {
-    //     const data: { [key: string]: any } = { ...formValues };
+    // static isForgotPasswordFormValid<T extends IFormValues>(formValues: T, labels: any) {
+    // const data: IFormValues = { ...formValues };
     //     data.identifier = String(data.identifier).trim();
     //     const { identifier } = data;
     //     return new Promise<T>((resolve, reject) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NextLink from "next/link";
 
-interface IProps extends React.ComponentProps<"a"> {
+interface IProps extends React.ComponentPropsWithoutRef<"a"> {
     href?: string;
 }
 
@@ -14,8 +14,8 @@ export default function Link({ href = "", children, ...rest }: IProps) {
     if (!showLink) return <></>;
 
     return (
-        <NextLink href={href}>
-            <a {...rest}>{children}</a>
+        <NextLink {...rest} href={href}>
+            {children}
         </NextLink>
     );
 }
