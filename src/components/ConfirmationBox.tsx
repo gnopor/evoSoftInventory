@@ -4,7 +4,6 @@ import css from "styled-jsx/css";
 import { useUI } from "../stores/UIStore/UIContext";
 
 interface IProps {
-    open: boolean;
     message: string;
     title: string;
     closeConfirmation: (isConfirmed: boolean) => void;
@@ -14,24 +13,16 @@ const formatLabels = ({ data }: I.ILabel) => ({
     confirmationDialogBox: data.global.confirmationDialogBox
 });
 
-export default function ConfirmationBox({ open, title, message, closeConfirmation }: IProps) {
+export default function ConfirmationBox({ title, message, closeConfirmation }: IProps) {
     const { label: allLabel } = useUI();
-    const labels = formatLabels(allLabel as I.ILabel);
-
-    const handleConfirmation = (value: boolean) => {
-        closeConfirmation(value);
-    };
-
-    if (!open) {
-        return null;
-    }
+    const labels = formatLabels(allLabel);
 
     return (
         <>
             <div id="confirmation_dialogbox">
                 <div className="dialogbox_content">
                     <div className="dialogbox_header">
-                        <button onClick={() => handleConfirmation(false)}>X</button>
+                        <button onClick={() => closeConfirmation(false)}>X</button>
                     </div>
 
                     <div className="dialogbox_body">
@@ -40,15 +31,15 @@ export default function ConfirmationBox({ open, title, message, closeConfirmatio
                     </div>
 
                     <div className="dialogbox_footer">
-                        <button className="btn" onClick={() => handleConfirmation(false)}>
-                            {labels?.confirmationDialogBox?.cancelButton?.label}
+                        <button className="btn" onClick={() => closeConfirmation(false)}>
+                            {labels.confirmationDialogBox.cancelButton.label}
                         </button>
                         <button
                             color="#fff"
                             className="btn btn-dark"
-                            onClick={() => handleConfirmation(true)}
+                            onClick={() => closeConfirmation(true)}
                         >
-                            {labels?.confirmationDialogBox?.confirmButton?.label}
+                            {labels.confirmationDialogBox.confirmButton.label}
                         </button>
                     </div>
                 </div>

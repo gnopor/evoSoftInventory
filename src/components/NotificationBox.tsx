@@ -2,43 +2,40 @@ import React, { useEffect } from "react";
 import css from "styled-jsx/css";
 
 interface IProps {
-    open: boolean;
     message: string;
     title: string;
-    type: string;
+    type: "error" | "succeed";
     closeNotification: () => void;
 }
 
-export default function NotificationBox({ open, message, title, type, closeNotification }: IProps) {
+export default function NotificationBox({ message, title, type, closeNotification }: IProps) {
     useEffect(() => {
-        open && runCloseTimeout();
-    }, [open]);
+        const timeout = setTimeout(closeNotification, 5000);
 
-    const runCloseTimeout = () => {
-        setTimeout(closeNotification, 5000);
-    };
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, []);
 
     return (
         <>
-            {open && (
-                <div
-                    id="custom_notification"
-                    style={
-                        {
-                            "--color": type === "error" ? "indianred" : "mediumseagreen"
-                        } as React.CSSProperties
-                    }
-                >
-                    <div className="wrapper">
-                        <span>{title}</span>
-                        <span className="close-btn" onClick={closeNotification}>
-                            x
-                        </span>
-                    </div>
-
-                    <p>{message}</p>
+            <div
+                id="custom_notification"
+                style={
+                    {
+                        "--color": type === "error" ? "indianred" : "mediumseagreen"
+                    } as React.CSSProperties
+                }
+            >
+                <div className="wrapper">
+                    <span>{title}</span>
+                    <span className="close-btn" onClick={closeNotification}>
+                        x
+                    </span>
                 </div>
-            )}
+
+                <p>{message}</p>
+            </div>
 
             <style jsx>{style}</style>
         </>
