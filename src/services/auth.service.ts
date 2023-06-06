@@ -24,7 +24,7 @@ class AuthService {
     }
 
     async register(data: { email: string; password: string }) {
-        const options = {
+        const options: RequestInit = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -37,7 +37,7 @@ class AuthService {
     }
 
     async activateAccount(data: { token: string }) {
-        const options = {
+        const options: RequestInit = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -50,13 +50,13 @@ class AuthService {
     }
 
     async login(data: { email: string; password: string }) {
-        const options = {
+        const options: RequestInit = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data),
-            credentials: "include" as RequestCredentials
+            credentials: "include"
         };
 
         const fetchResponse: any = await fetch(`${BASE_URL}/login`, options);
@@ -67,7 +67,7 @@ class AuthService {
     }
 
     async logout(data: { userId: string }) {
-        const options = {
+        const options: RequestInit = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ class AuthService {
     }
 
     async initPasswordReset(data: { email: string }) {
-        const options = {
+        const options: RequestInit = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -96,13 +96,13 @@ class AuthService {
         return this.#parseFetchResponse(fetchResponse);
     }
 
-    async resetPassword(data: { email: string; token: string }) {
-        const options = {
+    async resetPassword(token: string, password: string) {
+        const options: RequestInit = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ token, password })
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/users/password/reset`, options);
@@ -111,11 +111,11 @@ class AuthService {
 
     async refreshToken() {
         try {
-            const options = {
+            const options: RequestInit = {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "include" as RequestCredentials
+                credentials: "include"
             };
 
             const fetchResponse = await fetch(`${BASE_URL}/refresh-token`, options);
@@ -131,7 +131,7 @@ class AuthService {
 
     async getCurrentUser() {
         try {
-            const options = {
+            const options: RequestInit = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: this.getCredential()
@@ -147,14 +147,14 @@ class AuthService {
         }
     }
 
-    async updatePassword(data: { userId: string; oldPassword: string; newPassword: string }) {
-        const options = {
+    async updatePassword(oldPassword: string, password: string) {
+        const options: RequestInit = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ oldPassword, password })
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/users/password`, options);
@@ -163,28 +163,28 @@ class AuthService {
         deleteAuthToken();
     }
 
-    async initEmailUpdate(data: { userId: string; email: string }) {
-        const options = {
+    async initEmailUpdate(email: string) {
+        const options: RequestInit = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ email })
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/users/email/init`, options);
         return this.#parseFetchResponse(fetchResponse);
     }
 
-    async updateEmail(data: { token: string }) {
-        const options = {
+    async updateEmail(emailValidationToken: string) {
+        const options: RequestInit = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ token: emailValidationToken })
         };
 
         const fetchResponse = await fetch(`${BASE_URL}/users/email`, options);
@@ -196,17 +196,17 @@ class AuthService {
         return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 
-    async updateUser(idUser: string, data: I.IUser) {
-        const options = {
+    async updateUser(data: I.IUser) {
+        const options: RequestInit = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: this.getCredential()
             },
-            body: JSON.stringify({ idUser, data })
+            body: JSON.stringify({ data })
         };
 
-        const fetchResponse = await fetch(`${BASE_URL}/users/${idUser}`, options);
+        const fetchResponse = await fetch(`${BASE_URL}/users/${data.id}`, options);
         return this.#parseFetchResponse<I.IUser>(fetchResponse);
     }
 

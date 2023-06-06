@@ -74,20 +74,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return authService.initPasswordReset({ email });
     };
 
-    const resetPassword = (email: string, passwordResetToken: string) => {
-        return authService.resetPassword({ email, token: passwordResetToken });
+    const resetPassword = (passwordResetToken: string, password: string) => {
+        return authService.resetPassword(passwordResetToken, password);
     };
 
     const updatePassword = (oldPassword: string, newPassword: string) => {
-        return authService.updatePassword({ userId: currentUser!.id, oldPassword, newPassword });
+        return authService.updatePassword(oldPassword, newPassword);
     };
 
     const initEmailUpdate = (newEmailAddress: string) => {
-        return authService.initEmailUpdate({ userId: currentUser!.id, email: newEmailAddress });
+        return authService.initEmailUpdate(newEmailAddress);
     };
 
     const updateEmail = (emailUpdateToken: string) => {
-        return authService.updateEmail({ token: emailUpdateToken });
+        return authService.updateEmail(emailUpdateToken);
     };
 
     const getUser = (userId: string) => {
@@ -97,7 +97,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const updateCurrentUser = async (data: I.IUser) => {
         if (!currentUser) return;
 
-        const result = await authService.updateUser(currentUser?.id, data);
+        const result = await authService.updateUser(data);
         const newUser: I.IUser = {
             ...currentUser,
             ...result,
