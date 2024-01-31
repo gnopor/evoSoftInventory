@@ -12,5 +12,9 @@ export const localStorageFields = {
 
 // Environment variables configs
 export const API_BASE_URI = process.env.NEXT_PUBLIC_API_BASE_URI || "";
-
 export const APP_PUBLIC_URI = process.env.NEXT_PUBLIC_APP_PUBLIC_URI || "";
+
+export const SUPPORT_NAME = process.env.NEXT_PUBLIC_SUPPORT_NAME || "";
+export const SUPPORT_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "";
+export const SUPPORT_PHONE_NUMBER = process.env.NEXT_PUBLIC_SUPPORT_PHONE_NUMBER || "";
+export const SUPPORT_URL = process.env.NEXT_PUBLIC_SUPPORT_URL || "";
