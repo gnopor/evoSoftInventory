@@ -12,15 +12,15 @@
                         "idStock": {
                             "label": "Stock",
                             "duplicatedErrorMessage": "This stock is already in the cart.",
-                            "errorMessage": "There is an problem with the field: Stock."
+                            "errorMessage": "there is a problem with the field: Stock."
                         },
                         "price": {
                             "label": "Price",
-                            "errorMessage": "There is an problem with the field: Price."
+                            "errorMessage": "there is a problem with the field: Price."
                         },
                         "quantity": {
                             "label": "Quantity",
-                            "errorMessage": "There is an problem with the field: Quantity."
+                            "errorMessage": "there is a problem with the field: Quantity."
                         },
                         "productQuantity": { "label": "Product(s)" },
                         "submitButton": { "label": "+" }
@@ -99,39 +99,39 @@
                             "mainForm": {
                                 "firstName": {
                                     "label": "First Name",
-                                    "errorMessage": "There is an problem with the field: First Name."
+                                    "errorMessage": "there is a problem with the field: First Name."
                                 },
                                 "lastName": {
                                     "label": "Last Name",
-                                    "errorMessage": "There is an problem with the field: Last Name."
+                                    "errorMessage": "there is a problem with the field: Last Name."
                                 },
                                 "phoneNumber": {
                                     "label": "Phone",
-                                    "errorMessage": "There is an problem with the field: Phone."
+                                    "errorMessage": "there is a problem with the field: Phone."
                                 },
                                 "language": {
                                     "label": "Language",
-                                    "errorMessage": "There is an problem with the field: Language."
+                                    "errorMessage": "there is a problem with the field: Language."
                                 },
                                 "civility": {
                                     "label": "Civility",
-                                    "errorMessage": "There is an problem with the field: Civility."
+                                    "errorMessage": "there is a problem with the field: Civility."
                                 },
                                 "gender": {
                                     "label": "Gender",
-                                    "errorMessage": "There is an problem with the field: Gender."
+                                    "errorMessage": "there is a problem with the field: Gender."
                                 },
                                 "birthDate": {
                                     "label": "Birth Date",
-                                    "errorMessage": "There is an problem with the field: Birth Date."
+                                    "errorMessage": "there is a problem with the field: Birth Date."
                                 },
                                 "idBirthCity": {
                                     "label": "Birch City",
-                                    "errorMessage": "There is an problem with the field: Birch City."
+                                    "errorMessage": "there is a problem with the field: Birch City."
                                 },
                                 "currencyCode": {
                                     "label": "Currency",
-                                    "errorMessage": "There is an problem with the field: Currency."
+                                    "errorMessage": "there is a problem with the field: Currency."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -181,11 +181,11 @@
                             "mainForm": {
                                 "name": {
                                     "label": "Name",
-                                    "errorMessage": "There is an problem with the field: Name."
+                                    "errorMessage": "there is a problem with the field: Name."
                                 },
                                 "description": {
                                     "label": "Description",
-                                    "errorMessage": "There is an problem with the field: Description."
+                                    "errorMessage": "there is a problem with the field: Description."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -268,11 +268,11 @@
                             "mainForm": {
                                 "name": {
                                     "label": "Name",
-                                    "errorMessage": "There is an problem with the field: Name."
+                                    "errorMessage": "there is a problem with the field: Name."
                                 },
                                 "description": {
                                     "label": "Description",
-                                    "errorMessage": "There is an problem with the field: Description."
+                                    "errorMessage": "there is a problem with the field: Description."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -361,19 +361,19 @@
                             "mainForm": {
                                 "idProduct": {
                                     "label": "Product",
-                                    "errorMessage": "There is an problem with the field: Product."
+                                    "errorMessage": "there is a problem with the field: Product."
                                 },
                                 "description": {
                                     "label": "Description",
-                                    "errorMessage": "There is an problem with the field: Description."
+                                    "errorMessage": "there is a problem with the field: Description."
                                 },
                                 "price": {
                                     "label": "Price",
-                                    "errorMessage": "There is an problem with the field: Price."
+                                    "errorMessage": "there is a problem with the field: Price."
                                 },
                                 "quantity": {
                                     "label": "Quantity",
-                                    "errorMessage": "There is an problem with the field: Quantity."
+                                    "errorMessage": "there is a problem with the field: Quantity."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -460,11 +460,11 @@
                             "mainForm": {
                                 "cart": {
                                     "label": "Cart",
-                                    "errorMessage": "There is an problem with the field: Cart."
+                                    "errorMessage": "there is a problem with the field: Cart."
                                 },
                                 "totalAmount": {
                                     "label": "Total Amount",
-                                    "errorMessage": "There is an problem with the field: Total Amount."
+                                    "errorMessage": "there is a problem with the field: Total Amount."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -551,11 +551,11 @@
                             "mainForm": {
                                 "cart": {
                                     "label": "Cart",
-                                    "errorMessage": "There is an problem with the field: Cart."
+                                    "errorMessage": "there is a problem with the field: Cart."
                                 },
                                 "totalAmount": {
                                     "label": "Total Amount",
-                                    "errorMessage": "There is an problem with the field: Total Amount."
+                                    "errorMessage": "there is a problem with the field: Total Amount."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -642,19 +642,19 @@
                             "mainForm": {
                                 "codeSale": {
                                     "label": "Code Sale",
-                                    "errorMessage": "There is an problem with the field: Code Sale."
+                                    "errorMessage": "there is a problem with the field: Code Sale."
                                 },
                                 "received": {
                                     "label": "Delivered",
-                                    "errorMessage": "There is an problem with the field: Delivered."
+                                    "errorMessage": "there is a problem with the field: Delivered."
                                 },
                                 "dateDelivery": {
                                     "label": "Date Delivery",
-                                    "errorMessage": "There is an problem with the field: Date Delivery."
+                                    "errorMessage": "there is a problem with the field: Date Delivery."
                                 },
                                 "timeDelivery": {
                                     "label": "Time Delivery",
-                                    "errorMessage": "There is an problem with the field: Time Delivery."
+                                    "errorMessage": "there is a problem with the field: Time Delivery."
                                 },
                                 "cancelButton": { "label": "Cancel" },
                                 "submitButton": { "label": "Save" },
@@ -672,29 +672,29 @@
                             "mainForm": {
                                 "firstName": {
                                     "label": "first name",
-                                    "errorMessage": "There is an problem with the field: First Name."
+                                    "errorMessage": "there is a problem with the field: First Name."
                                 },
                                 "lastName": {
                                     "label": "last name",
-                                    "errorMessage": "There is an problem with the field: Last Name."
+                                    "errorMessage": "there is a problem with the field: Last Name."
                                 },
                                 "email": {
                                     "label": "email",
-                                    "errorMessage": "There is an problem with the field: Email."
+                                    "errorMessage": "there is a problem with the field: Email."
                                 },
                                 "phoneNumber": {
                                     "label": "phone",
-                                    "errorMessage": "There is an problem with the field: Phone Number."
+                                    "errorMessage": "there is a problem with the field: Phone Number."
                                 },
                                 "password": {
                                     "label": "password",
                                     "placeholder": "8 digits. Ex: 78542369",
-                                    "errorMessage": "There is an problem with the field: Password."
+                                    "errorMessage": "there is a problem with the field: Password."
                                 },
                                 "confirmPassword": {
                                     "label": "repeat password",
                                     "placeholder": "8 digits. Ex: 78542369",
-                                    "errorMessage": "There is an problem with the field: Repeat Password."
+                                    "errorMessage": "there is a problem with the field: Repeat Password."
                                 },
                                 "defaultTree": {
                                     "namePrefix": "Familly",
@@ -753,7 +753,7 @@
                             "mainForm": {
                                 "email": {
                                     "label": "email",
-                                    "errorMessage": "There is an problem with the field: Email."
+                                    "errorMessage": "there is a problem with the field: Email."
                                 },
                                 "submitButton": "send",
                                 "confirmationMessage": "Please check your email to get your identifiers."
@@ -769,7 +769,7 @@
                                 "identifier": {
                                     "label": "identifier",
                                     "placeholder": "Enter your identifier",
-                                    "errorMessage": "There is an problem with the field: Identifier"
+                                    "errorMessage": "there is a problem with the field: Identifier"
                                 },
                                 "submitButton": "send",
                                 "confirmationMessage": "Please check your email to get your password."
