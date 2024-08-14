@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import Head from "next/head";
 import { AppProps } from "next/app";
+import Head from "next/head";
+import { useEffect } from "react";
 
-import "../styles/custom.scss";
 import "../styles/global.css";
 
-import { AuthProvider } from "../stores/authenticationStore/authContext";
 import { APP_NAME, APP_PUBLIC_URI } from "../constants";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -47,9 +45,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <title>{APP_NAME}</title>
             </Head>
 
-            <AuthProvider>
-                <Component {...pageProps} />
-            </AuthProvider>
+            <Component {...pageProps} />
         </>
     );
 }
