@@ -1,22 +1,17 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useRef, useState } from "react";
 
-import { LANGUAGE_CODES, DEFAULT_LANGUAGE_CODE, localStorageFields } from "../../constants";
-import uiService from "../../services/ui.service";
-import Helpers from "../../utilities/helpers/helpers";
-import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpers";
-import PathHelpers from "../../utilities/helpers/path.helpers";
 import allLanguages from "../../../public/json/languages.json";
-import allLabels from "../../../public/json/labels.json";
+import { DEFAULT_LANGUAGE_CODE, LANGUAGE_CODES, localStorageFields } from "../../constants";
+import Helpers from "../../utilities/helpers/helpers";
+import PathHelpers from "../../utilities/helpers/path.helpers";
+import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpers";
 
 interface IUIContext {
     languages: I.ILanguage[];
     currentLanguage: I.ILanguage;
-    label: I.ILabel;
     updateCurrentLanguage: (languageCode2: string) => void;
-    languageMap: { [key: string]: I.ILanguage } | undefined;
-    currentPath: string | undefined;
-    isConnected: boolean;
+    languageMap: Record<string, I.ILanguage> | undefined;
 }
 
 const UIContext = React.createContext({} as IUIContext);
@@ -33,45 +28,23 @@ function useUI() {
 
 function UIProvider({ children }: { children: React.ReactNode }) {
     const [languages, setLanguages] = useState<I.ILanguage[]>(allLanguages);
-    const [languageMap, setLanguageMap] = useState<{ [key: string]: I.ILanguage }>();
+    const [languageMap, setLanguageMap] = useState<Record<string, I.ILanguage>>();
     const [currentLanguage, setCurrentLanguage] = useState<I.ILanguage>(allLanguages[0]);
-    const [label, setLabel] = useState<I.ILabel>(allLabels[0]);
 
-    const [currentPath, setCurrentPath] = useState<string>();
-    const [isConnected, setIsConnected] = useState(false);
-
-    const isRunned = useRef(false);
-
+    const wasRun = useRef(false);
     useEffect(() => {
-        if (isRunned.current) return;
-        isRunned.current = true;
+        if (wasRun.current) return;
+        wasRun.current = true;
 
         initState();
     }, []);
 
-    const initState = async () => {
-        handleSetCurrentPath();
-        handleSetIsConnected();
-
-        const language = await handleSetLanguageState();
-        language && handleSetLabel(language);
-    };
-
-    const handleSetCurrentPath = () => {
-        PathHelpers.onPathChange((newPath) => setCurrentPath(newPath));
-    };
-
-    const handleSetIsConnected = () => {
-        Helpers.onConnectionStateChange((state) => setIsConnected(state));
-    };
-
-    const handleSetLabel = async (language: I.ILanguage) => {
-        const label = await uiService.getLabel(language);
-        label && setLabel(label);
+    const initState = () => {
+        handleSetLanguageState();
     };
 
     const handleSetLanguageState = async () => {
-        const languagesList = await uiService.getLanguages();
+        const languagesList = allLanguages;
         const defaultLanguage = getDefaultLanguage();
         const languageCode = window.location.pathname.split("/")[1] || defaultLanguage;
 
@@ -98,7 +71,6 @@ function UIProvider({ children }: { children: React.ReactNode }) {
         const newLanguage = languages.find((l) => l.code2 === languageCode2);
         if (!newLanguage) return;
         setCurrentLanguage(newLanguage);
-        handleSetLabel(newLanguage);
 
         const oldPath = window.location.pathname;
         const pathParts = oldPath.split("/");
@@ -121,11 +93,8 @@ function UIProvider({ children }: { children: React.ReactNode }) {
     const value = {
         languages,
         currentLanguage,
-        label,
         updateCurrentLanguage,
-        languageMap,
-        currentPath,
-        isConnected
+        languageMap
     };
 
     return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

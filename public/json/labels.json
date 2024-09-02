@@ -1,6 +1,8 @@
-[
-    {
-        "languageCode2": "en",
+{
+    "en": {
+        "code2": "en",
+        "code3": "eng",
+        "label": "english",
         "data": {
             "global": {
                 "confirmationDialogBox": {
@@ -780,8 +782,10 @@
             }
         }
     },
-    {
-        "languageCode2": "fr",
+    "fr": {
+        "code2": "fr",
+        "code3": "fra",
+        "label": "français",
         "data": {
             "global": {
                 "confirmationDialogBox": {
@@ -1560,4 +1564,4 @@
             }
         }
     }
-]
+}

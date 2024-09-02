@@ -1,4 +1,4 @@
-import { LANGUAGE_CODES, DEFAULT_LANGUAGE_CODE } from "../../constants";
+import { DEFAULT_LANGUAGE_CODE, LANGUAGE_CODES } from "../../constants";
 
 export default class PathHelpers {
     static onPathChange(callback: (newPath?: string) => void) {
@@ -52,18 +52,5 @@ export default class PathHelpers {
     }
     static homePagePath(languageCode?: string) {
         return this.getPath("/home/", languageCode);
-    }
-
-    static registerPagePath() {
-        return "/account/register/";
-    }
-    static loginPagePath() {
-        return "/account/login/";
-    }
-    static forgotIdentifierPagePath() {
-        return "/account/forgot-identifier/";
-    }
-    static forgotPasswordPagePath() {
-        return "/account/forgot-password/";
     }
 }
