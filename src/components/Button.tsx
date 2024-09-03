@@ -27,29 +27,36 @@ export default function Button({
     ...rest
 }: IProps) {
     const getClasses = () => {
-        const btnBlock = block ? " btn-block" : "";
-        const btnSize = size ? ` btn-${size}` : "";
-        const btnVariant = variant ? ` btn-${variant}` : "";
+        const btnBlock = block ? " btn--block" : "";
+        const btnSize = size ? ` btn--${size}` : "";
+        const btnVariant = variant ? ` btn--${variant}` : "";
+        const customClasses = className ? ` ${className}` : "";
 
-        const classes = `${className} btn${btnVariant}${btnBlock}${btnSize}`;
-        return classes;
+        return `btn${btnVariant}${btnBlock}${btnSize}${customClasses}`;
     };
 
     return (
         <button
             className={getClasses()}
             disabled={disabled || loading}
-            style={{ ...style, display: "flex" }}
+            style={{ ...style, display: "flex", justifyContent: "center", alignItems: "center" }}
             {...rest}
         >
             {prepend && (
                 <>
-                    <span>{prepend}</span>
+                    {prepend}
                     &nbsp;
                 </>
             )}
 
-            <div style={{ display: "flex" }}>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textWrap: "nowrap"
+                }}
+            >
                 {loading && (
                     <>
                         <span>
@@ -64,7 +71,7 @@ export default function Button({
             {append && (
                 <>
                     &nbsp;
-                    <span>{append}</span>
+                    {append}
                 </>
             )}
         </button>

@@ -1,41 +1,79 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import css from "styled-jsx/css";
+import Button from "../components/Button";
+import ShopCard from "../components/cards/ShopCard";
+import Link from "../components/Link";
 import Page from "../components/Page";
+import { useInventory } from "../stores/inventoryStore/inventoryContext";
+import PathHelpers from "../utilities/helpers/path.helpers";
 
-interface IProp {
-    params: Record<string, string>;
-    searchParams: { [key: string]: string | string[] | undefined };
-}
-
-const languages = {
-    en: { nativeName: "English" },
-    fr: { nativeName: "Francais" }
-};
-
-export default function HomePage({ params, searchParams }: IProp) {
+export default function HomePage() {
+    const { state } = useInventory();
     const { t, i18n } = useTranslation("home");
 
     return (
-        <Page title="Home">
-            <h1>{params["lng"]}</h1>
+        <>
+            <Page title="Home">
+                <main>
+                    <section className="header">
+                        <div className="content">
+                            <h1 className="title">{t("header.sectionTitle")}</h1>
 
-            <h1>{t("common:buttons.cancel.label")}</h1>
+                            <Button variant="primary">{t("header.buttons.export")}</Button>
+                        </div>
+                    </section>
 
-            <h1>{t("welcome")}</h1>
+                    <section className="listing">
+                        <div className="container">
+                            <div className="content">
+                                <ul>
+                                    {state?.shops?.map((s) => (
+                                        <li key={s.id}>
+                                            <Link href={PathHelpers.shopDetailPagePath(s.id)}>
+                                                <ShopCard shop={s} />
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </Page>
 
-            <div>
-                {Object.keys(languages).map((l) => (
-                    <button
-                        key={l}
-                        type="submit"
-                        onClick={() => i18n.changeLanguage(l)}
-                        disabled={i18n.resolvedLanguage === l}
-                    >
-                        {(languages as any)[l].nativeName}
-                    </button>
-                ))}
-            </div>
-        </Page>
+            <style jsx>{style}</style>
+        </>
     );
 }
+
+const style = css`
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing);
+        background: var(--white);
+    }
+
+    /* header */
+    .header {
+        padding: calc(var(--spacing) * 3) 0px;
+    }
+    .header .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: calc(var(--spacing) * 3);
+        height: 100%;
+        width: 100%;
+    }
+
+    /*listing */
+    .listing .content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+`;

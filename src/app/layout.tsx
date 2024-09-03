@@ -3,6 +3,8 @@
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 
+import "../styles/global.css";
+
 import Footer from "../components/footers/Footers";
 import Header from "../components/headers/Header";
 import i18n from "../i18n";
