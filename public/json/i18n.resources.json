@@ -1,0 +1,26 @@
+{
+    "en": {
+        "common": {
+            "buttons": {
+                "submit": { "label": "Submit" },
+                "confirm": { "label": "Confirm" },
+                "cancel": { "label": "Cancel" }
+            }
+        },
+        "home": {
+            "welcome": "Welcome to React and react-i18next"
+        }
+    },
+    "fr": {
+        "common": {
+            "buttons": {
+                "submit": { "label": "Envoyer" },
+                "confirm": { "label": "Confirmer" },
+                "cancel": { "label": "Annuler" }
+            }
+        },
+        "home": {
+            "welcome": "Bienvenue a React et react-i18next"
+        }
+    }
+}
