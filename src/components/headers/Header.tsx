@@ -7,7 +7,7 @@ import LanguageForm from "../LanguageToggler";
 import Link from "../Link";
 import Logo from "../Logo";
 
-export default function HeaderDefaultLayout() {
+export default function Header() {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
     const links = [
