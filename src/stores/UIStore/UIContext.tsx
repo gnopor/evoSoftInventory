@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import allLanguages from "../../../public/json/languages.json";
 import { DEFAULT_LANGUAGE_CODE, LANGUAGE_CODES, localStorageFields } from "../../constants";
 import Helpers from "../../utilities/helpers/helpers";
-import PathHelpers from "../../utilities/helpers/path.helpers";
 import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpers";
 
 interface IUIContext {
@@ -49,10 +48,7 @@ function UIProvider({ children }: { children: React.ReactNode }) {
         const languageCode = window.location.pathname.split("/")[1] || defaultLanguage;
 
         const language = languagesList.find((l) => l.code2 === languageCode);
-        if (!language) {
-            window.open(PathHelpers.homePagePath(defaultLanguage), "_self");
-            return;
-        }
+        if (!language) return;
 
         const newLanguageMap = Helpers.getMap(languagesList, "code2");
 

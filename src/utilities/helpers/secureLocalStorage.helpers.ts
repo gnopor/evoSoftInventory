@@ -7,7 +7,7 @@ export default class SecureLocalStorageHelpers {
         return localStorage.setItem(key, Encryption.encrypt(value));
     }
 
-    static getItem(key: string) {
+    static getItem(key: string): string {
         if (!key.trim()) return "";
 
         return Encryption.decript(localStorage.getItem(key) || "");
