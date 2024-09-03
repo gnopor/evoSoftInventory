@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
 
 import PathHelpers from "../../utilities/helpers/path.helpers";
@@ -8,10 +9,12 @@ import Link from "../Link";
 import Logo from "../Logo";
 
 export default function Header() {
+    const { t } = useTranslation("common");
+
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
     const links = [
-        { label: "labels.navbarLinks.home", path: PathHelpers.homePagePath(), target: "" }
+        { label: t("header.navbarLinks.home"), path: PathHelpers.homePagePath(), target: "" }
     ];
 
     const toggleMenuVisibility = () => {

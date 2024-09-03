@@ -5,6 +5,11 @@
                 "submit": { "label": "Submit" },
                 "confirm": { "label": "Confirm" },
                 "cancel": { "label": "Cancel" }
+            },
+            "header": {
+                "navbarLinks": {
+                    "home": "Home"
+                }
             }
         },
         "home": {
@@ -34,6 +39,11 @@
                 "submit": { "label": "Envoyer" },
                 "confirm": { "label": "Confirmer" },
                 "cancel": { "label": "Annuler" }
+            },
+            "header": {
+                "navbarLinks": {
+                    "home": "Accueil"
+                }
             }
         },
         "home": {
