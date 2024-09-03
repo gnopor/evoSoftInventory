@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import allLanguages from "../../../public/json/languages.json";
 import { DEFAULT_LANGUAGE_CODE, LANGUAGE_CODES, localStorageFields } from "../../constants";
@@ -30,11 +30,7 @@ function UIProvider({ children }: { children: React.ReactNode }) {
     const [languageMap, setLanguageMap] = useState<Record<string, I.ILanguage>>();
     const [currentLanguage, setCurrentLanguage] = useState<I.ILanguage>(allLanguages[0]);
 
-    const wasRun = useRef(false);
     useEffect(() => {
-        if (wasRun.current) return;
-        wasRun.current = true;
-
         initState();
     }, []);
 
