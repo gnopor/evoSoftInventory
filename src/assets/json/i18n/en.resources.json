@@ -1,0 +1,12 @@
+{
+    "common": {
+        "buttons": {
+            "submit": { "label": "Submit" },
+            "confirm": { "label": "Confirm" },
+            "cancel": { "label": "Cancel" }
+        }
+    },
+    "home": {
+        "welcome": "Welcome to React and react-i18next"
+    }
+}

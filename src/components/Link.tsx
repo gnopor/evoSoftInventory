@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
 import NextLink from "next/link";
+import React, { useEffect, useState } from "react";
 
 interface IProps extends React.ComponentPropsWithoutRef<"a"> {
     href?: string;

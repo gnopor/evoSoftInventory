@@ -1,41 +1,19 @@
-import React, { useEffect, useState } from "react";
+"use client";
 
-import Head from "next/head";
+import React, { useEffect } from "react";
 import { APP_NAME } from "../constants";
-import DefaultLayout from "../layouts/DefaultLayout";
 
 interface IProps {
     children: React.ReactNode;
-    layout?: keyof typeof LAYOUTS_MAP;
     title?: string;
-    private?: boolean;
-    anonymOnly?: boolean;
 }
 
-const LAYOUTS_MAP = {
-    DEFAULT_LAYOUT: DefaultLayout
-};
-
-export default function Page({ children, layout, title, private: isPrivate, anonymOnly }: IProps) {
-    const [isBrowser, setIsBrowser] = useState(false);
-
-    const CurrentLayout = LAYOUTS_MAP[layout || "DEFAULT_LAYOUT"];
-
+export default function Page({ children, title }: IProps) {
     useEffect(() => {
-        setIsBrowser(true);
-    }, []);
+        if (!title) return;
 
-    if ((isPrivate || anonymOnly) && !isBrowser) return <></>;
+        document.title = `${title} | ${APP_NAME}`;
+    }, [title]);
 
-    return (
-        <>
-            {title?.trim() && (
-                <Head>
-                    <title>{`${title.trim()} | ${APP_NAME}`}</title>
-                </Head>
-            )}
-
-            <CurrentLayout>{children}</CurrentLayout>
-        </>
-    );
+    return <>{children}</>;
 }

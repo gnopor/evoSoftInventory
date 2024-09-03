@@ -1,16 +1,17 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/router";
 
 import PathHelpers from "../utilities/helpers/path.helpers";
 
 export default function Error404Page() {
     const router = useRouter();
 
-    const isRunned = useRef(false);
-
+    const wasRunned = useRef(false);
     useEffect(() => {
-        if (isRunned.current) return;
-        isRunned.current = true;
+        if (wasRunned.current) return;
+        wasRunned.current = true;
 
         handleRedirection();
     }, []);
@@ -19,5 +20,10 @@ export default function Error404Page() {
         router.push(PathHelpers.homePagePath());
     };
 
-    return <></>;
+    return (
+        <div>
+            <h2>Not Found</h2>
+            <p>Could not find requested resource</p>
+        </div>
+    );
 }

@@ -15,8 +15,20 @@
         "jsx": "preserve",
         "incremental": true,
         "typeRoots": ["./src/types"],
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "src/i18nConfig.js",
+        "src/i18n-old.js"
+    ],
     "exclude": ["node_modules"]
 }

@@ -1,7 +1,6 @@
-import React from "react";
 import css from "styled-jsx/css";
 
-import { useUI } from "../stores/UIStore/UIContext";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
     message: string;
@@ -9,13 +8,8 @@ interface IProps {
     closeConfirmation: (isConfirmed: boolean) => void;
 }
 
-const formatLabels = ({ data }: I.ILabel) => ({
-    confirmationDialogBox: data.global.confirmationDialogBox
-});
-
 export default function ConfirmationBox({ title, message, closeConfirmation }: IProps) {
-    const { label: allLabel } = useUI();
-    const labels = formatLabels(allLabel);
+    const { t } = useTranslation();
 
     return (
         <>
@@ -32,14 +26,14 @@ export default function ConfirmationBox({ title, message, closeConfirmation }: I
 
                     <div className="dialogbox_footer">
                         <button className="btn" onClick={() => closeConfirmation(false)}>
-                            {labels.confirmationDialogBox.cancelButton.label}
+                            {t("buttons.cancel.label")}
                         </button>
                         <button
                             color="#fff"
                             className="btn btn-dark"
                             onClick={() => closeConfirmation(true)}
                         >
-                            {labels.confirmationDialogBox.confirmButton.label}
+                            {t("buttons.confirm.label")}
                         </button>
                     </div>
                 </div>
