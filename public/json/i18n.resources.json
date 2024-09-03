@@ -17,6 +17,15 @@
                     }
                 }
             }
+        },
+        "shopDetail": {
+            "pageTitle": "Shop Detail",
+            "sections": {
+                "header": {
+                    "sectionTitle": "Inventory of {{shop}}",
+                    "sectinSubtitle": "Inventory of products in the {{shop}} store"
+                }
+            }
         }
     },
     "fr": {
@@ -35,6 +44,15 @@
                     "buttons": {
                         "export": { "label": "Exporter Les inventaires" }
                     }
+                }
+            }
+        },
+        "shopDetail": {
+            "pageTitle": "Shop Detail",
+            "sections": {
+                "header": {
+                    "sectionTitle": "Inventaire de {{shop}}",
+                    "sectinSubtitle": "Inventaire des produits  dans le magasin {{shop}}"
                 }
             }
         }

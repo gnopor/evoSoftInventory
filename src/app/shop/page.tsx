@@ -4,11 +4,12 @@ import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProductCard from "../../components/cards/ProductCard";
 import InventoryModal from "../../components/modals/InventoryModal";
 import Page from "../../components/Page";
 import { useInventory } from "../../stores/inventoryStore/inventoryContext";
+import { useNotification } from "../../stores/notificationStore/notificationContext";
 import PathHelpers from "../../utilities/helpers/path.helpers";
 
 interface IProps {
@@ -20,12 +21,14 @@ const ID_INVTORY_MODAL = "inventory_modal";
 
 export default function ShopDetailPage({ searchParams }: IProps) {
     const { state } = useInventory();
-    const { t, i18n } = useTranslation("shop");
+    const { showNotification } = useNotification();
+    const { t } = useTranslation("shopDetail");
+    const router = useRouter();
 
     const [shop, setShop] = useState<I.IMagasin>();
     const [inventory, setInventory] = useState<I.IInventaire>();
 
-    const router = useRouter();
+    const modalTogglerRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         if (!state?.shops) return;
@@ -51,15 +54,37 @@ export default function ShopDetailPage({ searchParams }: IProps) {
         if (!state?.inventoriesMap) return;
 
         setInventory(state?.inventoriesMap[productId]);
+        setTimeout(() => {
+            modalTogglerRef.current?.click();
+        });
+    };
+
+    const handleUpdateInventory = (newInventory: I.IInventaire) => {
+        try {
+            console.log(newInventory);
+
+            return;
+            showNotification({ message: "confirmation message" });
+        } catch (error: any) {
+            console.error(error);
+            showNotification({ message: error?.message, type: "error" });
+        }
     };
 
     return (
         <>
-            <Page title="Shop">
+            <Page title={shop?.nom || ""}>
                 <main>
                     <section className="header">
-                        <div className="content">
-                            <h1 className="title">{t("header.sectionTitle")}</h1>
+                        <div className="container">
+                            <div className="content">
+                                <h1 className="title">
+                                    {t("sections.header.sectionTitle", { shop: shop?.nom })}
+                                </h1>
+                                <h3 className="subtitle">
+                                    {t("sections.header.sectinSubtitle", { shop: shop?.nom })}
+                                </h3>
+                            </div>
                         </div>
                     </section>
 
@@ -67,16 +92,18 @@ export default function ShopDetailPage({ searchParams }: IProps) {
                         <div className="container">
                             <div className="content">
                                 <ul>
-                                    {state?.products?.map((p) => (
-                                        <li
-                                            key={p.id}
-                                            data-toggle="modal"
-                                            data-target={ID_INVTORY_MODAL}
-                                            onClick={() => handleSetInventory(p.id)}
-                                        >
-                                            <ProductCard product={p} />
-                                        </li>
-                                    ))}
+                                    <button
+                                        ref={modalTogglerRef}
+                                        data-toggle="modal"
+                                        data-target={ID_INVTORY_MODAL}
+                                        style={{ display: "none" }}
+                                    />
+                                    {shop &&
+                                        state?.products?.map((p) => (
+                                            <li key={p.id} onClick={() => handleSetInventory(p.id)}>
+                                                <ProductCard product={p} shopId={shop.id} />
+                                            </li>
+                                        ))}
                                 </ul>
                             </div>
                         </div>
@@ -85,13 +112,11 @@ export default function ShopDetailPage({ searchParams }: IProps) {
             </Page>
 
             {/* START MODALS */}
-            {inventory && (
-                <InventoryModal
-                    id={ID_INVTORY_MODAL}
-                    inventory={inventory}
-                    setInventory={console.log}
-                />
-            )}
+            <InventoryModal
+                id={ID_INVTORY_MODAL}
+                inventory={inventory}
+                setInventory={handleUpdateInventory}
+            />
             {/* START MODALS */}
 
             <style jsx>{style}</style>
@@ -103,7 +128,6 @@ const style = css`
     main {
         display: flex;
         flex-direction: column;
-        align-items: center;
         gap: var(--spacing);
         background: var(--white);
     }
@@ -115,21 +139,29 @@ const style = css`
     .header .content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: calc(var(--spacing) * 3);
+        align-items: center;
+        gap: var(--spacing);
         height: 100%;
         width: 100%;
+    }
+    .header .subtitle {
+        text-align: center;
     }
 
     /*listing */
     .listing .content {
-        display: flex;
-        height: 100%;
         width: 100%;
     }
+
     .listing ul {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: var(--spacing);
+    }
+    .listing li {
+        max-width: 100%;
+        list-style: none;
+        cursor: pointer;
     }
 `;

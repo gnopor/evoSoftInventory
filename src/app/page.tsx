@@ -12,7 +12,7 @@ import PathHelpers from "../utilities/helpers/path.helpers";
 
 export default function HomePage() {
     const { state } = useInventory();
-    const { t, i18n } = useTranslation("home");
+    const { t } = useTranslation("home");
 
     return (
         <>

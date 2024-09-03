@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import css from "styled-jsx/css";
 
 import Button from "../Button";
@@ -6,14 +6,18 @@ import Modal from "./Modal";
 
 interface IProps<T = I.IInventaire> {
     id: string;
-    inventory: T;
+    inventory?: T;
     setInventory: (inventory: T) => void;
 }
 
-export default function InventoryModal({ id }: IProps) {
-    const [formValues, setFormValues] = useState();
+export default function InventoryModal({ id, inventory, setInventory }: IProps) {
+    const [formValues, setFormValues] = useState<I.IInventaire>();
 
     const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        setFormValues(inventory);
+    }, [inventory]);
 
     const handleSubmit = () => {};
 
