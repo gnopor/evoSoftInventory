@@ -16,14 +16,16 @@ export default function HomePage() {
 
     return (
         <>
-            <Page title="Home">
+            <Page title={t("pageTitle")}>
                 <main>
                     <section className="header">
                         <div className="container">
                             <div className="content">
-                                <h1 className="title">{t("header.sectionTitle")}</h1>
+                                <h1 className="title">{t("sections.header.sectionTitle")}</h1>
 
-                                <Button variant="primary">{t("header.buttons.export")}</Button>
+                                <Button variant="primary">
+                                    {t("sections.header.buttons.export.label")}
+                                </Button>
                             </div>
                         </div>
                     </section>
@@ -74,10 +76,6 @@ const style = css`
 
     /*listing */
     .listing .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
         width: 100%;
     }
 
@@ -88,6 +86,7 @@ const style = css`
         gap: var(--spacing);
     }
     .listing li {
+        max-width: 100%;
         list-style: none;
     }
 `;

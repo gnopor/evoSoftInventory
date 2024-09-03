@@ -39,9 +39,6 @@ export default function LanguageToggler() {
             </div>
 
             <style jsx>{styles}</style>
-            <style jsx global>
-                {globalStyle}
-            </style>
         </>
     );
 }
@@ -67,15 +64,15 @@ const styles = css`
     }
 
     ul.languages li button {
+        background: none;
+        border: none;
+        outline: none;
+        color: inherit;
         text-transform: capitalize;
+
         cursor: pointer;
     }
     ul.languages li button.current {
         text-decoration: underline;
-    }
-`;
-const globalStyle = css.global`
-    .language_form button {
-        color: inherit;
     }
 `;

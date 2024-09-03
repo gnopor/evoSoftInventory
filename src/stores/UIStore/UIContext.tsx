@@ -62,14 +62,8 @@ function UIProvider({ children }: { children: React.ReactNode }) {
 
         const newLanguage = languages.find((l) => l.code2 === languageCode2);
         if (!newLanguage) return;
+
         setCurrentLanguage(newLanguage);
-
-        const oldPath = window.location.pathname;
-        const pathParts = oldPath.split("/");
-        pathParts[1] = languageCode2;
-        const newPath = pathParts.join("/");
-        window.history.pushState({}, "", newPath);
-
         saveDefaultLanguage(languageCode2);
     };
 
