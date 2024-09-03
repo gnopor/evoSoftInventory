@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
+
 import Button from "../components/Button";
 import ShopCard from "../components/cards/ShopCard";
 import Link from "../components/Link";
