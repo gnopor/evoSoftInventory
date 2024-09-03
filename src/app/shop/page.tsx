@@ -127,4 +127,9 @@ const style = css`
         height: 100%;
         width: 100%;
     }
+    .listing ul {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing);
+    }
 `;

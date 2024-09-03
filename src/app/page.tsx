@@ -19,10 +19,12 @@ export default function HomePage() {
             <Page title="Home">
                 <main>
                     <section className="header">
-                        <div className="content">
-                            <h1 className="title">{t("header.sectionTitle")}</h1>
+                        <div className="container">
+                            <div className="content">
+                                <h1 className="title">{t("header.sectionTitle")}</h1>
 
-                            <Button variant="primary">{t("header.buttons.export")}</Button>
+                                <Button variant="primary">{t("header.buttons.export")}</Button>
+                            </div>
                         </div>
                     </section>
 
@@ -53,7 +55,6 @@ const style = css`
     main {
         display: flex;
         flex-direction: column;
-        align-items: center;
         gap: var(--spacing);
         background: var(--white);
     }
@@ -65,7 +66,7 @@ const style = css`
     .header .content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
         gap: calc(var(--spacing) * 3);
         height: 100%;
         width: 100%;
@@ -74,7 +75,19 @@ const style = css`
     /*listing */
     .listing .content {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         height: 100%;
         width: 100%;
+    }
+
+    .listing ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing);
+    }
+    .listing li {
+        list-style: none;
     }
 `;
