@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
 
+import { useEffect } from "react";
 import { useUI } from "../stores/UIStore/UIContext";
 import Icon from "./Icon";
 
@@ -8,11 +9,12 @@ export default function LanguageToggler() {
     const { languages, currentLanguage, updateCurrentLanguage } = useUI();
     const { i18n } = useTranslation();
 
-    const handleSwitchLanguage = async (languageCode2: string) => {
-        if (!languageCode2) return;
+    useEffect(() => {
+        i18n.changeLanguage(currentLanguage.code2);
+    }, [currentLanguage]);
 
-        i18n.changeLanguage(languageCode2);
-        return updateCurrentLanguage(languageCode2);
+    const handleSwitchLanguage = (languageCode2: string) => {
+        updateCurrentLanguage(languageCode2);
     };
 
     return (
@@ -24,12 +26,13 @@ export default function LanguageToggler() {
 
                 <ul className="languages">
                     {languages?.map((l, i) => (
-                        <li key={i} onClick={() => handleSwitchLanguage(l.code2)}>
+                        <li key={i}>
                             <button
                                 key={i}
                                 type="button"
                                 className={`${currentLanguage?.code2 === l.code2 ? "current" : ""}`}
                                 disabled={currentLanguage.code2 === l.code2}
+                                onClick={() => handleSwitchLanguage(l.code2)}
                             >
                                 {l.code2}
                             </button>

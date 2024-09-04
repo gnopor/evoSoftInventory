@@ -40,8 +40,7 @@ function UIProvider({ children }: { children: React.ReactNode }) {
 
     const handleSetLanguageState = async () => {
         const languagesList = allLanguages;
-        const defaultLanguage = getDefaultLanguage();
-        const languageCode = window.location.pathname.split("/")[1] || defaultLanguage;
+        const languageCode = getDefaultLanguage();
 
         const language = languagesList.find((l) => l.code2 === languageCode);
         if (!language) return;
@@ -59,6 +58,8 @@ function UIProvider({ children }: { children: React.ReactNode }) {
     const updateCurrentLanguage = (languageCode2: string) => {
         if (!LANGUAGE_CODES.includes(languageCode2)) return;
         if (languageCode2 === getDefaultLanguage()) return;
+
+        console.log({ languageCode2 });
 
         const newLanguage = languages.find((l) => l.code2 === languageCode2);
         if (!newLanguage) return;

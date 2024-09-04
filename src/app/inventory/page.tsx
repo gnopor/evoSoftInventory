@@ -5,7 +5,8 @@ import css from "styled-jsx/css";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import ProductCard from "../../components/cards/ProductCard";
+import Button from "../../components/Button";
+import ShopCard from "../../components/cards/ShopCard";
 import InventoryModal from "../../components/modals/InventoryModal";
 import Page from "../../components/Page";
 import { useInventory } from "../../stores/inventoryStore/inventoryContext";
@@ -19,44 +20,37 @@ interface IProps {
 
 const ID_INVTORY_MODAL = "inventory_modal";
 
-export default function ShopDetailPage({ searchParams }: IProps) {
+export default function InventoryDetailPage({ searchParams }: IProps) {
     const { state } = useInventory();
     const { showNotification } = useNotification();
-    const { t } = useTranslation("shopDetail");
+    const { t } = useTranslation("inventoryDetail");
     const router = useRouter();
 
-    const [shop, setShop] = useState<I.IMagasin>();
     const [inventory, setInventory] = useState<I.IInventaire>();
+    const [product, setProduct] = useState<I.IProduit>();
 
     const modalTogglerRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         if (!state?.shops) return;
 
-        handleSetShop();
+        handleSetProduct();
     }, [state?.shops]);
 
-    const handleSetShop = () => {
+    const handleSetProduct = () => {
         try {
-            if (!state?.shopsMap) return;
-            if (typeof searchParams.id != "string") throw new Error("Shop not found");
+            if (!(state?.productsMap && state.inventoriesMap)) return;
+            if (!state?.productsMap) return;
+            if (typeof searchParams.id != "string") throw new Error("product not found");
 
-            const newShop = state.shopsMap[searchParams.id];
-            if (!newShop) throw new Error("Shop not found");
+            const newProduct = state.productsMap[searchParams.id];
+            if (!newProduct) throw new Error("product not found");
 
-            setShop(newShop);
+            setProduct(newProduct);
+            setInventory(state.inventoriesMap[newProduct.id]);
         } catch (error) {
             router.push(PathHelpers.homePagePath());
         }
-    };
-
-    const handleSetInventory = (productId: string) => {
-        if (!state?.inventoriesMap) return;
-
-        setInventory(state?.inventoriesMap[productId]);
-        setTimeout(() => {
-            modalTogglerRef.current?.click();
-        });
     };
 
     const handleUpdateInventory = (newInventory: I.IInventaire) => {
@@ -73,17 +67,29 @@ export default function ShopDetailPage({ searchParams }: IProps) {
 
     return (
         <>
-            <Page title={shop?.nom || ""}>
+            <Page title={product?.nom || ""}>
                 <main>
                     <section className="header">
                         <div className="container">
                             <div className="content">
-                                <h1 className="title">
-                                    {t("sections.header.sectionTitle", { shop: shop?.nom })}
-                                </h1>
+                                <h1 className="title">{product?.nom}</h1>
                                 <h3 className="subtitle">
-                                    {t("sections.header.sectinSubtitle", { shop: shop?.nom })}
+                                    {t("sections.header.sectinSubtitle", { product: product?.nom })}
                                 </h3>
+
+                                <Button
+                                    data-toggle="modal"
+                                    data-target={ID_INVTORY_MODAL}
+                                    variant="primary"
+                                >
+                                    {t("sections.header.buttons.update.label")}
+                                </Button>
+
+                                {inventory && (
+                                    <span className="date">{`${t("sections.header.date")}: ${
+                                        inventory?.date
+                                    }`}</span>
+                                )}
                             </div>
                         </div>
                     </section>
@@ -92,16 +98,10 @@ export default function ShopDetailPage({ searchParams }: IProps) {
                         <div className="container">
                             <div className="content">
                                 <ul>
-                                    <button
-                                        ref={modalTogglerRef}
-                                        data-toggle="modal"
-                                        data-target={ID_INVTORY_MODAL}
-                                        style={{ display: "none" }}
-                                    />
-                                    {shop &&
-                                        state?.products?.map((p) => (
-                                            <li key={p.id} onClick={() => handleSetInventory(p.id)}>
-                                                <ProductCard product={p} shopId={shop.id} />
+                                    {product &&
+                                        state?.shops?.map((s) => (
+                                            <li key={s.id}>
+                                                <ShopCard shop={s} inventory={inventory} />
                                             </li>
                                         ))}
                                 </ul>
@@ -146,6 +146,10 @@ const style = css`
     }
     .header .subtitle {
         text-align: center;
+    }
+    .header .date {
+        color: var(--grey-light);
+        font-weight: bold;
     }
 
     /*listing */

@@ -1,15 +1,22 @@
+import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
 
 interface IProps {
     shop: I.IMagasin;
+    inventory?: I.IInventaire;
 }
 
-export default function ShopCard({ shop }: IProps) {
+export default function ShopCard({ shop, inventory }: IProps) {
+    const { t } = useTranslation("inventoryDetail");
+
     return (
         <>
             <article className="card">
                 <div className="header">
                     <span>{shop.nom}</span>
+                    <span>{`${t("sections.listing.shopCard.quantity")}: ${
+                        inventory?.stock[shop.id] || 0
+                    }`}</span>
                 </div>
 
                 <div className="body">
@@ -33,6 +40,10 @@ const style = css`
         max-width: 100%;
     }
 
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
     .header span {
         color: var(--primary);
         font-weight: bold;

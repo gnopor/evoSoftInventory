@@ -16,19 +16,27 @@
             "pageTitle": "Home",
             "sections": {
                 "header": {
-                    "sectionTitle": "Shops",
+                    "sectionTitle": "Inventories",
                     "buttons": {
                         "export": { "label": "Export Inventories" }
                     }
                 }
             }
         },
-        "shopDetail": {
+        "inventoryDetail": {
             "pageTitle": "Shop Detail",
             "sections": {
                 "header": {
-                    "sectionTitle": "Inventory of {{shop}}",
-                    "sectinSubtitle": "Inventory of products in the {{shop}} store"
+                    "sectinSubtitle": "Inventory in stores for {{product}}",
+                    "date": "Date",
+                    "buttons": {
+                        "update": { "label": "Update Inventories" }
+                    }
+                },
+                "listing": {
+                    "shopCard": {
+                        "quantity": "Quantity"
+                    }
                 }
             }
         }
@@ -50,19 +58,27 @@
             "pageTitle": "Accueil",
             "sections": {
                 "header": {
-                    "sectionTitle": "Magasins",
+                    "sectionTitle": "Inventaires",
                     "buttons": {
-                        "export": { "label": "Exporter Les inventaires" }
+                        "export": { "label": "Exporter les inventaires" }
                     }
                 }
             }
         },
-        "shopDetail": {
-            "pageTitle": "Shop Detail",
+        "inventoryDetail": {
+            "pageTitle": "Inventory Detail",
             "sections": {
                 "header": {
-                    "sectionTitle": "Inventaire de {{shop}}",
-                    "sectinSubtitle": "Inventaire des produits  dans le magasin {{shop}}"
+                    "sectinSubtitle": "Inventaire des magasins  pour {{product}}",
+                    "date": "Date",
+                    "buttons": {
+                        "update": { "label": "Modifier les inventaires" }
+                    }
+                },
+                "listing": {
+                    "shopCard": {
+                        "quantity": "Quantité"
+                    }
                 }
             }
         }

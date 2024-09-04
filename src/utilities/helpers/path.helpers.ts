@@ -6,7 +6,7 @@ export default class PathHelpers {
     static homePagePath() {
         return "/";
     }
-    static shopDetailPagePath(shopId: string) {
-        return shopId ? `/shop?id=${shopId}` : "";
+    static inventoryDetailPagePath(productId: string) {
+        return productId ? `/inventory?id=${productId}` : "";
     }
 }

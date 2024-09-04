@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
 
 import Button from "../components/Button";
-import ShopCard from "../components/cards/ShopCard";
+import ProductCard from "../components/cards/ProductCard";
 import Link from "../components/Link";
 import Page from "../components/Page";
 import { useInventory } from "../stores/inventoryStore/inventoryContext";
@@ -34,10 +34,10 @@ export default function HomePage() {
                         <div className="container">
                             <div className="content">
                                 <ul>
-                                    {state?.shops?.map((s) => (
-                                        <li key={s.id}>
-                                            <Link href={PathHelpers.shopDetailPagePath(s.id)}>
-                                                <ShopCard shop={s} />
+                                    {state?.products?.map((p) => (
+                                        <li key={p.id}>
+                                            <Link href={PathHelpers.inventoryDetailPagePath(p.id)}>
+                                                <ProductCard product={p} />
                                             </Link>
                                         </li>
                                     ))}

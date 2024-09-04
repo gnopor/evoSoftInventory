@@ -5,8 +5,8 @@ import { initReactI18next } from "react-i18next";
 import resources from "../public/json/i18n.resources.json";
 
 i18n.use(initReactI18next).use(LanguageDetector).init({
-    lng: "en",
-    fallbackLng: "en",
+    lng: "fr",
+    fallbackLng: "fr",
     resources
 });
 
