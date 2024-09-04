@@ -14,7 +14,7 @@ export default function ShopCard({ shop, inventory }: IProps) {
             <article className="card">
                 <div className="header">
                     <span>{shop.nom}</span>
-                    <span>{`${t("sections.listing.shopCard.quantity")}: ${
+                    <span>{`${t("sections.listing.shopCard.stock")}: ${
                         inventory?.stock[shop.id] || 0
                     }`}</span>
                 </div>

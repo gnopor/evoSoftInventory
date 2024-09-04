@@ -2,6 +2,12 @@
 
 export declare global {
     namespace I {
+        interface IAlertMessage {
+            type?: "info" | "error";
+            title?: string;
+            message?: string;
+        }
+
         interface ILanguage {
             code2: string;
             code3: string;

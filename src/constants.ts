@@ -8,3 +8,5 @@ export const localStorageFields = {
 
     INVENTORY_LIST: `x-${APP_NAME}-eventories`
 };
+
+export const ERROR_MESSAGE_PREFIX = "Error on field:";

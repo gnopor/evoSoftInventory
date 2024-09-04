@@ -4,13 +4,14 @@ import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import ShopCard from "../../components/cards/ShopCard";
 import InventoryModal from "../../components/modals/InventoryModal";
 import Page from "../../components/Page";
+import InventoryService from "../../services/inventory.service";
 import { useInventory } from "../../stores/inventoryStore/inventoryContext";
-import { useNotification } from "../../stores/notificationStore/notificationContext";
+import InventoryFactory from "../../utilities/factories/inventory.factory";
 import PathHelpers from "../../utilities/helpers/path.helpers";
 
 interface IProps {
@@ -21,21 +22,18 @@ interface IProps {
 const ID_INVTORY_MODAL = "inventory_modal";
 
 export default function InventoryDetailPage({ searchParams }: IProps) {
-    const { state } = useInventory();
-    const { showNotification } = useNotification();
+    const { state, addInventory, updateInventory } = useInventory();
     const { t } = useTranslation("inventoryDetail");
     const router = useRouter();
 
     const [inventory, setInventory] = useState<I.IInventaire>();
     const [product, setProduct] = useState<I.IProduit>();
 
-    const modalTogglerRef = useRef<HTMLButtonElement>(null);
-
     useEffect(() => {
-        if (!state?.shops) return;
+        if (!state?.products) return;
 
         handleSetProduct();
-    }, [state?.shops]);
+    }, [state?.products]);
 
     const handleSetProduct = () => {
         try {
@@ -46,23 +44,27 @@ export default function InventoryDetailPage({ searchParams }: IProps) {
             const newProduct = state.productsMap[searchParams.id];
             if (!newProduct) throw new Error("product not found");
 
+            const newInventory = InventoryFactory.create(state.inventoriesMap[newProduct.id]);
+            newInventory.produitId = newProduct.id;
+
             setProduct(newProduct);
-            setInventory(state.inventoriesMap[newProduct.id]);
+            setInventory(newInventory);
         } catch (error) {
+            console.error(error);
             router.push(PathHelpers.homePagePath());
         }
     };
 
     const handleUpdateInventory = (newInventory: I.IInventaire) => {
-        try {
-            console.log(newInventory);
+        const inventories = state?.inventories ? [...state.inventories] : [];
 
-            return;
-            showNotification({ message: "confirmation message" });
-        } catch (error: any) {
-            console.error(error);
-            showNotification({ message: error?.message, type: "error" });
-        }
+        const index = inventories.findIndex((i) => i.produitId == newInventory.produitId);
+
+        index == -1 ? inventories.push(newInventory) : (inventories[index] = newInventory);
+        InventoryService.saveInventories(inventories);
+
+        index == -1 ? addInventory(newInventory) : updateInventory(newInventory);
+        setInventory(newInventory);
     };
 
     return (
@@ -85,7 +87,7 @@ export default function InventoryDetailPage({ searchParams }: IProps) {
                                     {t("sections.header.buttons.update.label")}
                                 </Button>
 
-                                {inventory && (
+                                {inventory?.date && (
                                     <span className="date">{`${t("sections.header.date")}: ${
                                         inventory?.date
                                     }`}</span>
@@ -112,11 +114,13 @@ export default function InventoryDetailPage({ searchParams }: IProps) {
             </Page>
 
             {/* START MODALS */}
-            <InventoryModal
-                id={ID_INVTORY_MODAL}
-                inventory={inventory}
-                setInventory={handleUpdateInventory}
-            />
+            {inventory && (
+                <InventoryModal
+                    id={ID_INVTORY_MODAL}
+                    inventory={inventory}
+                    setInventory={handleUpdateInventory}
+                />
+            )}
             {/* START MODALS */}
 
             <style jsx>{style}</style>

@@ -59,8 +59,6 @@ function UIProvider({ children }: { children: React.ReactNode }) {
         if (!LANGUAGE_CODES.includes(languageCode2)) return;
         if (languageCode2 === getDefaultLanguage()) return;
 
-        console.log({ languageCode2 });
-
         const newLanguage = languages.find((l) => l.code2 === languageCode2);
         if (!newLanguage) return;
 

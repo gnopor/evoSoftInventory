@@ -6,6 +6,10 @@
                 "confirm": { "label": "Confirm" },
                 "cancel": { "label": "Cancel" }
             },
+            "form": {
+                "confirmationMessage": "Your input has been saved",
+                "fieldErrorMessage": "There is a problem with the field: {{field}}"
+            },
             "header": {
                 "navbarLinks": {
                     "home": "Home"
@@ -35,7 +39,15 @@
                 },
                 "listing": {
                     "shopCard": {
-                        "quantity": "Quantity"
+                        "stock": "Stock"
+                    }
+                },
+                "inventoryModal": {
+                    "sectionTitle": "Update Inventories",
+                    "mainForm": {
+                        "shop": { "label": "Shop" },
+                        "stock": { "label": "stock" },
+                        "date": { "label": "Date" }
                     }
                 }
             }
@@ -47,6 +59,10 @@
                 "submit": { "label": "Envoyer" },
                 "confirm": { "label": "Confirmer" },
                 "cancel": { "label": "Annuler" }
+            },
+            "form": {
+                "confirmationMessage": "Vos données ont été enregistrées",
+                "fieldErrorMessage": "Il y a un problème avec le champ: {{field}}"
             },
             "header": {
                 "navbarLinks": {
@@ -77,7 +93,15 @@
                 },
                 "listing": {
                     "shopCard": {
-                        "quantity": "Quantité"
+                        "stock": "Stock"
+                    }
+                },
+                "inventoryModal": {
+                    "sectionTitle": "Modifier les inventaires",
+                    "mainForm": {
+                        "shop": { "label": "Magasin" },
+                        "stock": { "label": "stock" },
+                        "date": { "label": "Date" }
                     }
                 }
             }
