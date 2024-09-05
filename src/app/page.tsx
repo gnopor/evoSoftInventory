@@ -8,11 +8,46 @@ import ProductCard from "../components/cards/ProductCard";
 import Link from "../components/Link";
 import Page from "../components/Page";
 import { useInventory } from "../stores/inventoryStore/inventoryContext";
+import Helpers from "../utilities/helpers/helpers";
 import PathHelpers from "../utilities/helpers/path.helpers";
 
 export default function HomePage() {
     const { state } = useInventory();
     const { t } = useTranslation("home");
+
+    const handleExportInventory = async () => {
+        try {
+            if (!state?.inventories) return;
+
+            let content = getFileContent(state.inventories);
+
+            const fileName = `Inventories on ${Helpers.formatDate(Date.now())}.csv`;
+            await Helpers.downloadAsTextFile(content, fileName);
+        } catch (error: any) {
+            console.error(error?.message);
+        }
+    };
+
+    const getFileContent = (data: Record<string, any>[]) => {
+        if (data.length == 0) return "";
+
+        const keys = Object.keys(data[0]);
+        let content = keys.map((k) => `"${k}"`).join(",");
+        for (let item of data) {
+            content += "\n";
+
+            const values: string[] = [];
+            for (let key of keys) {
+                let value = item[key] || "";
+                value =
+                    typeof value == "object" ? JSON.stringify(value).replaceAll('"', '\\"') : value;
+                values.push(`"${value}"`);
+            }
+            content += values.join(",");
+        }
+
+        return content;
+    };
 
     return (
         <>
@@ -23,7 +58,7 @@ export default function HomePage() {
                             <div className="content">
                                 <h1 className="title">{t("sections.header.sectionTitle")}</h1>
 
-                                <Button variant="primary">
+                                <Button variant="primary" onClick={handleExportInventory}>
                                     {t("sections.header.buttons.export.label")}
                                 </Button>
                             </div>
