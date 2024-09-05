@@ -13,7 +13,10 @@ export default class EncryptionHelpers {
         try {
             if (!cipherText.trim()) return "";
 
-            return JSON.parse(AES.decrypt(cipherText, secretKey).toString(enc.Utf8));
+            const plainText = AES.decrypt(cipherText, secretKey).toString(enc.Utf8);
+            if (!plainText) return "";
+
+            return JSON.parse(plainText);
         } catch (error) {
             console.error(error);
         }

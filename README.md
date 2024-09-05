@@ -10,6 +10,9 @@ Il s'agit d'une application de gestion des stocks multilingue. Comment fonctionn
 -   Cliquez sur le bouton de mise à jour pour ouvrir la fenêtre modale contenant le formulaire de mise à jour.
 -   Sélectionnez maintenant le magasin, puis définissez le stock pour ce magasin, et enregistrez le résultat. Vous pouvez également modifier la date de l'inventaire.
 
+**_demo.mp4(La vidéo contient quelques imperfections)_**
+[![Demo](./public/images/thumbnail.png)](./demo.mp4)
+
 # Exécuter localement en mode développement
 
 Pour commencer, il suffit de cloner le dépôt et de lancer npm install && npm run dev :

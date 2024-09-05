@@ -32,8 +32,7 @@ const styles = css`
         background: var(--black);
         color: var(--grey-light);
         font-size: 0.8em;
-        padding: 1.5em 0;
-        z-index: 9000;
+        padding: var(--spacing);
     }
 
     section .content {
