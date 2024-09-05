@@ -1,23 +1,20 @@
-## Resources Links
+# evoSoftInventory
 
-> [styled-jsx and Syntax Highlighting ](https://github.com/vercel/styled-jsx#warning-unknown-jsx-prop-on-style-tag)
+Il s'agit d'une application de gestion des stocks multilingue. Comment fonctionne-t-elle ?
 
-> [Approaches to add dynamic content to statically generated sites (JAMStack)](https://hasura.io/blog/approaches-to-add-dynamic-content-statically-generated-sites-jamstack/)
+-   Exécutez l'application localement sur votre machine
+-   Ouvrez le lien du projet (http://localhost:3000) dans le navigateur.
+-   Vous pouvez maintenant voir la liste des inventaires et le bouton pour les exporter.
+-   Cliquez sur l'un des inventaires pour ouvrir sa page détaillée.
+-   Vous êtes maintenant sur la page détaillée de l'inventaire qui montre la liste des magasins avec leur inventaire et un bouton pour mettre à jour leur inventaire.
+-   Cliquez sur le bouton de mise à jour pour ouvrir la fenêtre modale contenant le formulaire de mise à jour.
+-   Sélectionnez maintenant le magasin, puis définissez le stock pour ce magasin, et enregistrez le résultat. Vous pouvez également modifier la date de l'inventaire.
 
-> [Customize Bootstrap](https://getbootstrap.com/docs/5.2/customize/overview/)
+# Exécuter localement en mode développement
 
-> [Next.js Built-in CSS Support](https://nextjs.org/docs/basic-features/built-in-css-support)
+Pour commencer, il suffit de cloner le dépôt et de lancer npm install && npm run dev :
 
-> [How JavaScript works: the factory design pattern + 4 use cases](https://blog.sessionstack.com/how-javascript-works-the-factory-design-pattern-4-use-cases-7b9f0d22151d)
-
-> [What is the difference between Builder Design pattern and Factory Design pattern?](https://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern)
-
-> [Typescript for createContext and useReducer in React with custom hooks.](https://medium.com/@DcKesler/typescript-for-createcontext-and-usereducer-in-react-with-custom-hooks-bc3b19a4b942)
-
-> [How to Add TypeScript to a JavaScript Project](https://www.freecodecamp.org/news/how-to-add-typescript-to-a-javascript-project/)
-
-## ENVIRONMENT VARIABLES
-
-> NEXT_PUBLIC_API_BASE_URI
-
-> NEXT_PUBLIC_API_BASE_URI
+```bash
+npm install
+npm run dev
+```

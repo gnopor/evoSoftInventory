@@ -10,7 +10,6 @@ import Header from "../components/headers/Header";
 import i18n from "../i18n";
 import { UIProvider } from "../stores/UIStore/UIContext";
 import { InventoryProvider } from "../stores/inventoryStore/inventoryContext";
-import { NotificationProvider } from "../stores/notificationStore/notificationContext";
 import { store } from "../stores/store";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -18,17 +17,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Provider store={store}>
             <I18nextProvider i18n={i18n}>
                 <UIProvider>
-                    <NotificationProvider>
-                        <InventoryProvider>
-                            <html lang="en">
-                                <body>
-                                    <Header />
-                                    {children}
-                                    <Footer />
-                                </body>
-                            </html>
-                        </InventoryProvider>
-                    </NotificationProvider>
+                    <InventoryProvider>
+                        <html lang="en">
+                            <body>
+                                <Header />
+                                {children}
+                                <Footer />
+                            </body>
+                        </html>
+                    </InventoryProvider>
                 </UIProvider>
             </I18nextProvider>
         </Provider>
