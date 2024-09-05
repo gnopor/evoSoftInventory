@@ -11,6 +11,7 @@ import i18n from "../i18n";
 import { UIProvider } from "../stores/UIStore/UIContext";
 import { InventoryProvider } from "../stores/inventoryStore/inventoryContext";
 import { store } from "../stores/store";
+import StyledJsxRegistry from "./registry";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -20,9 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <InventoryProvider>
                         <html lang="en">
                             <body>
-                                <Header />
-                                {children}
-                                <Footer />
+                                <StyledJsxRegistry>
+                                    <Header />
+                                    {children}
+                                    <Footer />
+                                </StyledJsxRegistry>
                             </body>
                         </html>
                     </InventoryProvider>
