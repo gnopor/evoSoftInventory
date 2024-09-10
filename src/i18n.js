@@ -7,6 +7,7 @@ import resources from "../public/json/i18n.resources.json";
 i18n.use(initReactI18next).use(LanguageDetector).init({
     lng: "fr",
     fallbackLng: "fr",
+    defaultNS: "common",
     resources
 });
 

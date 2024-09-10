@@ -8,9 +8,9 @@ import SecureLocalStorage from "../../utilities/helpers/secureLocalStorage.helpe
 
 interface IUIContext {
     languages: I.ILanguage[];
+    languageMap: Record<string, I.ILanguage> | undefined;
     currentLanguage: I.ILanguage;
     updateCurrentLanguage: (languageCode2: string) => void;
-    languageMap: Record<string, I.ILanguage> | undefined;
 }
 
 const UIContext = React.createContext({} as IUIContext);
@@ -42,17 +42,15 @@ function UIProvider({ children }: { children: React.ReactNode }) {
         const languagesList = allLanguages;
         const languageCode = getDefaultLanguage();
 
-        const language = languagesList.find((l) => l.code2 === languageCode);
-        if (!language) return;
+        let language = languagesList.find((l) => l.code2 === languageCode);
+        if (!language) {
+            language = languagesList[0];
+        }
 
-        const newLanguageMap = Helpers.getMap(languagesList, "code2");
-
-        setLanguageMap(newLanguageMap);
+        setLanguageMap(Helpers.getMap(languagesList, "code2"));
         setLanguages(languagesList);
         setCurrentLanguage(language);
         saveDefaultLanguage(languageCode);
-
-        return language;
     };
 
     const updateCurrentLanguage = (languageCode2: string) => {

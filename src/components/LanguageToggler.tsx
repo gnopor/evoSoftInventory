@@ -28,7 +28,6 @@ export default function LanguageToggler() {
                     {languages?.map((l, i) => (
                         <li key={i}>
                             <button
-                                key={i}
                                 type="button"
                                 className={`${currentLanguage?.code2 === l.code2 ? "current" : ""}`}
                                 disabled={currentLanguage.code2 === l.code2}
@@ -72,7 +71,6 @@ const styles = css`
         outline: none;
         color: inherit;
         text-transform: capitalize;
-
         cursor: pointer;
     }
     ul.languages li button.current {

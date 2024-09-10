@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import css from "styled-jsx/css";
