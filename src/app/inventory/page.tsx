@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 "use client";
 
 import { useTranslation } from "react-i18next";
@@ -28,12 +29,19 @@ export default function InventoryDetailPage({ searchParams }: IProps) {
 
     const [inventory, setInventory] = useState<I.IInventaire>();
     const [product, setProduct] = useState<I.IProduit>();
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         if (!state?.products) return;
 
         handleSetProduct();
     }, [state?.products]);
+
+    useEffect(() => {
+        if (!inventory) return;
+
+        getTotal(inventory);
+    }, [inventory]);
 
     const handleSetProduct = () => {
         try {
@@ -65,6 +73,15 @@ export default function InventoryDetailPage({ searchParams }: IProps) {
 
         index == -1 ? addInventory(newInventory) : updateInventory(newInventory);
         setInventory(newInventory);
+    };
+
+    const getTotal = (data: I.IInventaire) => {
+        let productTotal = 0;
+
+        const stocks = Object.values(data.stock);
+        stocks.forEach((s) => (productTotal += s));
+
+        setTotal(productTotal);
     };
 
     return (
@@ -107,6 +124,8 @@ export default function InventoryDetailPage({ searchParams }: IProps) {
                                             </li>
                                         ))}
                                 </ul>
+
+                                <span>{total}</span>
                             </div>
                         </div>
                     </section>

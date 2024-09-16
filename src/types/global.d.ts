@@ -29,5 +29,10 @@ export declare global {
             produitId: string;
             stock: Record<string, number>; // Record<magasinId, stock>
         }
+
+        interface ITotal {
+            total: number;
+            produit: Record<string, number>; // Record<produitId, prixTotal>
+        }
     }
 }

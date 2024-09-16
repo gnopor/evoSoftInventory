@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 "use client";
 
 import { useTranslation } from "react-i18next";
@@ -19,7 +20,7 @@ export default function HomePage() {
         try {
             if (!state?.inventories) return;
 
-            let content = getFileContent(state.inventories);
+            const content = getFileContent(state.inventories);
 
             const fileName = `Inventories on ${Helpers.formatDate(Date.now())}.csv`;
             await Helpers.downloadAsTextFile(content, fileName);
@@ -28,19 +29,25 @@ export default function HomePage() {
         }
     };
 
-    const getFileContent = (data: Record<string, any>[]) => {
+    const getFileContent = (data: I.IInventaire[]) => {
+        if (!state?.productsMap) return;
         if (data.length == 0) return "";
 
         const keys = Object.keys(data[0]);
-        let content = keys.map((k) => `"${k}"`).join(",");
-        for (let item of data) {
+
+        let content = keys.map((k) => `"${k == "produitId" ? "nom" : k}"`).join(",");
+        for (const item of data) {
             content += "\n";
 
             const values: string[] = [];
-            for (let key of keys) {
-                let value = item[key] || "";
-                value =
-                    typeof value == "object" ? JSON.stringify(value).replaceAll('"', '\\"') : value;
+            for (const key of keys) {
+                let value = item[key as keyof I.IInventaire] || "";
+
+                if (key == "produitId") {
+                    value = state.productsMap[value as keyof I.IProduit].nom;
+                }
+
+                typeof value == "object" ? JSON.stringify(value).replaceAll('"', '\\"') : value;
                 values.push(`"${value}"`);
             }
             content += values.join(",");
